@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contractors · Admin — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --red-bg: #fef2f4;
+  --red-text: #c2415b;
+  --yellow-bg: #fff8e1;
+  --yellow-text: #8d6e00;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--gray-100);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* ADMIN HEADER */
+.admin-header { background: var(--navy-deep); color: white; padding: 14px 0; border-bottom: 2px solid var(--gold); }
+.admin-header-inner { max-width: 1480px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.admin-logo { display: flex; align-items: center; gap: 12px; }
+.admin-logo-mark { width: 32px; height: 32px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--navy-deep); font-style: italic; }
+.admin-logo-text { font-family: var(--serif); font-weight: 600; font-size: 17px; color: white; letter-spacing: -0.01em; }
+.admin-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); padding: 4px 10px; border: 1px solid var(--gold); margin-left: 14px; font-weight: 600; }
+.admin-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.65); }
+.admin-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.admin-nav a:hover { color: white; }
+.admin-nav a.active { color: white; border-bottom: 2px solid var(--gold); }
+.admin-nav a .badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--gold); color: var(--navy-deep);
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  min-width: 18px; height: 18px; border-radius: 9px; padding: 0 5px; margin-left: 6px;
+}
+.admin-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.admin-avatar { width: 30px; height: 30px; background: var(--gold); color: var(--navy-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+
+/* PAGE */
+.page-container { max-width: 1480px; margin: 0 auto; padding: 32px; }
+.page-title-bar { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; gap: 24px; }
+.page-title { font-family: var(--serif); font-weight: 600; font-size: 32px; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 6px; }
+.page-title em { font-style: italic; }
+.page-sub { font-size: 14px; color: var(--gray-500); }
+.page-sub strong { color: var(--gray-700); font-weight: 500; }
+.page-actions { display: flex; gap: 10px; }
+.btn {
+  padding: 10px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+.btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+.btn-primary { background: var(--navy); color: var(--gold-light); border: 1px solid var(--navy); }
+.btn-primary:hover { background: var(--navy-deep); color: white; }
+
+/* STATS STRIP */
+.stats-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px; }
+.stat-card { background: white; border: 1px solid var(--gray-200); padding: 22px 26px; display: flex; flex-direction: column; }
+.stat-num { font-family: var(--serif); font-weight: 600; font-size: 32px; color: var(--navy); letter-spacing: -0.015em; line-height: 1.1; }
+.stat-num.gold { color: var(--gold); }
+.stat-num.green { color: var(--green-text); }
+.stat-num.warn { color: var(--red-text); }
+.stat-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-top: 4px; }
+.stat-delta { font-family: var(--mono); font-size: 11px; margin-top: 10px; letter-spacing: 0.04em; }
+.stat-delta.up { color: var(--green-text); }
+.stat-delta.flat { color: var(--gray-500); }
+.stat-num-small { font-size: 24px; }
+
+/* TOOLBAR */
+.toolbar {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-bottom: none;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.toolbar-left { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.toolbar-search {
+  position: relative;
+  width: 320px;
+}
+.toolbar-search input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--gray-300);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+}
+.toolbar-search input:focus { outline: none; border-color: var(--navy); }
+.toolbar-search::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center;
+}
+.filter-chip {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  color: var(--gray-700);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.filter-chip:hover { border-color: var(--navy); color: var(--navy); }
+.filter-chip.active { background: var(--navy); color: var(--gold-light); border-color: var(--navy); }
+.filter-chip .count {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.toolbar-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.toolbar-right .sort, .toolbar-right select {
+  cursor: pointer;
+  padding: 7px 12px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gray-700);
+  font-weight: 600;
+}
+
+/* CONTRACTORS TABLE */
+.contractors-table-wrapper {
+  background: white;
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+.contractors-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.contractors-table thead th {
+  background: var(--navy);
+  color: white;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: left;
+  padding: 14px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+.contractors-table thead th:last-child { border-right: none; }
+.contractors-table thead th.right { text-align: right; }
+.contractors-table tbody tr {
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.contractors-table tbody tr:hover { background: var(--gray-50); }
+.contractors-table tbody tr.featured {
+  background: linear-gradient(90deg, var(--gold-pale) 0%, transparent 30%);
+}
+.contractors-table tbody tr.featured td:first-child {
+  border-left: 3px solid var(--gold);
+  padding-left: 17px;
+}
+.contractors-table tbody td {
+  padding: 14px 20px;
+  font-size: 13.5px;
+  vertical-align: middle;
+}
+.contractors-table .biz-name {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.contractors-table .biz-name .featured-mark {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.contractors-table .biz-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+}
+.contractors-table .city-tag {
+  color: var(--gold);
+  font-weight: 600;
+}
+.license-cell {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+.license-cell .type {
+  display: block;
+  font-size: 10.5px;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-top: 2px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.claim-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+.claim-status .dot { width: 6px; height: 6px; border-radius: 50%; }
+.claim-status.unclaimed { background: var(--gray-100); color: var(--gray-500); }
+.claim-status.unclaimed .dot { background: var(--gray-500); }
+.claim-status.claimed { background: var(--green-bg); color: var(--green-text); }
+.claim-status.claimed .dot { background: var(--green-text); }
+.claim-status.featured { background: var(--gold-pale); color: var(--gold); }
+.claim-status.featured .dot { background: var(--gold); }
+.claim-status.pending { background: var(--yellow-bg); color: var(--yellow-text); }
+.claim-status.pending .dot { background: var(--yellow-text); }
+
+.license-status-pill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+}
+.license-status-pill.current { background: var(--green-bg); color: var(--green-text); }
+.license-status-pill.delinquent { background: var(--yellow-bg); color: var(--yellow-text); }
+.license-status-pill.void { background: var(--red-bg); color: var(--red-text); }
+
+.inquiries-cell {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+.inquiries-cell.zero { color: var(--gray-400); font-weight: 400; }
+.inquiries-cell .lifetime {
+  display: block;
+  font-size: 10px;
+  color: var(--gray-500);
+  font-weight: 400;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+.actions-cell { text-align: right; white-space: nowrap; }
+.actions-cell a {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  padding: 6px 10px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  margin-left: 6px;
+  transition: all 0.12s;
+  display: inline-block;
+}
+.actions-cell a:hover { border-color: var(--navy); background: var(--gold-pale); }
+
+/* PAGINATION */
+.pagination {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+.pagination-info {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+}
+.pagination-info strong { color: var(--gray-700); font-weight: 600; }
+.pagination-controls { display: flex; gap: 6px; }
+.pagination-btn {
+  background: white;
+  border: 1px solid var(--gray-300);
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--gray-700);
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.pagination-btn:hover { border-color: var(--navy); color: var(--navy); }
+.pagination-btn.active { background: var(--navy); color: var(--gold-light); border-color: var(--navy); }
+.pagination-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@media (max-width: 1200px) {
+  .admin-nav { display: none; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .toolbar { flex-direction: column; align-items: flex-start; }
+  .toolbar-search { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- ADMIN HEADER -->
+<div class="admin-header">
+  <div class="admin-header-inner">
+    <div class="admin-logo">
+      <div class="admin-logo-mark">F</div>
+      <div class="admin-logo-text">Florida Contractor Registry</div>
+      <div class="admin-tag">Admin</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin/claims">Claims<span class="badge">7</span></a>
+      <a href="/admin/leads">Leads<span class="badge">12</span></a>
+      <a href="/admin/contractors" class="active">Contractors</a>
+      <a href="/admin/sync">DBPR Sync</a>
+      <a href="/admin/settings">Settings</a>
+    </nav>
+    <div class="admin-user">
+      <div class="admin-avatar">JB</div>
+      <span>Jim Blackburn</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page-container">
+
+  <div class="page-title-bar">
+    <div>
+      <h1 class="page-title">All <em>contractors</em></h1>
+      <div class="page-sub"><strong>266,312 active licenses</strong> · 3,847 claimed · 142 on Featured tier · sync 2 days ago</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary">Export Filtered</button>
+      <button class="btn btn-secondary">Bulk Actions</button>
+      <button class="btn btn-primary">Add Contractor</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-num">266,312</div>
+      <div class="stat-label">Active Licenses</div>
+      <div class="stat-delta up">+ 184 this week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">3,847</div>
+      <div class="stat-label">Claimed Profiles</div>
+      <div class="stat-delta up">+ 42 this week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num gold">142</div>
+      <div class="stat-label">Featured Tier ($29/mo)</div>
+      <div class="stat-delta up">+ 8 this month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">1.4%</div>
+      <div class="stat-label">Claim Rate</div>
+      <div class="stat-delta flat">claimed ÷ active</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">$4,118</div>
+      <div class="stat-label">MRR (Featured)</div>
+      <div class="stat-delta flat">142 × $29/mo</div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <div class="toolbar-search">
+        <input type="text" placeholder="Name, license #, city, qualifying agent..." />
+      </div>
+      <button class="filter-chip active">All <span class="count">266,312</span></button>
+      <button class="filter-chip">Unclaimed <span class="count">262,465</span></button>
+      <button class="filter-chip">Claimed <span class="count">3,847</span></button>
+      <button class="filter-chip">Featured <span class="count">142</span></button>
+      <button class="filter-chip">Pending Claims <span class="count">7</span></button>
+    </div>
+    <div class="toolbar-right">
+      <select class="sort">
+        <option>License Type — All</option>
+        <option>CGC — Certified General</option>
+        <option>CBC — Certified Building</option>
+        <option>CRC — Certified Residential</option>
+        <option>CCC — Roofing</option>
+        <option>CPC — Pool/Spa</option>
+        <option>CMC — HVAC</option>
+        <option>EC — Electrical</option>
+        <option>CFC — Plumbing</option>
+      </select>
+      <select class="sort">
+        <option>County — All</option>
+        <option>Broward</option>
+        <option>Miami-Dade</option>
+        <option>Palm Beach</option>
+        <option>Orange</option>
+        <option>Hillsborough</option>
+      </select>
+      <select class="sort">
+        <option>Sort — Most Inquiries</option>
+        <option>Recently Claimed</option>
+        <option>Recently Added (DBPR)</option>
+        <option>Alphabetical</option>
+        <option>License Expiring Soon</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- CONTRACTORS TABLE -->
+  <div class="contractors-table-wrapper">
+    <table class="contractors-table">
+      <thead>
+        <tr>
+          <th>Business / Qualifying Agent</th>
+          <th>License</th>
+          <th>Status</th>
+          <th>Claim</th>
+          <th class="right">Inquiries (30d / lifetime)</th>
+          <th class="right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="featured">
+          <td>
+            <div class="biz-name">
+              Aceca Construction LLC
+              <span class="featured-mark">FEATURED</span>
+            </div>
+            <div class="biz-meta">
+              Cristian Acero · <span class="city-tag">Davie</span> · Broward Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CGC1520921
+              <span class="type">Certified General</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status featured"><span class="dot"></span>Featured</span></td>
+          <td class="inquiries-cell">
+            18
+            <span class="lifetime">142 lifetime</span>
+          </td>
+          <td class="actions-cell">
+            <a href="/contractor/aceca-construction-cgc1520921-davie">View</a>
+            <a href="#">Edit</a>
+          </td>
+        </tr>
+
+        <tr class="featured">
+          <td>
+            <div class="biz-name">
+              Sunshine Building Group LLC
+              <span class="featured-mark">FEATURED</span>
+            </div>
+            <div class="biz-meta">
+              Marcus Tanner · <span class="city-tag">Fort Lauderdale</span> · Broward Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CBC1259843
+              <span class="type">Certified Building</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status featured"><span class="dot"></span>Featured</span></td>
+          <td class="inquiries-cell">
+            12
+            <span class="lifetime">87 lifetime</span>
+          </td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+            <a href="#">Edit</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Coastal Roofing Solutions Inc</div>
+            <div class="biz-meta">
+              Jennifer Walsh · <span class="city-tag">Pompano Beach</span> · Broward Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CCC1331247
+              <span class="type">Certified Roofing</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status claimed"><span class="dot"></span>Claimed</span></td>
+          <td class="inquiries-cell">
+            7
+            <span class="lifetime">31 lifetime</span>
+          </td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+            <a href="#">Edit</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Henderson Pool &amp; Spa Construction</div>
+            <div class="biz-meta">
+              Robert Henderson · <span class="city-tag">Weston</span> · Broward Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CPC1456821
+              <span class="type">Certified Pool/Spa</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status claimed"><span class="dot"></span>Claimed</span></td>
+          <td class="inquiries-cell">
+            4
+            <span class="lifetime">22 lifetime</span>
+          </td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+            <a href="#">Edit</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Ramirez Electrical Services</div>
+            <div class="biz-meta">
+              Carlos Ramirez · <span class="city-tag">Hollywood</span> · Broward Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              EC13007854
+              <span class="type">Electrical</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status pending"><span class="dot"></span>Pending Review</span></td>
+          <td class="inquiries-cell zero">—</td>
+          <td class="actions-cell">
+            <a href="/admin/claims">Review Claim</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Tropical Air Conditioning Inc</div>
+            <div class="biz-meta">
+              Olga Petrova · <span class="city-tag">Miami</span> · Miami-Dade Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CMC1249103
+              <span class="type">HVAC / Mechanical</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status unclaimed"><span class="dot"></span>Unclaimed</span></td>
+          <td class="inquiries-cell">
+            3
+            <span class="lifetime">3 lifetime</span>
+          </td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">DeLuca Construction Services LLC</div>
+            <div class="biz-meta">
+              Anthony DeLuca · <span class="city-tag">Plantation</span> · Broward Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CGC1518934
+              <span class="type">Certified General</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill delinquent">Delinquent</span></td>
+          <td><span class="claim-status unclaimed"><span class="dot"></span>Unclaimed</span></td>
+          <td class="inquiries-cell zero">—</td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+            <a href="#">Suppress</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Bayside Plumbing LLC</div>
+            <div class="biz-meta">
+              Maria Santos · <span class="city-tag">Orlando</span> · Orange Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CFC1428756
+              <span class="type">Plumbing</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status claimed"><span class="dot"></span>Claimed</span></td>
+          <td class="inquiries-cell">
+            2
+            <span class="lifetime">14 lifetime</span>
+          </td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+            <a href="#">Edit</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Premier Residential Builders</div>
+            <div class="biz-meta">
+              David Kim · <span class="city-tag">Tampa</span> · Hillsborough Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CRC1331087
+              <span class="type">Certified Residential</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status unclaimed"><span class="dot"></span>Unclaimed</span></td>
+          <td class="inquiries-cell zero">—</td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Goldcoast General Contractors</div>
+            <div class="biz-meta">
+              Edward Vasquez · <span class="city-tag">Boca Raton</span> · Palm Beach Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CGC1518741
+              <span class="type">Certified General</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status unclaimed"><span class="dot"></span>Unclaimed</span></td>
+          <td class="inquiries-cell zero">—</td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">McClellan Roofing &amp; Repairs</div>
+            <div class="biz-meta">
+              Patrick McClellan · <span class="city-tag">Jacksonville</span> · Duval Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CCC1331652
+              <span class="type">Certified Roofing</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill void">Null and Void</span></td>
+          <td><span class="claim-status unclaimed"><span class="dot"></span>Unclaimed</span></td>
+          <td class="inquiries-cell zero">—</td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+            <a href="#">Suppress</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="biz-name">Suncoast Mechanical Services</div>
+            <div class="biz-meta">
+              Maria Castillo · <span class="city-tag">St. Petersburg</span> · Pinellas Co.
+            </div>
+          </td>
+          <td>
+            <div class="license-cell">
+              CMC1249587
+              <span class="type">HVAC / Mechanical</span>
+            </div>
+          </td>
+          <td><span class="license-status-pill current">Current</span></td>
+          <td><span class="claim-status unclaimed"><span class="dot"></span>Unclaimed</span></td>
+          <td class="inquiries-cell zero">—</td>
+          <td class="actions-cell">
+            <a href="#">View</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <div class="pagination-info">
+        Showing <strong>1–12</strong> of <strong>266,312</strong> contractors
+      </div>
+      <div class="pagination-controls">
+        <button class="pagination-btn" disabled>← Prev</button>
+        <button class="pagination-btn active">1</button>
+        <button class="pagination-btn">2</button>
+        <button class="pagination-btn">3</button>
+        <button class="pagination-btn">…</button>
+        <button class="pagination-btn">22,193</button>
+        <button class="pagination-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

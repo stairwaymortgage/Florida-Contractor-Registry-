@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign In — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --paper: #fdfbf6;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* MINIMAL HEADER - login pages strip down to logo only */
+.minimal-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 22px 0;
+}
+.minimal-header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 14px; }
+.logo-mark { width: 42px; height: 42px; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--gold); }
+.logo-mark span { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--gold); z-index: 1; font-style: italic; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line { font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--navy); letter-spacing: -0.01em; }
+.logo-text .sub-line { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); font-weight: 500; margin-top: 2px; }
+.minimal-header .back-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+}
+.minimal-header .back-link:hover { color: var(--navy); }
+
+/* LAYOUT */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 91px);
+}
+
+/* LEFT SIDE - form */
+.auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background: var(--paper);
+}
+.auth-form-inner {
+  max-width: 420px;
+  width: 100%;
+}
+.auth-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.auth-kicker::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.auth-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+.auth-h1 em { font-style: italic; }
+
+.auth-sub {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--gray-700);
+  margin-bottom: 36px;
+}
+
+.form-field { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.form-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  transition: border-color 0.15s;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(26, 40, 69, 0.08);
+}
+.form-input::placeholder { color: var(--gray-500); }
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--navy);
+  color: var(--gold-light);
+  border: none;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-top: 8px;
+}
+.btn-primary:hover { background: var(--navy-deep); color: white; }
+
+.form-helper {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+  line-height: 1.6;
+}
+.form-helper a {
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+}
+.form-helper a:hover { background: var(--gold-pale); }
+
+/* RIGHT SIDE - editorial sidebar */
+.auth-info-side {
+  background: var(--navy-deep);
+  color: white;
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.auth-info-side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gold);
+}
+.info-kicker {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.info-headline {
+  font-family: var(--serif);
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: white;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 440px;
+}
+.info-headline em { font-style: italic; color: var(--gold-light); }
+
+.info-body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 36px;
+  max-width: 440px;
+}
+.info-body strong { color: white; font-weight: 600; }
+
+.info-list {
+  list-style: none;
+  margin-bottom: 36px;
+  max-width: 440px;
+}
+.info-list li {
+  position: relative;
+  padding: 10px 0 10px 24px;
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.55;
+}
+.info-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 14px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.info-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  max-width: 440px;
+}
+.info-meta strong { color: var(--gold-light); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .auth-layout { grid-template-columns: 1fr; }
+  .auth-info-side { padding: 48px 32px; }
+  .auth-form-side { padding: 48px 32px; }
+  .info-headline { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<header class="minimal-header">
+  <div class="minimal-header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </a>
+    <a href="/" class="back-link">← Back to site</a>
+  </div>
+</header>
+
+<div class="auth-layout">
+
+  <!-- LEFT: FORM -->
+  <div class="auth-form-side">
+    <div class="auth-form-inner">
+      <div class="auth-kicker">Contractor Sign In</div>
+      <h1 class="auth-h1">Sign in to your <em>profile.</em></h1>
+      <p class="auth-sub">Enter the email address you used when you claimed your profile. We'll send you a sign-in link.</p>
+
+      <form>
+        <div class="form-field">
+          <label class="form-label" for="email">Email Address</label>
+          <input type="email" id="email" class="form-input" placeholder="cristian@aceca-construction.com" autocomplete="email" />
+        </div>
+
+        <button type="submit" class="btn-primary">Send Sign-In Link →</button>
+
+        <div class="form-helper">
+          <p>Haven't claimed your profile yet? <a href="/contractors">Find your business on the registry</a> and start the claim process — it takes about five minutes.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- RIGHT: EDITORIAL SIDEBAR -->
+  <div class="auth-info-side">
+    <div class="info-kicker">No Password Required</div>
+    <h2 class="info-headline">We don't use <em>passwords.</em></h2>
+
+    <p class="info-body">Every time you sign in, we send a one-time link to your email address. Click the link and you're signed in. <strong>No password to remember, no password to forget, no password to steal.</strong></p>
+
+    <ul class="info-list">
+      <li>The sign-in link is valid for 15 minutes</li>
+      <li>It can only be used once</li>
+      <li>If someone else opens the link, your session is revoked automatically</li>
+    </ul>
+
+    <div class="info-meta">
+      Trouble signing in? Email <strong>support@floridacontractorregistry.com</strong> and we'll help you sort it out within one business day.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

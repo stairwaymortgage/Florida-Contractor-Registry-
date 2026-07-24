@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DBPR Sync Status · Admin · Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --green-text-deep: #1b5e20;
+  --red-bg: #fef2f4;
+  --red-text: #c2415b;
+  --yellow-bg: #fff8e1;
+  --yellow-text: #8d6e00;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--gray-100);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* ============ ADMIN HEADER ============ */
+.admin-header { background: var(--navy-deep); color: white; padding: 14px 0; border-bottom: 2px solid var(--gold); }
+.admin-header-inner { max-width: 1480px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.admin-logo { display: flex; align-items: center; gap: 12px; }
+.admin-logo-mark { width: 32px; height: 32px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--navy-deep); font-style: italic; }
+.admin-logo-text { font-family: var(--serif); font-weight: 600; font-size: 17px; color: white; letter-spacing: -0.01em; }
+.admin-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); padding: 4px 10px; border: 1px solid var(--gold); margin-left: 14px; font-weight: 600; }
+.admin-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.65); }
+.admin-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.admin-nav a:hover { color: white; }
+.admin-nav a.active { color: white; border-bottom: 2px solid var(--gold); }
+.admin-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.admin-avatar { width: 30px; height: 30px; background: var(--gold); color: var(--navy-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+
+/* ============ PAGE LAYOUT ============ */
+.page-container { max-width: 1480px; margin: 0 auto; padding: 32px; }
+.page-title-bar { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 24px; }
+.page-title { font-family: var(--serif); font-weight: 600; font-size: 32px; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 6px; }
+.page-title em { font-style: italic; }
+.page-sub { font-size: 14px; color: var(--gray-500); }
+.page-sub strong { color: var(--gray-700); font-weight: 500; }
+.page-actions { display: flex; gap: 10px; }
+.btn {
+  padding: 10px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-secondary {
+  background: white;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+.btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+.btn-primary {
+  background: var(--navy);
+  color: var(--gold-light);
+  border: 1px solid var(--navy);
+}
+.btn-primary:hover { background: var(--navy-deep); color: white; }
+
+/* ============ STATUS BANNER ============ */
+.status-banner {
+  background: linear-gradient(90deg, #ecf6ed 0%, #f3fbf3 100%);
+  border: 1px solid #c6e0c8;
+  border-left: 6px solid var(--green-text);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.status-banner.warn {
+  background: linear-gradient(90deg, #fff8e1 0%, #fffbef 100%);
+  border-color: #e8d490;
+  border-left-color: var(--yellow-text);
+}
+.status-banner.error {
+  background: linear-gradient(90deg, #fef2f4 0%, #fef7f8 100%);
+  border-color: #e8c5cc;
+  border-left-color: var(--red-text);
+}
+.status-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--green-text);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+}
+.status-banner.warn .status-icon { background: var(--yellow-text); }
+.status-banner.error .status-icon { background: var(--red-text); }
+.status-content { min-width: 0; }
+.status-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-text-deep);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.status-banner.warn .status-tag { color: var(--yellow-text); }
+.status-banner.error .status-tag { color: var(--red-text); }
+.status-headline {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.status-headline em { font-style: italic; }
+.status-detail {
+  font-size: 13.5px;
+  color: var(--gray-700);
+  line-height: 1.55;
+}
+.status-detail strong { color: var(--ink); font-weight: 600; }
+.status-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--gray-500);
+  text-align: right;
+}
+.status-meta .ts { font-size: 13px; color: var(--gray-700); margin-bottom: 4px; font-weight: 600; letter-spacing: 0.02em; }
+
+/* ============ STATS STRIP ============ */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.stat-num.gold { color: var(--gold); }
+.stat-num.green { color: var(--green-text); }
+.stat-num.warn { color: var(--red-text); }
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+.stat-delta {
+  font-family: var(--mono);
+  font-size: 11px;
+  margin-top: 10px;
+  letter-spacing: 0.04em;
+}
+.stat-delta.up { color: var(--green-text); }
+.stat-delta.down { color: var(--red-text); }
+.stat-delta.flat { color: var(--gray-500); }
+
+/* ============ TWO COLUMN ============ */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+.panel-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.panel-title::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+.panel-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+}
+
+.panel-body { padding: 22px 24px; }
+
+/* ============ RECORD CHANGES ============ */
+.change-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 80px;
+  gap: 16px;
+  padding: 12px 0;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-100);
+}
+.change-row:last-child { border-bottom: none; }
+.change-type {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  display: inline-block;
+  text-align: center;
+}
+.change-type.added { background: var(--green-bg); color: var(--green-text-deep); }
+.change-type.updated { background: #e0eaf5; color: var(--navy); }
+.change-type.removed { background: var(--red-bg); color: var(--red-text); }
+.change-type.status { background: var(--yellow-bg); color: var(--yellow-text); }
+.change-info { min-width: 0; }
+.change-name {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.change-detail {
+  font-size: 11.5px;
+  color: var(--gray-500);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+.change-count {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gray-700);
+  font-weight: 600;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
+.summary-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--gold-pale);
+  padding: 8px 14px;
+  margin-top: 16px;
+}
+.summary-pill .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-700);
+  font-weight: 600;
+}
+.summary-pill .value {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* ============ TIMING DETAILS ============ */
+.timing-list dt, .timing-list dd { padding: 10px 0; }
+.timing-list { display: grid; grid-template-columns: 160px 1fr; gap: 12px; }
+.timing-list dt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  align-self: center;
+  border-bottom: 1px solid var(--gray-100);
+}
+.timing-list dd {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+  border-bottom: 1px solid var(--gray-100);
+}
+.timing-list dt:last-of-type,
+.timing-list dd:last-of-type { border-bottom: none; }
+.timing-list .mono { font-family: var(--mono); font-size: 13px; color: var(--gold); font-weight: 600; }
+.timing-list .duration { color: var(--green-text); font-weight: 600; }
+
+/* ============ HISTORY TABLE ============ */
+.history-section {
+  background: white;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 32px;
+}
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.history-table th {
+  background: var(--navy);
+  color: white;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+.history-table th:last-child { border-right: none; }
+.history-table td {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.history-table tr:last-child td { border-bottom: none; }
+.history-table tr:hover { background: var(--gray-50); }
+.history-table .mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: var(--gray-700);
+}
+.run-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+.run-status .dot { width: 6px; height: 6px; border-radius: 50%; }
+.run-status.success { background: var(--green-bg); color: var(--green-text-deep); }
+.run-status.success .dot { background: var(--green-text); }
+.run-status.warn { background: var(--yellow-bg); color: var(--yellow-text); }
+.run-status.warn .dot { background: var(--yellow-text); }
+.run-status.error { background: var(--red-bg); color: var(--red-text); }
+.run-status.error .dot { background: var(--red-text); }
+.run-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+  letter-spacing: 0.04em;
+}
+
+/* ============ ALERTS PANEL ============ */
+.alerts-panel { margin-bottom: 32px; }
+.alert-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-100);
+  align-items: center;
+}
+.alert-item:last-child { border-bottom: none; }
+.alert-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.alert-dot.warn { background: var(--yellow-text); }
+.alert-dot.info { background: var(--navy); }
+.alert-dot.success { background: var(--green-text); }
+.alert-text {
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.alert-text strong { font-weight: 600; }
+.alert-time {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 1200px) {
+  .detail-grid { grid-template-columns: 1fr; }
+  .admin-nav { display: none; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .status-banner { grid-template-columns: 1fr; text-align: left; }
+  .history-table th, .history-table td { padding: 12px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ADMIN HEADER -->
+<div class="admin-header">
+  <div class="admin-header-inner">
+    <div class="admin-logo">
+      <div class="admin-logo-mark">F</div>
+      <div class="admin-logo-text">Florida Contractor Registry</div>
+      <div class="admin-tag">Admin</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin/claims">Claims</a>
+      <a href="/admin/leads">Leads</a>
+      <a href="/admin/contractors">Contractors</a>
+      <a href="/admin/sync" class="active">DBPR Sync</a>
+      <a href="/admin/settings">Settings</a>
+    </nav>
+    <div class="admin-user">
+      <div class="admin-avatar">JB</div>
+      <span>Jim Blackburn</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page-container">
+
+  <div class="page-title-bar">
+    <div>
+      <h1 class="page-title">DBPR sync <em>status</em></h1>
+      <div class="page-sub">Weekly ingestion of <strong>266,312 contractor records</strong> from the Florida DBPR public data feed</div>
+    </div>
+    <div class="page-actions">
+      <button class="btn btn-secondary">View Logs</button>
+      <button class="btn btn-primary">Run Sync Manually</button>
+    </div>
+  </div>
+
+  <!-- STATUS BANNER -->
+  <div class="status-banner">
+    <div class="status-icon">✓</div>
+    <div class="status-content">
+      <div class="status-tag">Last Run · Successful</div>
+      <h2 class="status-headline">Sync completed <em>without errors.</em></h2>
+      <div class="status-detail">All 266,312 records processed. <strong>847 changes applied</strong> (132 added, 689 updated, 26 status changes). Next scheduled run: <strong>Sunday, May 31, 2026 at 02:00 ET</strong>.</div>
+    </div>
+    <div class="status-meta">
+      <div class="ts">May 19, 2026<br/>02:00:14 ET</div>
+      <div>Duration: 14m 22s</div>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-num">266,312</div>
+      <div class="stat-label">Total Active Contractors</div>
+      <div class="stat-delta up">↑ 132 since last sync</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">847</div>
+      <div class="stat-label">Changes This Week</div>
+      <div class="stat-delta flat">Avg: ~750 / week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num gold">7d</div>
+      <div class="stat-label">Days Since Last Sync</div>
+      <div class="stat-delta flat">Schedule: Sunday 02:00 ET</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">52 / 52</div>
+      <div class="stat-label">Successful Runs (1 yr)</div>
+      <div class="stat-delta up">100% success rate</div>
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN: CHANGES + TIMING -->
+  <div class="detail-grid">
+
+    <!-- LEFT: Record Changes -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Changes Applied This Run</div>
+        <div class="panel-meta">847 total</div>
+      </div>
+      <div class="panel-body">
+
+        <div class="change-row">
+          <div class="change-type added">Added</div>
+          <div class="change-info">
+            <div class="change-name">New licenses issued by DBPR</div>
+            <div class="change-detail">Mostly recent applicants completing the qualifying process</div>
+          </div>
+          <div class="change-count">+132</div>
+        </div>
+
+        <div class="change-row">
+          <div class="change-type updated">Updated</div>
+          <div class="change-info">
+            <div class="change-name">Address or contact info changed</div>
+            <div class="change-detail">Mailing address, license expiration date, or qualifying agent</div>
+          </div>
+          <div class="change-count">689</div>
+        </div>
+
+        <div class="change-row">
+          <div class="change-type status">Status</div>
+          <div class="change-info">
+            <div class="change-name">License status transitions</div>
+            <div class="change-detail">Mostly Current → Delinquent or Delinquent → Null and Void</div>
+          </div>
+          <div class="change-count">26</div>
+        </div>
+
+        <div class="change-row">
+          <div class="change-type removed">Removed</div>
+          <div class="change-info">
+            <div class="change-name">Voluntarily withdrawn or revoked</div>
+            <div class="change-detail">Profiles archived (kept for 90 days then deleted per retention policy)</div>
+          </div>
+          <div class="change-count">0</div>
+        </div>
+
+        <div class="summary-pill">
+          <span class="label">Net Change</span>
+          <span class="value">+132 active contractors</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Timing Details -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Run Timing &amp; Verification</div>
+        <div class="panel-meta">Run #FCR-SYNC-487</div>
+      </div>
+      <div class="panel-body">
+        <dl class="timing-list">
+          <dt>Triggered</dt>
+          <dd><span class="mono">2026-05-19 02:00:00 ET</span></dd>
+          <dt>Download CSV</dt>
+          <dd>2.4 seconds · <span class="duration">46.2 MB</span></dd>
+          <dt>Schema Validation</dt>
+          <dd>Passed · 22 columns matched · 266,312 rows</dd>
+          <dt>County Code Mapping</dt>
+          <dd>Passed · 67 counties resolved</dd>
+          <dt>License Type Mapping</dt>
+          <dd>Passed · 29 types matched</dd>
+          <dt>Database Upsert</dt>
+          <dd><span class="duration">12m 18s</span> · 847 changes applied</dd>
+          <dt>ISR Cache Refresh</dt>
+          <dd><span class="duration">2m 04s</span> · 847 pages re-rendered</dd>
+          <dt>Total Duration</dt>
+          <dd><span class="duration">14m 22s</span></dd>
+          <dt>Completed</dt>
+          <dd><span class="mono">2026-05-19 02:14:22 ET</span></dd>
+          <dt>Source</dt>
+          <dd style="font-size: 12.5px; font-family: var(--mono); color: var(--gray-700); word-break: break-all;">myfloridalicense.com/sto/file_download/extracts/CONSTRUCTIONLICENSE_1.csv</dd>
+        </dl>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ALERTS / NOTES -->
+  <div class="panel alerts-panel">
+    <div class="panel-header">
+      <div class="panel-title">Recent Alerts &amp; Notes</div>
+      <div class="panel-meta">Last 30 days</div>
+    </div>
+    <div class="panel-body">
+
+      <div class="alert-item">
+        <div class="alert-dot success"></div>
+        <div class="alert-text">Sync completed successfully — <strong>847 changes</strong> applied</div>
+        <div class="alert-time">May 19, 2026 02:14 ET</div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-dot warn"></div>
+        <div class="alert-text">License type code <strong>"CCV"</strong> appeared in DBPR feed but is not in our mapping table — 1 record skipped, manually reviewed</div>
+        <div class="alert-time">May 12, 2026 02:09 ET</div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-dot success"></div>
+        <div class="alert-text">Sync completed successfully — <strong>721 changes</strong> applied</div>
+        <div class="alert-time">May 12, 2026 02:14 ET</div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-dot info"></div>
+        <div class="alert-text">Schedule moved from Saturday 23:00 ET to Sunday 02:00 ET to align with DBPR's actual publish time</div>
+        <div class="alert-time">May 6, 2026</div>
+      </div>
+
+      <div class="alert-item">
+        <div class="alert-dot success"></div>
+        <div class="alert-text">Sync completed successfully — <strong>683 changes</strong> applied</div>
+        <div class="alert-time">May 5, 2026 02:11 ET</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RUN HISTORY -->
+  <div class="history-section">
+    <div class="panel-header">
+      <div class="panel-title">Run History · Last 12 Runs</div>
+      <div class="panel-meta">Full history at /admin/sync/logs</div>
+    </div>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Run ID</th>
+          <th>Started</th>
+          <th>Duration</th>
+          <th>Records</th>
+          <th>Changes</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">#487</td>
+          <td class="mono">May 19 02:00 ET</td>
+          <td class="mono">14m 22s</td>
+          <td class="mono">266,312</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">847</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#486</td>
+          <td class="mono">May 12 02:00 ET</td>
+          <td class="mono">14m 02s</td>
+          <td class="mono">266,180</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">721</td>
+          <td><span class="run-status warn"><span class="dot"></span>Warning</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#485</td>
+          <td class="mono">May 5 02:00 ET</td>
+          <td class="mono">13m 47s</td>
+          <td class="mono">265,459</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">683</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#484</td>
+          <td class="mono">Apr 28 02:00 ET</td>
+          <td class="mono">13m 58s</td>
+          <td class="mono">264,776</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">812</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#483</td>
+          <td class="mono">Apr 21 02:00 ET</td>
+          <td class="mono">14m 11s</td>
+          <td class="mono">263,964</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">756</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#482</td>
+          <td class="mono">Apr 14 02:00 ET</td>
+          <td class="mono">14m 30s</td>
+          <td class="mono">263,208</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">694</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#481</td>
+          <td class="mono">Apr 7 02:00 ET</td>
+          <td class="mono">13m 39s</td>
+          <td class="mono">262,514</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">781</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#480</td>
+          <td class="mono">Mar 31 02:00 ET</td>
+          <td class="mono">14m 04s</td>
+          <td class="mono">261,733</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">812</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#479</td>
+          <td class="mono">Mar 24 02:00 ET</td>
+          <td class="mono">14m 18s</td>
+          <td class="mono">260,921</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">724</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#478</td>
+          <td class="mono">Mar 17 02:00 ET</td>
+          <td class="mono">14m 27s</td>
+          <td class="mono">260,197</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">689</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#477</td>
+          <td class="mono">Mar 10 02:00 ET</td>
+          <td class="mono">14m 09s</td>
+          <td class="mono">259,508</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">757</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+        <tr>
+          <td class="mono">#476</td>
+          <td class="mono">Mar 3 02:00 ET</td>
+          <td class="mono">13m 51s</td>
+          <td class="mono">258,751</td>
+          <td class="mono" style="color: var(--green-text); font-weight: 600;">691</td>
+          <td><span class="run-status success"><span class="dot"></span>Success</span></td>
+          <td><a href="#" class="run-link">View →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>

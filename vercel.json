@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/counties", "destination": "/counties_index.html" },
+    { "source": "/cities", "destination": "/cities_index.html" },
+    { "source": "/types", "destination": "/license_types_index.html" },
+    { "source": "/county/:slug", "destination": "/broward_county_index.html" },
+    { "source": "/city/:slug", "destination": "/broward_county_index.html" },
+    { "source": "/type/:slug", "destination": "/broward_county_index.html" },
+    { "source": "/contractor/:slug", "destination": "/contractor_profile_aceca.html" },
+    { "source": "/contractors", "destination": "/for_contractors.html" },
+    { "source": "/search", "destination": "/search_results.html" },
+    { "source": "/diagnostic", "destination": "/diagnostic_flow_v2.html" },
+    { "source": "/claim/:slug", "destination": "/contractor_claim_flow.html" },
+    { "source": "/claim/approved", "destination": "/claim_approved.html" },
+    { "source": "/manage/:slug", "destination": "/manage_profile.html" },
+    { "source": "/inquiries", "destination": "/contractor_inquiries.html" },
+    { "source": "/login/sent", "destination": "/login_sent.html" },
+    { "source": "/hiring-checklist", "destination": "/hiring_checklist.html" },
+    { "source": "/sms-terms", "destination": "/sms_terms.html" },
+    { "source": "/featured-terms", "destination": "/featured_terms.html" },
+    { "source": "/admin/claims", "destination": "/admin_claim_review.html" },
+    { "source": "/admin/leads", "destination": "/admin_leads.html" },
+    { "source": "/admin/contractors", "destination": "/admin_contractors.html" },
+    { "source": "/admin/sync", "destination": "/admin_sync_status.html" },
+    { "source": "/admin/settings", "destination": "/admin_settings.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}

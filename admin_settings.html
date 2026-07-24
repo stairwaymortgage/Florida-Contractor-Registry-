@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Settings · Admin — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --red-bg: #fef2f4;
+  --red-text: #c2415b;
+  --yellow-bg: #fff8e1;
+  --yellow-text: #8d6e00;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--gray-100);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* ADMIN HEADER */
+.admin-header { background: var(--navy-deep); color: white; padding: 14px 0; border-bottom: 2px solid var(--gold); }
+.admin-header-inner { max-width: 1480px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.admin-logo { display: flex; align-items: center; gap: 12px; }
+.admin-logo-mark { width: 32px; height: 32px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--navy-deep); font-style: italic; }
+.admin-logo-text { font-family: var(--serif); font-weight: 600; font-size: 17px; color: white; letter-spacing: -0.01em; }
+.admin-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); padding: 4px 10px; border: 1px solid var(--gold); margin-left: 14px; font-weight: 600; }
+.admin-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.65); }
+.admin-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.admin-nav a:hover { color: white; }
+.admin-nav a.active { color: white; border-bottom: 2px solid var(--gold); }
+.admin-nav a .badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--gold); color: var(--navy-deep);
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  min-width: 18px; height: 18px; border-radius: 9px; padding: 0 5px; margin-left: 6px;
+}
+.admin-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.admin-avatar { width: 30px; height: 30px; background: var(--gold); color: var(--navy-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+
+/* PAGE */
+.page-container { max-width: 1240px; margin: 0 auto; padding: 32px; }
+.page-title-bar { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; gap: 24px; }
+.page-title { font-family: var(--serif); font-weight: 600; font-size: 32px; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 6px; }
+.page-title em { font-style: italic; }
+.page-sub { font-size: 14px; color: var(--gray-500); }
+.page-sub strong { color: var(--gray-700); font-weight: 500; }
+
+/* SECTIONED SETTINGS LAYOUT */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* LEFT NAV */
+.settings-nav {
+  position: sticky;
+  top: 32px;
+}
+.settings-nav-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gold);
+  display: inline-block;
+}
+.settings-nav ul { list-style: none; }
+.settings-nav li {
+  padding: 8px 0;
+  border-left: 1px solid var(--gray-200);
+  padding-left: 14px;
+  font-size: 13px;
+}
+.settings-nav li.active {
+  border-left-color: var(--gold);
+}
+.settings-nav li.active a { color: var(--navy); font-weight: 600; }
+.settings-nav a {
+  color: var(--gray-500);
+  transition: color 0.15s;
+}
+.settings-nav a:hover { color: var(--navy); }
+
+/* MAIN COLUMN */
+.settings-main {}
+
+.settings-section {
+  background: white;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 24px;
+}
+.settings-section-header {
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+.settings-section-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.settings-section-title em { font-style: italic; }
+.settings-section-desc {
+  font-size: 13.5px;
+  color: var(--gray-500);
+  line-height: 1.55;
+}
+.settings-section-num {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.settings-section-body {
+  padding: 24px 28px;
+}
+
+/* FORM ROWS */
+.form-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-100);
+  align-items: center;
+}
+.form-row:last-child { border-bottom: none; }
+.form-row.stacked { grid-template-columns: 1fr; gap: 8px; align-items: flex-start; padding: 14px 0; }
+
+.form-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+}
+.form-help {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.form-input, .form-select {
+  width: 100%;
+  padding: 9px 13px;
+  border: 1px solid var(--gray-300);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--ink);
+  transition: border-color 0.15s;
+}
+.form-input:focus, .form-select:focus { outline: none; border-color: var(--navy); }
+.form-input[type="password"] { font-family: var(--mono); letter-spacing: 0.1em; }
+.form-input.mono { font-family: var(--mono); font-size: 12.5px; }
+.form-input[readonly] { background: var(--gray-50); color: var(--gray-700); }
+
+/* TOGGLE SWITCH */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.toggle-track {
+  position: relative;
+  width: 42px;
+  height: 22px;
+  background: var(--gray-300);
+  border-radius: 11px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.toggle.on .toggle-track { background: var(--gold); }
+.toggle.on .toggle-track::after { transform: translateX(20px); }
+.toggle-label {
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.toggle-label .sub {
+  display: block;
+  font-size: 12px;
+  color: var(--gray-500);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* INTEGRATION ROW */
+.integration-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.integration-row:last-child { border-bottom: none; }
+.integration-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--navy);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 16px;
+  font-style: italic;
+}
+.integration-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.integration-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.integration-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+}
+.integration-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+}
+.integration-status .dot { width: 6px; height: 6px; border-radius: 50%; }
+.integration-status.connected { background: var(--green-bg); color: var(--green-text); }
+.integration-status.connected .dot { background: var(--green-text); }
+.integration-status.error { background: var(--red-bg); color: var(--red-text); }
+.integration-status.error .dot { background: var(--red-text); }
+.integration-status.warn { background: var(--yellow-bg); color: var(--yellow-text); }
+.integration-status.warn .dot { background: var(--yellow-text); }
+.integration-action {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  padding: 6px 12px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  transition: all 0.12s;
+  cursor: pointer;
+}
+.integration-action:hover { border-color: var(--navy); background: var(--gold-pale); }
+
+/* TEAM ROW */
+.team-row {
+  display: grid;
+  grid-template-columns: 40px 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.team-row:last-child { border-bottom: none; }
+.team-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+}
+.team-avatar.gray { background: var(--gray-300); color: var(--gray-700); }
+.team-info {}
+.team-name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.team-name .you {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 2px 6px;
+  margin-left: 6px;
+}
+.team-email {
+  font-size: 12.5px;
+  color: var(--gray-500);
+}
+.team-role {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-700);
+  padding: 4px 9px;
+  background: var(--gray-100);
+}
+.team-role.owner { background: var(--navy); color: var(--gold-light); }
+
+/* BUTTONS */
+.btn {
+  padding: 10px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+.btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+.btn-primary { background: var(--navy); color: var(--gold-light); border: 1px solid var(--navy); }
+.btn-primary:hover { background: var(--navy-deep); color: white; }
+.btn-danger { background: white; color: var(--red-text); border: 1px solid var(--red-text); }
+.btn-danger:hover { background: var(--red-bg); }
+.btn-small { padding: 7px 14px; font-size: 11.5px; }
+
+/* DANGER ZONE */
+.settings-section.danger {
+  border-color: var(--red-text);
+  border-left-width: 3px;
+}
+.settings-section.danger .settings-section-num { color: var(--red-text); }
+.settings-section.danger .settings-section-title { color: var(--red-text); }
+
+/* SAVE BAR (sticky bottom) */
+.save-bar {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  border: 1px solid var(--gray-300);
+  border-bottom: none;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+}
+.save-bar-msg {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+}
+.save-bar-msg .dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.save-bar-actions { display: flex; gap: 10px; }
+
+@media (max-width: 900px) {
+  .admin-nav { display: none; }
+  .settings-layout { grid-template-columns: 1fr; }
+  .settings-nav { position: static; }
+  .form-row { grid-template-columns: 1fr; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ADMIN HEADER -->
+<div class="admin-header">
+  <div class="admin-header-inner">
+    <div class="admin-logo">
+      <div class="admin-logo-mark">F</div>
+      <div class="admin-logo-text">Florida Contractor Registry</div>
+      <div class="admin-tag">Admin</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="/admin/claims">Claims<span class="badge">7</span></a>
+      <a href="/admin/leads">Leads<span class="badge">12</span></a>
+      <a href="/admin/contractors">Contractors</a>
+      <a href="/admin/sync">DBPR Sync</a>
+      <a href="/admin/settings" class="active">Settings</a>
+    </nav>
+    <div class="admin-user">
+      <div class="admin-avatar">JB</div>
+      <span>Jim Blackburn</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page-container">
+
+  <div class="page-title-bar">
+    <div>
+      <h1 class="page-title">Admin <em>settings</em></h1>
+      <div class="page-sub"><strong>Olga's Friends LLC</strong> · 1520 E Sunrise Blvd, Fort Lauderdale, FL 33304 · 2 admin users</div>
+    </div>
+  </div>
+
+  <div class="settings-layout">
+
+    <!-- LEFT NAV -->
+    <aside class="settings-nav">
+      <div class="settings-nav-tag">Settings</div>
+      <ul>
+        <li class="active"><a href="#profile">Your Profile</a></li>
+        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#sync">DBPR Sync</a></li>
+        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="#team">Team Members</a></li>
+        <li><a href="#business">Business Info</a></li>
+        <li><a href="#danger">Danger Zone</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="settings-main">
+
+      <!-- 1. YOUR PROFILE -->
+      <div class="settings-section" id="profile">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">01 · Your Profile</div>
+            <h2 class="settings-section-title">Your <em>account.</em></h2>
+            <div class="settings-section-desc">Personal details and sign-in information for Jim Blackburn.</div>
+          </div>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="form-row">
+            <div class="form-label">Full Name</div>
+            <input type="text" class="form-input" value="Jim Blackburn" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Email Address</div>
+            <input type="email" class="form-input" value="jim@floridacontractorregistry.com" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Password</div>
+            <div>
+              <input type="password" class="form-input" value="••••••••••••" readonly />
+              <div class="form-help">Last changed 47 days ago · <a href="#" style="color: var(--navy); border-bottom: 1px solid var(--gold);">Change password</a></div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Two-Factor Auth</div>
+            <div>
+              <div class="toggle on">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  Enabled
+                  <span class="sub">Via authenticator app · Required for owner role</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. NOTIFICATIONS -->
+      <div class="settings-section" id="notifications">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">02 · Notifications</div>
+            <h2 class="settings-section-title">When to <em>ping you.</em></h2>
+            <div class="settings-section-desc">Set what reaches your phone vs. what lives in the admin dashboard until you check it.</div>
+          </div>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="form-row">
+            <div class="form-label">New Homeowner Lead</div>
+            <div>
+              <div class="toggle on">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  Email + SMS within 60 seconds
+                  <span class="sub">Lead is hot — concierge has 5 minutes to call back per playbook</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">New Profile Claim</div>
+            <div>
+              <div class="toggle on">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  Email only
+                  <span class="sub">Review queue, not time-sensitive — daily batch is fine</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">DBPR Sync Failure</div>
+            <div>
+              <div class="toggle on">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  Email + SMS immediately
+                  <span class="sub">If sync fails, site data goes stale — needs human action</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">DBPR Sync Success</div>
+            <div>
+              <div class="toggle">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  No notification
+                  <span class="sub">Weekly success log visible on /admin/sync</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Featured Tier Signup</div>
+            <div>
+              <div class="toggle on">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  Email only
+                  <span class="sub">$29 MRR added — nice to know but not urgent</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Weekly Digest</div>
+            <div>
+              <div class="toggle on">
+                <div class="toggle-track"></div>
+                <div class="toggle-label">
+                  Sundays at 6 PM
+                  <span class="sub">Leads this week, MRR change, sync status, top-performing pages</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. DBPR SYNC -->
+      <div class="settings-section" id="sync">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">03 · DBPR Sync</div>
+            <h2 class="settings-section-title">When the data <em>refreshes.</em></h2>
+            <div class="settings-section-desc">FloridaContractorRegistry pulls the DBPR public extract on this schedule. Last successful sync: <strong>May 19, 2:03 AM ET</strong> · 266,312 records.</div>
+          </div>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="form-row">
+            <div class="form-label">Sync Schedule</div>
+            <div>
+              <select class="form-select" style="max-width: 320px;">
+                <option selected>Weekly — Sundays at 2:00 AM ET</option>
+                <option>Daily at 2:00 AM ET</option>
+                <option>Twice weekly — Sun &amp; Wed</option>
+                <option>Manual only</option>
+              </select>
+              <div class="form-help">DBPR publishes their extract weekly. Daily polling won't surface fresher data.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Source URL</div>
+            <input type="text" class="form-input mono" value="myfloridalicense.com/sto/file_download/extracts/CONSTRUCTIONLICENSE_1.csv" readonly />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Stale Threshold</div>
+            <div>
+              <select class="form-select" style="max-width: 200px;">
+                <option>10 days</option>
+                <option selected>14 days</option>
+                <option>21 days</option>
+              </select>
+              <div class="form-help">Alert me if no successful sync in this window.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Manual Trigger</div>
+            <div>
+              <button class="btn btn-secondary btn-small">Run Sync Now</button>
+              <div class="form-help">Forces an immediate pull — useful after DBPR publishes an out-of-cycle update.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4. INTEGRATIONS -->
+      <div class="settings-section" id="integrations">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">04 · Integrations</div>
+            <h2 class="settings-section-title">Connected <em>services.</em></h2>
+            <div class="settings-section-desc">External systems FloridaContractorRegistry talks to. Status is live as of page load.</div>
+          </div>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="integration-row">
+            <div class="integration-icon">S</div>
+            <div class="integration-info">
+              <div class="integration-name">Supabase</div>
+              <div class="integration-meta">PostgreSQL · floridacontractorregistry.supabase.co · 266,312 rows</div>
+            </div>
+            <span class="integration-status connected"><span class="dot"></span>Connected</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+          <div class="integration-row">
+            <div class="integration-icon">G</div>
+            <div class="integration-info">
+              <div class="integration-name">GoHighLevel CRM</div>
+              <div class="integration-meta">Lead routing · 12 leads pushed this week · concierge inbox</div>
+            </div>
+            <span class="integration-status connected"><span class="dot"></span>Connected</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+          <div class="integration-row">
+            <div class="integration-icon">T</div>
+            <div class="integration-info">
+              <div class="integration-name">Twilio (via GHL)</div>
+              <div class="integration-meta">SMS delivery · 78 messages this week · 100% deliverability</div>
+            </div>
+            <span class="integration-status connected"><span class="dot"></span>Connected</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+          <div class="integration-row">
+            <div class="integration-icon">$</div>
+            <div class="integration-info">
+              <div class="integration-name">Stripe</div>
+              <div class="integration-meta">Featured tier billing · $4,118 MRR · 142 active subscriptions</div>
+            </div>
+            <span class="integration-status connected"><span class="dot"></span>Connected</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+          <div class="integration-row">
+            <div class="integration-icon">V</div>
+            <div class="integration-info">
+              <div class="integration-name">Vercel Hosting</div>
+              <div class="integration-meta">Production deployment · last deploy 6 days ago</div>
+            </div>
+            <span class="integration-status connected"><span class="dot"></span>Connected</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+          <div class="integration-row">
+            <div class="integration-icon">C</div>
+            <div class="integration-info">
+              <div class="integration-name">Cloudflare</div>
+              <div class="integration-meta">DNS + CDN · 14.2M requests this month</div>
+            </div>
+            <span class="integration-status connected"><span class="dot"></span>Connected</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+          <div class="integration-row">
+            <div class="integration-icon">Z</div>
+            <div class="integration-info">
+              <div class="integration-name">Zoho Mail Forwarding</div>
+              <div class="integration-meta">privacy@ legal@ sms@ dmca@ info@ support@ → jim@</div>
+            </div>
+            <span class="integration-status warn"><span class="dot"></span>Setup Pending</span>
+            <button class="integration-action">Configure</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 5. TEAM -->
+      <div class="settings-section" id="team">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">05 · Team Members</div>
+            <h2 class="settings-section-title">Who has <em>admin access.</em></h2>
+            <div class="settings-section-desc">Owners can change billing and remove users. Admins can approve claims, view leads, and edit contractors.</div>
+          </div>
+          <button class="btn btn-secondary btn-small">+ Invite Member</button>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="team-row">
+            <div class="team-avatar">JB</div>
+            <div class="team-info">
+              <div class="team-name">Jim Blackburn <span class="you">YOU</span></div>
+              <div class="team-email">jim@floridacontractorregistry.com</div>
+            </div>
+            <span class="team-role owner">Owner</span>
+            <button class="integration-action" disabled style="opacity: 0.4;">—</button>
+          </div>
+
+          <div class="team-row">
+            <div class="team-avatar">OB</div>
+            <div class="team-info">
+              <div class="team-name">Olga Blackburn</div>
+              <div class="team-email">olga@floridacontractorregistry.com</div>
+            </div>
+            <span class="team-role owner">Owner</span>
+            <button class="integration-action">Manage</button>
+          </div>
+
+          <div class="team-row">
+            <div class="team-avatar gray">??</div>
+            <div class="team-info">
+              <div class="team-name" style="color: var(--gray-500);">Concierge (pending hire)</div>
+              <div class="team-email">Will receive lead routing + claim review access</div>
+            </div>
+            <span class="team-role">Admin</span>
+            <button class="integration-action">Invite</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 6. BUSINESS INFO -->
+      <div class="settings-section" id="business">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">06 · Business Info</div>
+            <h2 class="settings-section-title">Operating <em>entity.</em></h2>
+            <div class="settings-section-desc">Used in privacy policy, terms, legal notices, DMCA agent block, and contractor agreements. Changes here propagate site-wide.</div>
+          </div>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="form-row">
+            <div class="form-label">Legal Entity</div>
+            <input type="text" class="form-input" value="Olga's Friends LLC" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">DBA Name</div>
+            <input type="text" class="form-input" value="Florida Contractor Registry" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Mailing Address</div>
+            <input type="text" class="form-input" value="1520 E Sunrise Blvd, Fort Lauderdale, FL 33304" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Business Phone</div>
+            <input type="tel" class="form-input" value="(786) 225-5654" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">DMCA Agent Phone</div>
+            <input type="tel" class="form-input" placeholder="(954) ___-____" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-label">Featured Tier Price</div>
+            <input type="text" class="form-input mono" value="$29.00 / month" />
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DANGER ZONE -->
+      <div class="settings-section danger" id="danger">
+        <div class="settings-section-header">
+          <div>
+            <div class="settings-section-num">07 · Danger Zone</div>
+            <h2 class="settings-section-title">Destructive <em>actions.</em></h2>
+            <div class="settings-section-desc">These are not reversible. Confirmation required before any of these run.</div>
+          </div>
+        </div>
+        <div class="settings-section-body">
+
+          <div class="form-row">
+            <div class="form-label" style="color: var(--red-text);">Purge All Leads</div>
+            <div>
+              <button class="btn btn-danger btn-small">Purge Leads...</button>
+              <div class="form-help">Permanently deletes all homeowner lead records. Does not affect contractor profiles or claims.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label" style="color: var(--red-text);">Reset Sync State</div>
+            <div>
+              <button class="btn btn-danger btn-small">Reset...</button>
+              <div class="form-help">Clears DBPR sync history and forces full re-ingestion on next run. Takes ~45 minutes.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-label" style="color: var(--red-text);">Transfer Ownership</div>
+            <div>
+              <button class="btn btn-danger btn-small">Transfer...</button>
+              <div class="form-help">Hand ownership of this admin account to another team member. You will lose owner privileges.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- STICKY SAVE BAR -->
+  <div class="save-bar">
+    <div class="save-bar-msg">
+      <span class="dot"></span>
+      Unsaved changes in 2 sections
+    </div>
+    <div class="save-bar-actions">
+      <button class="btn btn-secondary">Discard Changes</button>
+      <button class="btn btn-primary">Save All Settings →</button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

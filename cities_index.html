@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Florida Contractors by City — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* HEADER */
+.top-strip { background: var(--navy-deep); color: var(--gold-pale); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 0; font-weight: 500; }
+.top-strip-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+.top-strip .dot { display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin: 0 12px; vertical-align: middle; }
+header.site-header { background: var(--paper); border-bottom: 1px solid var(--gray-200); padding: 22px 0; position: sticky; top: 0; z-index: 50; }
+.header-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.logo { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.logo-mark { width: 42px; height: 42px; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--gold); }
+.logo-mark span { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--gold); z-index: 1; font-style: italic; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line { font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--navy); letter-spacing: -0.01em; }
+.logo-text .sub-line { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); font-weight: 500; margin-top: 2px; }
+.search-bar { flex: 1; max-width: 480px; position: relative; }
+.search-bar input { width: 100%; padding: 11px 16px 11px 44px; border: 1px solid var(--gray-300); background: white; font-family: var(--sans); font-size: 14px; color: var(--ink); }
+.search-bar input:focus { outline: none; border-color: var(--navy); }
+.search-bar::before { content: ''; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center; }
+.header-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: var(--gray-700); }
+.header-nav a { padding-bottom: 2px; transition: color 0.15s; }
+.header-nav a:hover { color: var(--navy); }
+.header-nav a.active { color: var(--navy); border-bottom: 2px solid var(--gold); }
+
+/* PAGE HERO */
+.page-hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 32px 32px;
+}
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--gray-500); }
+.breadcrumb a:hover { color: var(--navy); }
+.breadcrumb .sep { color: var(--gold); margin: 0 8px; }
+.breadcrumb .current { color: var(--gray-700); font-weight: 600; }
+
+.page-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; }
+
+.page-lede {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--gray-700);
+  letter-spacing: -0.01em;
+  max-width: 760px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gray-200);
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.hero-stat-num.gold { color: var(--gold); }
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* SORT NOTICE */
+.sort-notice {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-top: 48px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.sort-notice-text { font-size: 14px; color: var(--gray-700); }
+.sort-notice-text .pin { color: var(--gold); font-weight: 600; margin-right: 4px; }
+.sort-notice-text strong { color: var(--ink); font-weight: 600; border-bottom: 1px dotted var(--gold); padding-bottom: 1px; }
+.sort-toggle { display: flex; gap: 0; border: 1px solid var(--gray-300); }
+.sort-toggle button {
+  background: white; border: none; font-family: var(--sans); font-size: 12px;
+  letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600;
+  padding: 8px 16px; cursor: pointer; color: var(--gray-500); transition: all 0.15s;
+  border-right: 1px solid var(--gray-300);
+}
+.sort-toggle button:last-child { border-right: none; }
+.sort-toggle button.active { background: var(--navy); color: var(--gold-light); }
+.sort-toggle button:hover:not(.active) { background: var(--gray-100); color: var(--navy); }
+
+/* TWO-COLUMN: nearest cities (left, larger cards) + all cities (right, dense list) */
+.cities-layout {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+}
+
+.nearest-cities {}
+.section-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.city-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 18px 22px;
+  transition: all 0.15s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+.city-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 40, 69, 0.08);
+}
+.city-card.is-nearest {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, var(--gold-pale) 0%, white 60%);
+}
+.city-card.is-nearest::before {
+  content: '📍 You\'re here';
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+}
+.city-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.city-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.city-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 3px 8px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid rgba(184, 146, 74, 0.3);
+}
+.city-meta {
+  font-size: 12px;
+  color: var(--gray-500);
+  line-height: 1.45;
+}
+.city-meta .meta-line { display: block; }
+
+/* All cities (dense list, right column) */
+.all-cities-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 24px 28px;
+}
+.all-cities-search {
+  position: relative;
+  margin-bottom: 20px;
+}
+.all-cities-search input {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  border: 1px solid var(--gray-300);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.all-cities-search input:focus { outline: none; border-color: var(--navy); }
+.all-cities-search::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center;
+}
+.all-cities-tabs {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.all-cities-tabs button {
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-500);
+  padding: 0 0 6px;
+  cursor: pointer;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.all-cities-tabs button.active {
+  color: var(--navy);
+  font-weight: 600;
+  border-bottom: 2px solid var(--gold);
+}
+
+.city-list {
+  max-height: 560px;
+  overflow-y: auto;
+  margin: 0 -28px;
+}
+.city-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 28px;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background 0.12s;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.city-list-item:hover { background: var(--gray-50); }
+.city-list-item .name { font-weight: 500; }
+.city-list-item .county-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+  margin-left: 8px;
+}
+.city-list-item .count {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* FOOTER */
+footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.65); padding: 56px 0 28px; }
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.footer-disclaimer { font-size: 12.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.55); max-width: 820px; margin-bottom: 32px; }
+.footer-disclaimer strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.footer-disclaimer a { color: var(--gold-light); text-decoration: underline; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding: 32px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-col h5 { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; font-weight: 500; }
+.footer-col ul { list-style: none; }
+.footer-col li { padding: 4px 0; font-size: 13px; }
+.footer-col a { color: rgba(255, 255, 255, 0.65); transition: color 0.15s; }
+.footer-col a:hover { color: var(--gold-light); }
+.footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: rgba(255, 255, 255, 0.4); }
+
+@media (max-width: 1100px) {
+  .cities-layout { grid-template-columns: 1fr; gap: 32px; }
+  .header-nav { display: none; }
+}
+@media (max-width: 700px) {
+  .city-grid { grid-template-columns: 1fr; }
+  .page-h1 { font-size: 42px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records<span class="dot"></span>266,312 Licensed Contractors<span class="dot"></span>Refreshed Weekly from DBPR</div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, license, city, or county..." />
+    </div>
+    <nav class="header-nav">
+      <a href="/counties">Counties</a>
+      <a href="/types">License Types</a>
+      <a href="/contractors">For Contractors</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span class="current">Cities</span>
+  </div>
+
+  <h1 class="page-h1">Florida contractors by <em>city.</em></h1>
+  <p class="page-lede">Browse licensed contractors in the 412 Florida cities where they hold mailing addresses. Counties tell you the regulatory jurisdiction; cities tell you who's likely working in your neighborhood.</p>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">412</div>
+      <div class="hero-stat-label">Cities with Contractors</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">266,312</div>
+      <div class="hero-stat-label">Total Licensed</div>
+    </div>
+    <div>
+      <div class="hero-stat-num gold">23</div>
+      <div class="hero-stat-label">Cities Near You</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">12,894</div>
+      <div class="hero-stat-label">Largest City Count</div>
+    </div>
+  </div>
+</div>
+
+<!-- SORT NOTICE -->
+<div class="sort-notice">
+  <div class="sort-notice-text">
+    <span class="pin">📍</span>
+    Showing cities nearest <strong>Davie, FL</strong> first.
+  </div>
+  <div class="sort-toggle">
+    <button class="active">Nearest</button>
+    <button>Alphabetical</button>
+    <button>Most Contractors</button>
+  </div>
+</div>
+
+<!-- TWO-COLUMN LAYOUT -->
+<div class="cities-layout">
+
+  <!-- LEFT: Nearest cities as detailed cards -->
+  <div class="nearest-cities">
+    <div class="section-label">Cities near you</div>
+
+    <div class="city-grid">
+
+      <a href="/city/davie" class="city-card is-nearest">
+        <div class="city-card-top">
+          <div class="city-name">Davie</div>
+          <div class="city-count">1,247</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 33324, 33325, 33328+</span>
+        </div>
+      </a>
+
+      <a href="/city/fort-lauderdale" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Fort Lauderdale</div>
+          <div class="city-count">2,894</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 7 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/plantation" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Plantation</div>
+          <div class="city-count">684</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 4 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/cooper-city" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Cooper City</div>
+          <div class="city-count">312</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 3 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/pembroke-pines" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Pembroke Pines</div>
+          <div class="city-count">948</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 5 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/weston" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Weston</div>
+          <div class="city-count">541</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 8 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/hollywood" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Hollywood</div>
+          <div class="city-count">1,089</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 10 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/sunrise" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Sunrise</div>
+          <div class="city-count">478</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 6 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/coral-springs" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Coral Springs</div>
+          <div class="city-count">712</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 12 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/miramar" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Miramar</div>
+          <div class="city-count">621</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 7 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/aventura" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Aventura</div>
+          <div class="city-count">345</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Miami-Dade · 15 miles away</span>
+        </div>
+      </a>
+
+      <a href="/city/hallandale-beach" class="city-card">
+        <div class="city-card-top">
+          <div class="city-name">Hallandale Beach</div>
+          <div class="city-count">287</div>
+        </div>
+        <div class="city-meta">
+          <span class="meta-line">Broward County · 11 miles away</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <a href="#" style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); font-weight: 600; border-bottom: 1px solid var(--gold); padding-bottom: 2px;">See 11 more cities within 20 miles →</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: All cities (dense list) -->
+  <div>
+    <div class="section-label">All 412 cities</div>
+
+    <div class="all-cities-panel">
+      <div class="all-cities-search">
+        <input type="text" placeholder="Search cities..." />
+      </div>
+
+      <div class="all-cities-tabs">
+        <button class="active">By Count</button>
+        <button>A–Z</button>
+        <button>By County</button>
+      </div>
+
+      <div class="city-list">
+
+        <a href="/city/miami" class="city-list-item">
+          <div>
+            <span class="name">Miami</span>
+            <span class="county-tag">Miami-Dade</span>
+          </div>
+          <span class="count">3,847</span>
+        </a>
+
+        <a href="/city/tampa" class="city-list-item">
+          <div>
+            <span class="name">Tampa</span>
+            <span class="county-tag">Hillsborough</span>
+          </div>
+          <span class="count">3,127</span>
+        </a>
+
+        <a href="/city/jacksonville" class="city-list-item">
+          <div>
+            <span class="name">Jacksonville</span>
+            <span class="county-tag">Duval</span>
+          </div>
+          <span class="count">2,948</span>
+        </a>
+
+        <a href="/city/fort-lauderdale" class="city-list-item">
+          <div>
+            <span class="name">Fort Lauderdale</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">2,894</span>
+        </a>
+
+        <a href="/city/orlando" class="city-list-item">
+          <div>
+            <span class="name">Orlando</span>
+            <span class="county-tag">Orange</span>
+          </div>
+          <span class="count">2,587</span>
+        </a>
+
+        <a href="/city/cape-coral" class="city-list-item">
+          <div>
+            <span class="name">Cape Coral</span>
+            <span class="county-tag">Lee</span>
+          </div>
+          <span class="count">1,847</span>
+        </a>
+
+        <a href="/city/naples" class="city-list-item">
+          <div>
+            <span class="name">Naples</span>
+            <span class="county-tag">Collier</span>
+          </div>
+          <span class="count">1,798</span>
+        </a>
+
+        <a href="/city/st-petersburg" class="city-list-item">
+          <div>
+            <span class="name">St. Petersburg</span>
+            <span class="county-tag">Pinellas</span>
+          </div>
+          <span class="count">1,684</span>
+        </a>
+
+        <a href="/city/sarasota" class="city-list-item">
+          <div>
+            <span class="name">Sarasota</span>
+            <span class="county-tag">Sarasota</span>
+          </div>
+          <span class="count">1,547</span>
+        </a>
+
+        <a href="/city/west-palm-beach" class="city-list-item">
+          <div>
+            <span class="name">West Palm Beach</span>
+            <span class="county-tag">Palm Beach</span>
+          </div>
+          <span class="count">1,489</span>
+        </a>
+
+        <a href="/city/clearwater" class="city-list-item">
+          <div>
+            <span class="name">Clearwater</span>
+            <span class="county-tag">Pinellas</span>
+          </div>
+          <span class="count">1,347</span>
+        </a>
+
+        <a href="/city/davie" class="city-list-item">
+          <div>
+            <span class="name">Davie</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">1,247</span>
+        </a>
+
+        <a href="/city/hollywood" class="city-list-item">
+          <div>
+            <span class="name">Hollywood</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">1,089</span>
+        </a>
+
+        <a href="/city/boca-raton" class="city-list-item">
+          <div>
+            <span class="name">Boca Raton</span>
+            <span class="county-tag">Palm Beach</span>
+          </div>
+          <span class="count">987</span>
+        </a>
+
+        <a href="/city/pembroke-pines" class="city-list-item">
+          <div>
+            <span class="name">Pembroke Pines</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">948</span>
+        </a>
+
+        <a href="/city/tallahassee" class="city-list-item">
+          <div>
+            <span class="name">Tallahassee</span>
+            <span class="county-tag">Leon</span>
+          </div>
+          <span class="count">912</span>
+        </a>
+
+        <a href="/city/coral-springs" class="city-list-item">
+          <div>
+            <span class="name">Coral Springs</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">712</span>
+        </a>
+
+        <a href="/city/gainesville" class="city-list-item">
+          <div>
+            <span class="name">Gainesville</span>
+            <span class="county-tag">Alachua</span>
+          </div>
+          <span class="count">687</span>
+        </a>
+
+        <a href="/city/plantation" class="city-list-item">
+          <div>
+            <span class="name">Plantation</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">684</span>
+        </a>
+
+        <a href="/city/miramar" class="city-list-item">
+          <div>
+            <span class="name">Miramar</span>
+            <span class="county-tag">Broward</span>
+          </div>
+          <span class="count">621</span>
+        </a>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="#" style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); font-weight: 600;">See all 412 cities →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong>FloridaContractorRegistry.com</strong> is a private commercial directory operated by Florida Contractor Registry LLC. We are <strong>not affiliated with, endorsed by, or operated by</strong> the State of Florida, the Florida Department of Business and Professional Regulation (DBPR), the Construction Industry Licensing Board, or any government agency. License information shown is republished from public DBPR records under Chapter 119, Florida Statutes, and may not reflect the most current status. For official license verification, visit <a href="https://www.myfloridalicense.com">myfloridalicense.com</a>.
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Browse</h5>
+        <ul>
+          <li><a href="/counties">All Counties</a></li>
+          <li><a href="/types">License Types</a></li>
+          <li><a href="/cities">Top Cities</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Homeowners</h5>
+        <ul>
+          <li><a href="/hiring-checklist">Hiring Checklist</a></li>
+          <li><a href="/verify">How to Verify a License</a></li>
+          <li><a href="/permits">Permit Look-Up Guide</a></li>
+          <li><a href="/complaint">File a Complaint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Contractors</h5>
+        <ul>
+          <li><a href="/contractors">Claim Your Profile</a></li>
+          <li><a href="/contractors/edit">Update Information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="/about">Methodology</a></li>
+          <li><a href="/sources">Data Sources</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Florida Contractor Registry LLC. All rights reserved.</div>
+      <div>Data sourced from DBPR · Last refresh: May 24, 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

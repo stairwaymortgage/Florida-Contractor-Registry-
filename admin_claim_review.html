@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claim Review · Admin · Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --navy-light: #2a3a5c;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --red-bg: #fef2f4;
+  --red-text: #c2415b;
+  --yellow-bg: #fff8e1;
+  --yellow-text: #8d6e00;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--gray-100);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ffb84d;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* ============ ADMIN HEADER ============ */
+.admin-header {
+  background: var(--navy-deep);
+  color: white;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--gold);
+}
+.admin-header-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.admin-logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--navy-deep);
+  font-style: italic;
+}
+.admin-logo-text {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  color: white;
+  letter-spacing: -0.01em;
+}
+.admin-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  padding: 4px 10px;
+  border: 1px solid var(--gold);
+  margin-left: 14px;
+  font-weight: 600;
+}
+.admin-nav {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+}
+.admin-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.admin-nav a:hover { color: white; }
+.admin-nav a.active {
+  color: white;
+  border-bottom: 2px solid var(--gold);
+}
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.admin-avatar {
+  width: 30px;
+  height: 30px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* ============ PAGE LAYOUT ============ */
+.page-container {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.page-title-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.page-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.page-title em { font-style: italic; }
+.page-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+}
+
+/* ============ STATS STRIP ============ */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 20px 24px;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.stat-num.warn { color: #c2415b; }
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* ============ MAIN GRID: LIST + DETAIL ============ */
+.review-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 24px;
+}
+
+/* ============ LIST PANEL ============ */
+.list-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+.list-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+.list-header-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.list-tabs {
+  display: flex;
+  gap: 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+.list-tabs button {
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  padding: 0 0 6px;
+  cursor: pointer;
+  letter-spacing: -0.005em;
+  position: relative;
+}
+.list-tabs button.active {
+  color: var(--navy);
+  font-weight: 600;
+  border-bottom: 2px solid var(--gold);
+}
+.list-tabs button .count {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  background: var(--gray-200);
+  color: var(--gray-700);
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  letter-spacing: 0.02em;
+}
+.list-tabs button.active .count {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+
+.list-items {
+  max-height: 720px;
+  overflow-y: auto;
+}
+.list-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background 0.12s;
+  position: relative;
+}
+.list-item:hover { background: var(--gray-50); }
+.list-item.selected {
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding-left: 17px;
+}
+.list-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.list-item-name {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+.list-item-time {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+.list-item-license {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.list-item-meta {
+  font-size: 12px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.list-item-meta .meta-sep {
+  width: 3px;
+  height: 3px;
+  background: var(--gray-400);
+  border-radius: 50%;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.status-pill .pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+.status-pill.pending {
+  background: var(--yellow-bg);
+  color: var(--yellow-text);
+}
+.status-pill.pending .pulse-dot { background: var(--yellow-text); }
+.status-pill.flagged {
+  background: var(--red-bg);
+  color: var(--red-text);
+}
+.status-pill.flagged .pulse-dot { background: var(--red-text); }
+.status-pill.approved {
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+.status-pill.approved .pulse-dot { background: var(--green-text); }
+
+/* ============ DETAIL PANEL ============ */
+.detail-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+  min-height: 720px;
+}
+.detail-header {
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+.detail-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.detail-claim-id { color: var(--gray-700); font-weight: 600; }
+.detail-meta-row .meta-sep {
+  width: 3px;
+  height: 3px;
+  background: var(--gray-400);
+  border-radius: 50%;
+}
+.detail-name-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 8px;
+}
+.detail-name {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.detail-license {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.detail-location {
+  font-size: 14px;
+  color: var(--gray-700);
+}
+
+/* ============ DETAIL BODY ============ */
+.detail-body {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.detail-section h3 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.detail-section h3::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.dl-pair {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+.dl-pair:last-child { border-bottom: none; }
+.dl-pair dt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.dl-pair dd {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.dl-pair dd.match { color: var(--green-text); font-weight: 600; }
+.dl-pair dd.mismatch { color: var(--red-text); font-weight: 600; }
+.dl-pair dd .check {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: var(--green-text);
+  color: white;
+  border-radius: 50%;
+  font-size: 9px;
+  text-align: center;
+  line-height: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.dl-pair dd .warn {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: var(--red-text);
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  text-align: center;
+  line-height: 14px;
+  margin-right: 6px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+/* ============ ID VIEWER ============ */
+.id-viewer {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  padding: 0;
+  margin-bottom: 16px;
+  position: relative;
+}
+.id-viewer-img {
+  width: 100%;
+  height: 280px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.05) 100%),
+    linear-gradient(180deg, #d4d6da 0%, #b5b8be 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--mono);
+  color: var(--navy-deep);
+  padding: 30px;
+}
+.id-viewer-img::before {
+  content: 'FLORIDA';
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: #c2415b;
+  letter-spacing: 0.05em;
+}
+.id-viewer-img::after {
+  content: 'DRIVER LICENSE';
+  position: absolute;
+  top: 34px;
+  left: 20px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--navy-deep);
+  letter-spacing: 0.05em;
+}
+.id-photo {
+  width: 90px;
+  height: 110px;
+  background: linear-gradient(135deg, #8a8d94 0%, #6a6d74 100%);
+  margin-bottom: 14px;
+  border: 2px solid white;
+}
+.id-text {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+.id-text .id-name {
+  font-family: var(--serif);
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.id-controls {
+  background: var(--navy-deep);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.id-controls-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.04em;
+}
+.id-controls-actions {
+  display: flex;
+  gap: 16px;
+}
+.id-control-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+  font-weight: 500;
+}
+.id-control-btn:hover { color: var(--gold-light); }
+
+/* ============ ANSWERS / DIAGNOSTIC ============ */
+.diagnostic-summary {
+  background: var(--paper);
+  border: 1px solid var(--gray-200);
+  padding: 16px 20px;
+}
+.diagnostic-summary p {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.diagnostic-summary p:last-child { margin-bottom: 0; }
+.diagnostic-summary strong { color: var(--ink); font-weight: 600; }
+
+/* ============ NOTES ============ */
+.notes-section {
+  grid-column: 1 / -1;
+  margin-top: 16px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gray-200);
+}
+.notes-area {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px 18px;
+  border: 1px solid var(--gray-300);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  resize: vertical;
+  line-height: 1.55;
+}
+.notes-area:focus { outline: none; border-color: var(--navy); }
+
+/* ============ ACTION BAR ============ */
+.action-bar {
+  grid-column: 1 / -1;
+  margin-top: 24px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.action-bar-left {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+.action-bar-right {
+  display: flex;
+  gap: 12px;
+}
+.btn {
+  padding: 12px 24px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-reject {
+  background: white;
+  color: var(--red-text);
+  border: 1px solid var(--red-text);
+}
+.btn-reject:hover { background: var(--red-bg); }
+.btn-flag {
+  background: white;
+  color: var(--yellow-text);
+  border: 1px solid var(--yellow-text);
+}
+.btn-flag:hover { background: var(--yellow-bg); }
+.btn-approve {
+  background: var(--green-text);
+  color: white;
+}
+.btn-approve:hover { background: #1b5e20; }
+
+@media (max-width: 1200px) {
+  .review-grid { grid-template-columns: 1fr; }
+  .detail-body { grid-template-columns: 1fr; }
+  .admin-nav { display: none; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ADMIN HEADER ============ -->
+<div class="admin-header">
+  <div class="admin-header-inner">
+    <div class="admin-logo">
+      <div class="admin-logo-mark">F</div>
+      <div class="admin-logo-text">Florida Contractor Registry</div>
+      <div class="admin-tag">Admin</div>
+    </div>
+    <nav class="admin-nav">
+      <a href="#" class="active">Claims</a>
+      <a href="#">Leads</a>
+      <a href="#">Contractors</a>
+      <a href="#">Settings</a>
+    </nav>
+    <div class="admin-user">
+      <div class="admin-avatar">JB</div>
+      <span>Jim Blackburn</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MAIN PAGE ============ -->
+<div class="page-container">
+
+  <div class="page-title-bar">
+    <h1 class="page-title">Claim review <em>queue</em></h1>
+    <div class="page-meta">Updated · just now</div>
+  </div>
+
+  <!-- ============ STATS STRIP ============ -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-num warn">7</div>
+      <div class="stat-label">Pending Review</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Flagged for Concern</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">48</div>
+      <div class="stat-label">Approved This Month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Rejected This Month</div>
+    </div>
+  </div>
+
+  <!-- ============ REVIEW GRID ============ -->
+  <div class="review-grid">
+
+    <!-- LIST PANEL -->
+    <div class="list-panel">
+      <div class="list-header">
+        <div class="list-header-title">Claim Queue</div>
+        <div class="list-tabs">
+          <button class="active">Pending <span class="count">7</span></button>
+          <button>Flagged <span class="count">2</span></button>
+          <button>Approved</button>
+          <button>Rejected</button>
+        </div>
+      </div>
+
+      <div class="list-items">
+
+        <div class="list-item selected">
+          <div class="list-item-top">
+            <div class="list-item-name">Cristian Acero</div>
+            <div class="list-item-time">14 min ago</div>
+          </div>
+          <div class="list-item-license">CGC1520921</div>
+          <div class="list-item-meta">
+            <span>Aceca Construction</span>
+            <span class="meta-sep"></span>
+            <span>Davie, FL</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Maria Vasquez</div>
+            <div class="list-item-time">42 min ago</div>
+          </div>
+          <div class="list-item-license">CCC1331458</div>
+          <div class="list-item-meta">
+            <span>Vasquez Roofing LLC</span>
+            <span class="meta-sep"></span>
+            <span>Hialeah, FL</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Robert Hutchinson</div>
+            <div class="list-item-time">2 hr ago</div>
+          </div>
+          <div class="list-item-license">CBC1264902</div>
+          <div class="list-item-meta">
+            <span>Hutchinson Builders</span>
+            <span class="meta-sep"></span>
+            <span>Tampa, FL</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">David Park</div>
+            <div class="list-item-time">3 hr ago</div>
+          </div>
+          <div class="list-item-license">CGC1517208</div>
+          <div class="list-item-meta">
+            <span>Park &amp; Sons Construction</span>
+            <span class="meta-sep"></span>
+            <span>Orlando, FL</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Anthony Caruso</div>
+            <div class="list-item-time">5 hr ago</div>
+          </div>
+          <div class="list-item-license">CPC1458927</div>
+          <div class="list-item-meta">
+            <span>Caruso Pool &amp; Spa</span>
+            <span class="meta-sep"></span>
+            <span>Jacksonville, FL</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Jennifer Bell</div>
+            <div class="list-item-time">Yesterday</div>
+          </div>
+          <div class="list-item-license">CGC1438201</div>
+          <div class="list-item-meta">
+            <span>Bell Construction Group</span>
+            <span class="meta-sep"></span>
+            <span>Sarasota, FL</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Marcus Johnson</div>
+            <div class="list-item-time">Yesterday</div>
+          </div>
+          <div class="list-item-license">CMC1248927</div>
+          <div class="list-item-meta">
+            <span>Johnson HVAC Services</span>
+            <span class="meta-sep"></span>
+            <span>Naples, FL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DETAIL PANEL -->
+    <div class="detail-panel">
+
+      <div class="detail-header">
+        <div class="detail-meta-row">
+          <span class="detail-claim-id">CLAIM #FCR-2026-0487</span>
+          <span class="meta-sep"></span>
+          <span>Submitted May 24, 2026 · 9:47 AM</span>
+          <span class="meta-sep"></span>
+          <span style="display: inline-flex; align-items: center; gap: 5px; color: var(--yellow-text);">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--yellow-text); display: inline-block;"></span>
+            Awaiting Review
+          </span>
+        </div>
+        <div class="detail-name-row">
+          <div>
+            <div class="detail-name">Cristian Acero</div>
+            <div class="detail-license">CGC1520921 · Aceca Construction</div>
+            <div class="detail-location">Davie, Broward County, FL 33324</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-body">
+
+        <!-- LEFT: ID + Verification -->
+        <div class="detail-section">
+          <h3>Identity Verification</h3>
+
+          <div class="id-viewer">
+            <div class="id-viewer-img">
+              <div class="id-photo"></div>
+              <div class="id-text">
+                <div class="id-name">CRISTIAN ACERO</div>
+                <div>DOB 04/12/1982 · DL A123-456-78-901-0</div>
+              </div>
+            </div>
+            <div class="id-controls">
+              <div class="id-controls-meta">acero_id.jpg · 2.4 MB · Uploaded 9:47 AM</div>
+              <div class="id-controls-actions">
+                <button class="id-control-btn">Zoom</button>
+                <button class="id-control-btn">Download</button>
+              </div>
+            </div>
+          </div>
+
+          <dl style="margin: 0;">
+            <div class="dl-pair">
+              <dt>Name on ID</dt>
+              <dd class="match"><span class="check">✓</span>Cristian Acero</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>Name on DBPR</dt>
+              <dd>Cristian Acero</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>License Number</dt>
+              <dd class="match"><span class="check">✓</span>CGC1520921</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>License Status</dt>
+              <dd>Current Active</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>Address Match</dt>
+              <dd class="match"><span class="check">✓</span>ID address within 25 mi</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- RIGHT: Claimant Info + Business Context -->
+        <div class="detail-section">
+          <h3>Claimant Information</h3>
+
+          <dl style="margin: 0;">
+            <div class="dl-pair">
+              <dt>Email Provided</dt>
+              <dd>cristian@aceca.com</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>Phone Provided</dt>
+              <dd>(954) 555-0143</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>Role Claimed</dt>
+              <dd>Owner / Qualifying Agent</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>Submitted From IP</dt>
+              <dd style="font-family: var(--mono); font-size: 12px;">71.94.218.43 (Florida)</dd>
+            </div>
+            <div class="dl-pair">
+              <dt>Device</dt>
+              <dd style="font-size: 13px;">iPhone Safari · iOS 18.2</dd>
+            </div>
+          </dl>
+
+          <h3 style="margin-top: 32px;">Optional Business Info Provided</h3>
+
+          <div class="diagnostic-summary">
+            <p><strong>Website:</strong> www.acecaconstruction.com</p>
+            <p><strong>Business email:</strong> info@aceca.com</p>
+            <p><strong>Years in business:</strong> 12</p>
+            <p><strong>Web venture interest:</strong> <span style="color: var(--green-text); font-weight: 600;">Yes — wants quote</span></p>
+          </div>
+        </div>
+
+        <!-- FULL WIDTH: Notes -->
+        <div class="notes-section">
+          <h3 style="font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 14px; display: inline-flex; align-items: center; gap: 10px;">
+            <span style="content: ''; width: 16px; height: 1px; background: var(--gold); display: inline-block;"></span>
+            Review Notes (internal only)
+          </h3>
+          <textarea class="notes-area" placeholder="Add notes about this claim review — visible only to admin team..."></textarea>
+        </div>
+
+        <!-- ACTION BAR -->
+        <div class="action-bar">
+          <div class="action-bar-left">
+            All identity checks passed automatically.
+          </div>
+          <div class="action-bar-right">
+            <button class="btn btn-reject">Reject Claim</button>
+            <button class="btn btn-flag">Flag for Concern</button>
+            <button class="btn btn-approve">Approve Claim →</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

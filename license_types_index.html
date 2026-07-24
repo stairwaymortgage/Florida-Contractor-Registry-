@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Florida License Types — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* HEADER */
+.top-strip { background: var(--navy-deep); color: var(--gold-pale); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 0; font-weight: 500; }
+.top-strip-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+.top-strip .dot { display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin: 0 12px; vertical-align: middle; }
+header.site-header { background: var(--paper); border-bottom: 1px solid var(--gray-200); padding: 22px 0; position: sticky; top: 0; z-index: 50; }
+.header-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.logo { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.logo-mark { width: 42px; height: 42px; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--gold); }
+.logo-mark span { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--gold); z-index: 1; font-style: italic; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line { font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--navy); letter-spacing: -0.01em; }
+.logo-text .sub-line { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); font-weight: 500; margin-top: 2px; }
+.search-bar { flex: 1; max-width: 480px; position: relative; }
+.search-bar input { width: 100%; padding: 11px 16px 11px 44px; border: 1px solid var(--gray-300); background: white; font-family: var(--sans); font-size: 14px; color: var(--ink); }
+.search-bar input:focus { outline: none; border-color: var(--navy); }
+.search-bar::before { content: ''; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center; }
+.header-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: var(--gray-700); }
+.header-nav a { padding-bottom: 2px; transition: color 0.15s; }
+.header-nav a:hover { color: var(--navy); }
+.header-nav a.active { color: var(--navy); border-bottom: 2px solid var(--gold); }
+
+/* PAGE HERO */
+.page-hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 32px 32px;
+}
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--gray-500); }
+.breadcrumb a:hover { color: var(--navy); }
+.breadcrumb .sep { color: var(--gold); margin: 0 8px; }
+.breadcrumb .current { color: var(--gray-700); font-weight: 600; }
+
+.page-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; }
+
+.page-lede {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--gray-700);
+  letter-spacing: -0.01em;
+  max-width: 760px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gray-200);
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.hero-stat-num.gold { color: var(--gold); }
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* SORT NOTICE */
+.sort-notice {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-top: 48px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.sort-notice-text { font-size: 14px; color: var(--gray-700); }
+.sort-toggle { display: flex; gap: 0; border: 1px solid var(--gray-300); }
+.sort-toggle button {
+  background: white; border: none; font-family: var(--sans); font-size: 12px;
+  letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600;
+  padding: 8px 16px; cursor: pointer; color: var(--gray-500); transition: all 0.15s;
+  border-right: 1px solid var(--gray-300);
+}
+.sort-toggle button:last-child { border-right: none; }
+.sort-toggle button.active { background: var(--navy); color: var(--gold-light); }
+.sort-toggle button:hover:not(.active) { background: var(--gray-100); color: var(--navy); }
+
+/* SECTION GROUPS */
+.types-wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+}
+
+.type-group { margin-bottom: 64px; }
+.type-group:last-child { margin-bottom: 0; }
+
+.group-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.group-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+
+.group-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin-bottom: 22px;
+  line-height: 1.25;
+}
+.group-headline em { font-style: italic; }
+.group-headline .count {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-left: 12px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.type-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 22px 24px;
+  transition: all 0.15s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+.type-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 40, 69, 0.08);
+}
+.type-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.type-code-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.type-code {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.type-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.type-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 3px 8px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid rgba(184, 146, 74, 0.3);
+  flex-shrink: 0;
+}
+.type-desc {
+  font-size: 12.5px;
+  color: var(--gray-700);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+.type-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  align-self: flex-start;
+}
+
+/* FOOTER */
+footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.65); padding: 56px 0 28px; }
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.footer-disclaimer { font-size: 12.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.55); max-width: 820px; margin-bottom: 32px; }
+.footer-disclaimer strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.footer-disclaimer a { color: var(--gold-light); text-decoration: underline; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding: 32px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-col h5 { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; font-weight: 500; }
+.footer-col ul { list-style: none; }
+.footer-col li { padding: 4px 0; font-size: 13px; }
+.footer-col a { color: rgba(255, 255, 255, 0.65); transition: color 0.15s; }
+.footer-col a:hover { color: var(--gold-light); }
+.footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: rgba(255, 255, 255, 0.4); }
+
+@media (max-width: 1100px) {
+  .types-grid { grid-template-columns: repeat(2, 1fr); }
+  .header-nav { display: none; }
+}
+@media (max-width: 700px) {
+  .types-grid { grid-template-columns: 1fr; }
+  .page-h1 { font-size: 42px; }
+  .sort-notice { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records<span class="dot"></span>266,312 Licensed Contractors<span class="dot"></span>Refreshed Weekly from DBPR</div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, license, city, or county..." />
+    </div>
+    <nav class="header-nav">
+      <a href="/counties">Counties</a>
+      <a href="/types" class="active">License Types</a>
+      <a href="/contractors">For Contractors</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span class="current">License Types</span>
+  </div>
+
+  <h1 class="page-h1">Florida contractor <em>license types.</em></h1>
+  <p class="page-lede">Florida issues 29 distinct contractor license categories, each defining the specific scope of work that holder is legally allowed to perform. Understanding the difference matters — a roofing license doesn't cover electrical work, and a residential contractor cannot legally build a four-story commercial building.</p>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">29</div>
+      <div class="hero-stat-label">License Categories</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">266,312</div>
+      <div class="hero-stat-label">Total Licensees</div>
+    </div>
+    <div>
+      <div class="hero-stat-num gold">8</div>
+      <div class="hero-stat-label">General Trade Licenses</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">21</div>
+      <div class="hero-stat-label">Specialty Licenses</div>
+    </div>
+  </div>
+</div>
+
+<!-- SORT NOTICE -->
+<div class="sort-notice">
+  <div class="sort-notice-text">
+    Showing license types sorted by number of active contractors.
+  </div>
+  <div class="sort-toggle">
+    <button class="active">Most Common</button>
+    <button>Alphabetical</button>
+    <button>By Category</button>
+  </div>
+</div>
+
+<!-- TYPE GROUPS -->
+<div class="types-wrapper">
+
+  <!-- GROUP 1: General Building -->
+  <div class="type-group">
+    <div class="group-label">Most Common · General Building</div>
+    <h2 class="group-headline">For <em>most homes and commercial buildings</em><span class="count">3 types · 87,140 contractors</span></h2>
+
+    <div class="types-grid">
+
+      <a href="/type/cgc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CGC</span>
+            <div class="type-name">Certified General Contractor</div>
+          </div>
+          <div class="type-count">42,184</div>
+        </div>
+        <div class="type-desc">The broadest construction license in Florida. Can build any structure of any height or complexity, including high-rises and large commercial.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/crc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CRC</span>
+            <div class="type-name">Certified Residential Contractor</div>
+          </div>
+          <div class="type-count">28,847</div>
+        </div>
+        <div class="type-desc">Licensed for one-family and two-family residential homes. The right scope for most single-family home renovations and new builds.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cbc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CBC</span>
+            <div class="type-name">Certified Building Contractor</div>
+          </div>
+          <div class="type-count">16,109</div>
+        </div>
+        <div class="type-desc">Buildings up to three stories tall. Suitable for small commercial, multi-family, and larger residential projects.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- GROUP 2: Trade Specialties -->
+  <div class="type-group">
+    <div class="group-label">Trade Specialties</div>
+    <h2 class="group-headline">For <em>specific systems and trades</em><span class="count">6 types · 96,247 contractors</span></h2>
+
+    <div class="types-grid">
+
+      <a href="/type/ec" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">EC</span>
+            <div class="type-name">Electrical Contractor</div>
+          </div>
+          <div class="type-count">24,127</div>
+        </div>
+        <div class="type-desc">All electrical work — new circuits, panel changes, wiring, lighting, low-voltage systems. Required for any work inside walls.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cfc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CFC</span>
+            <div class="type-name">Certified Plumbing Contractor</div>
+          </div>
+          <div class="type-count">19,894</div>
+        </div>
+        <div class="type-desc">All plumbing — water lines, drain lines, water heaters, gas piping, fixture installation requiring rough-in work.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cmc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CMC</span>
+            <div class="type-name">Certified Mechanical Contractor</div>
+          </div>
+          <div class="type-count">18,471</div>
+        </div>
+        <div class="type-desc">HVAC systems — heating, ventilation, air conditioning, ductwork. Required for any AC system replacement in Florida.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/ccc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CCC</span>
+            <div class="type-name">Certified Roofing Contractor</div>
+          </div>
+          <div class="type-count">15,847</div>
+        </div>
+        <div class="type-desc">All roofing work. Required for permits on any new roof or major roof repair — Florida codes are strict due to hurricane requirements.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cpc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CPC</span>
+            <div class="type-name">Certified Pool/Spa Contractor</div>
+          </div>
+          <div class="type-count">11,247</div>
+        </div>
+        <div class="type-desc">In-ground and above-ground pool installation, spa installation, pool decking, screen enclosures.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/csgc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSGC</span>
+            <div class="type-name">Sheet Glass &amp; Glazing</div>
+          </div>
+          <div class="type-count">6,661</div>
+        </div>
+        <div class="type-desc">Window installation, hurricane-impact glass, storefront glazing, mirror work. Required for hurricane-rated window replacements.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- GROUP 3: Specialty -->
+  <div class="type-group">
+    <div class="group-label">Specialty Categories</div>
+    <h2 class="group-headline">For <em>narrower scopes of work</em><span class="count">9 types · 64,847 contractors</span></h2>
+
+    <div class="types-grid">
+
+      <a href="/type/cdca" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CDCA</span>
+            <div class="type-name">Drywall Contractor</div>
+          </div>
+          <div class="type-count">9,847</div>
+        </div>
+        <div class="type-desc">Drywall installation, framing for drywall, finishing, texture application.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cscc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSCC</span>
+            <div class="type-name">Solar Contractor</div>
+          </div>
+          <div class="type-count">8,127</div>
+        </div>
+        <div class="type-desc">Solar panel installation, solar water heating, solar pool heating. Includes battery storage systems.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/csec" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSEC</span>
+            <div class="type-name">Specialty Electrical Specialty</div>
+          </div>
+          <div class="type-count">7,894</div>
+        </div>
+        <div class="type-desc">Low-voltage and limited electrical work — alarm systems, intercom, data wiring, fire alarm.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cmca" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CMCA</span>
+            <div class="type-name">Masonry Contractor</div>
+          </div>
+          <div class="type-count">7,421</div>
+        </div>
+        <div class="type-desc">Brick, block, stone, and concrete masonry work — walls, foundations, retaining walls, hardscape.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cuc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CUC</span>
+            <div class="type-name">Underground Utility &amp; Excavation</div>
+          </div>
+          <div class="type-count">6,247</div>
+        </div>
+        <div class="type-desc">Water, sewer, drainage, and gas line work below ground. Includes site excavation and grading.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/csfc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSFC</span>
+            <div class="type-name">Specialty Structural</div>
+          </div>
+          <div class="type-count">5,894</div>
+        </div>
+        <div class="type-desc">Limited structural work — steel erection, pre-cast concrete, structural reinforcement.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cstc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSTC</span>
+            <div class="type-name">Septic Tank Contractor</div>
+          </div>
+          <div class="type-count">5,147</div>
+        </div>
+        <div class="type-desc">Septic system installation, drainfield work, septic tank pumping and repair.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cdc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CDC</span>
+            <div class="type-name">Demolition Contractor</div>
+          </div>
+          <div class="type-count">7,294</div>
+        </div>
+        <div class="type-desc">Building demolition, site clearing, partial structural demolition for renovation work.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/csfn" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSFN</span>
+            <div class="type-name">Specialty Fenestration</div>
+          </div>
+          <div class="type-count">6,976</div>
+        </div>
+        <div class="type-desc">Window and door installation, hurricane shutters, garage doors, skylights.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- GROUP 4: Narrow / less common -->
+  <div class="type-group">
+    <div class="group-label">Narrow Specialties</div>
+    <h2 class="group-headline">For <em>very specific work scopes</em><span class="count">11 types · 18,078 contractors</span></h2>
+
+    <div class="types-grid">
+
+      <a href="/type/csac" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSAC</span>
+            <div class="type-name">Aluminum Specialty</div>
+          </div>
+          <div class="type-count">3,247</div>
+        </div>
+        <div class="type-desc">Screen enclosures, sunrooms, patio covers, aluminum railings.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cpwc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CPWC</span>
+            <div class="type-name">Pressure Washing</div>
+          </div>
+          <div class="type-count">2,847</div>
+        </div>
+        <div class="type-desc">Soft-wash and pressure-wash work for exterior surfaces, roofs, decks, driveways.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cwsc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CWSC</span>
+            <div class="type-name">Water Treatment</div>
+          </div>
+          <div class="type-count">1,847</div>
+        </div>
+        <div class="type-desc">Water softening, reverse osmosis, water filtration installation.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/csbc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSBC</span>
+            <div class="type-name">Sign Contractor</div>
+          </div>
+          <div class="type-count">1,294</div>
+        </div>
+        <div class="type-desc">Commercial sign installation — illuminated, monument, channel letters, billboards.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cscc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CSCC</span>
+            <div class="type-name">Specialty Cabling</div>
+          </div>
+          <div class="type-count">1,847</div>
+        </div>
+        <div class="type-desc">Specialty cable, wire, and telecommunications work.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cmoc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CMOC</span>
+            <div class="type-name">Moving Contractor</div>
+          </div>
+          <div class="type-count">847</div>
+        </div>
+        <div class="type-desc">Structural building moving — relocating houses or other buildings.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cwec" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CWEC</span>
+            <div class="type-name">Well Contractor</div>
+          </div>
+          <div class="type-count">1,247</div>
+        </div>
+        <div class="type-desc">Water well drilling, well pump installation, well casing repair.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cgcc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CGCC</span>
+            <div class="type-name">Garage Door Specialty</div>
+          </div>
+          <div class="type-count">1,894</div>
+        </div>
+        <div class="type-desc">Residential and commercial garage door installation and repair.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cdec" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CDEC</span>
+            <div class="type-name">Demolition Specialty</div>
+          </div>
+          <div class="type-count">1,547</div>
+        </div>
+        <div class="type-desc">Limited interior or exterior demolition scope.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/clnc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CLNC</span>
+            <div class="type-name">Landscaping Contractor</div>
+          </div>
+          <div class="type-count">847</div>
+        </div>
+        <div class="type-desc">Major landscape installations, retaining walls, hardscape work over $1,000.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+      <a href="/type/cdtc" class="type-card">
+        <div class="type-card-top">
+          <div class="type-code-name">
+            <span class="type-code">CDTC</span>
+            <div class="type-name">Decking Contractor</div>
+          </div>
+          <div class="type-count">624</div>
+        </div>
+        <div class="type-desc">Wood, composite, and concrete deck construction.</div>
+        <span class="type-link">View contractors →</span>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong>FloridaContractorRegistry.com</strong> is a private commercial directory operated by Florida Contractor Registry LLC. We are <strong>not affiliated with, endorsed by, or operated by</strong> the State of Florida, the Florida Department of Business and Professional Regulation (DBPR), the Construction Industry Licensing Board, or any government agency. License information shown is republished from public DBPR records under Chapter 119, Florida Statutes, and may not reflect the most current status. For official license verification, visit <a href="https://www.myfloridalicense.com">myfloridalicense.com</a>.
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Browse</h5>
+        <ul>
+          <li><a href="/counties">All Counties</a></li>
+          <li><a href="/types">License Types</a></li>
+          <li><a href="/cities">Top Cities</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Homeowners</h5>
+        <ul>
+          <li><a href="/hiring-checklist">Hiring Checklist</a></li>
+          <li><a href="/verify">How to Verify a License</a></li>
+          <li><a href="/permits">Permit Look-Up Guide</a></li>
+          <li><a href="/complaint">File a Complaint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Contractors</h5>
+        <ul>
+          <li><a href="/contractors">Claim Your Profile</a></li>
+          <li><a href="/contractors/edit">Update Information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="/about">Methodology</a></li>
+          <li><a href="/sources">Data Sources</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Florida Contractor Registry LLC. All rights reserved.</div>
+      <div>Data sourced from DBPR · Last refresh: May 24, 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

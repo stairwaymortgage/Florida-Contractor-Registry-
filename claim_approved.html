@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claim Approved — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --green-text-deep: #1b5e20;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* CONTRACTOR HEADER (since they're signed in now) */
+.contractor-header { background: var(--navy-deep); color: white; padding: 14px 0; border-bottom: 2px solid var(--gold); }
+.contractor-header-inner { max-width: 1480px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.contractor-logo { display: flex; align-items: center; gap: 12px; }
+.contractor-logo-mark { width: 32px; height: 32px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--navy-deep); font-style: italic; }
+.contractor-logo-text { font-family: var(--serif); font-weight: 600; font-size: 17px; color: white; letter-spacing: -0.01em; }
+.contractor-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); padding: 4px 10px; border: 1px solid var(--gold); margin-left: 14px; font-weight: 600; }
+.contractor-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.65); }
+.contractor-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.contractor-nav a:hover { color: white; }
+.contractor-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.contractor-avatar { width: 30px; height: 30px; background: var(--gold); color: var(--navy-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+
+/* PAGE LAYOUT */
+.celebration-container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 80px 32px 64px;
+}
+
+/* THE BIG MOMENT */
+.celebration-banner {
+  background: linear-gradient(135deg, #1a2845 0%, #0f1a30 100%);
+  color: white;
+  padding: 56px 56px 48px;
+  position: relative;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.celebration-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gold);
+}
+.celebration-banner::after {
+  content: '';
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  opacity: 0.15;
+}
+
+.celebration-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+.celebration-kicker::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.celebration-kicker::after {
+  content: '✓';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.celebration-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: white;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 2;
+}
+.celebration-h1 em { font-style: italic; color: var(--gold-light); }
+
+.celebration-sub {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0;
+  max-width: 560px;
+  position: relative;
+  z-index: 2;
+  letter-spacing: -0.005em;
+}
+
+/* PROFILE SUMMARY CARD */
+.profile-summary {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-top: none;
+  padding: 32px 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+.profile-summary-info {}
+.profile-summary-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.profile-summary-name {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.profile-summary-meta {
+  font-size: 14px;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile-summary-meta .sep { width: 3px; height: 3px; background: var(--gray-500); border-radius: 50%; }
+.profile-summary-meta .license-num {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+.btn-view-profile {
+  padding: 13px 26px;
+  background: var(--navy);
+  color: var(--gold-light);
+  border: none;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.btn-view-profile:hover { background: var(--navy-deep); color: white; }
+
+/* NEXT STEPS GRID */
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 64px;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+
+.section-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+.section-headline em { font-style: italic; }
+
+.section-lede {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gray-700);
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.step-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.step-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 40, 69, 0.08);
+}
+.step-num {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.step-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.step-name em { font-style: italic; }
+.step-desc {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.55;
+  flex: 1;
+}
+.step-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+  margin-top: 4px;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  align-self: flex-start;
+}
+
+/* OPTIONAL: Featured tier soft mention */
+.featured-mention {
+  background: linear-gradient(180deg, var(--gold-pale) 0%, var(--paper) 100%);
+  border: 1px solid var(--gold-light);
+  padding: 28px 36px;
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.featured-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.featured-headline {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.featured-headline em { font-style: italic; }
+.featured-body {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.55;
+  max-width: 560px;
+}
+.featured-link {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .celebration-h1 { font-size: 38px; }
+  .celebration-sub { font-size: 17px; }
+  .celebration-banner { padding: 40px 32px 32px; }
+  .profile-summary { padding: 28px 32px; grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .contractor-nav { display: none; }
+  .featured-mention { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CONTRACTOR HEADER (they're signed in now) -->
+<div class="contractor-header">
+  <div class="contractor-header-inner">
+    <div class="contractor-logo">
+      <div class="contractor-logo-mark">F</div>
+      <div class="contractor-logo-text">Florida Contractor Registry</div>
+      <div class="contractor-tag">Contractor Portal</div>
+    </div>
+    <nav class="contractor-nav">
+      <a href="/manage/aceca-construction-cgc1520921-davie">Profile</a>
+      <a href="/inquiries">Inquiries</a>
+      <a href="#">Photos</a>
+      <a href="#">Settings</a>
+    </nav>
+    <div class="contractor-user">
+      <div class="contractor-avatar">CA</div>
+      <span>Cristian Acero</span>
+    </div>
+  </div>
+</div>
+
+<div class="celebration-container">
+
+  <!-- THE BIG MOMENT -->
+  <div class="celebration-banner">
+    <div class="celebration-kicker">Your Claim Was Approved</div>
+    <h1 class="celebration-h1">Welcome, <em>Cristian.</em></h1>
+    <p class="celebration-sub">Your profile is now under your control. Visitors who land on it will see whatever you decide to put there.</p>
+  </div>
+
+  <!-- PROFILE SUMMARY -->
+  <div class="profile-summary">
+    <div class="profile-summary-info">
+      <div class="profile-summary-label">Your Profile</div>
+      <div class="profile-summary-name">Aceca Construction LLC</div>
+      <div class="profile-summary-meta">
+        <span class="license-num">CGC1520921</span>
+        <span class="sep"></span>
+        <span>Davie, FL</span>
+        <span class="sep"></span>
+        <span>Certified General Contractor</span>
+      </div>
+    </div>
+    <a href="/contractor/aceca-construction-cgc1520921-davie" class="btn-view-profile">View Live Profile →</a>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section-label">What to do next</div>
+  <h2 class="section-headline">Three things worth doing <em>right now.</em></h2>
+  <p class="section-lede">Your profile is functional as-is — the State of Florida license data is already there. These steps make it work harder for you.</p>
+
+  <div class="steps-grid">
+
+    <a href="/manage/aceca-construction-cgc1520921-davie" class="step-card">
+      <div class="step-num">Step 01</div>
+      <div class="step-name">Add your <em>about</em> text</div>
+      <div class="step-desc">Two or three paragraphs about what makes Aceca different. The homeowners landing on your profile want to know who you are, not just what license you hold. We can pre-draft this for you with AI if you'd like.</div>
+      <div class="step-link">Open profile editor →</div>
+    </a>
+
+    <a href="/manage/aceca-construction-cgc1520921-davie?focus=contact" class="step-card">
+      <div class="step-num">Step 02</div>
+      <div class="step-name">Add your <em>contact info</em></div>
+      <div class="step-desc">Business phone, business email, website URL. These are the channels homeowners use to reach out. Without them, your profile is a dead end — inquiries can't reach you.</div>
+      <div class="step-link">Add contact details →</div>
+    </a>
+
+    <a href="/manage/aceca-construction-cgc1520921-davie?focus=photo" class="step-card">
+      <div class="step-num">Step 03</div>
+      <div class="step-name">Upload a <em>business logo</em></div>
+      <div class="step-desc">A logo or owner photo makes your profile look claimed and professional. Visitors trust profiles with photos significantly more than those without. PNG or JPG, at least 400×400px.</div>
+      <div class="step-link">Upload logo →</div>
+    </a>
+
+    <a href="/inquiries" class="step-card">
+      <div class="step-num">Step 04</div>
+      <div class="step-name">Check your <em>inbox</em></div>
+      <div class="step-desc">If any homeowners contacted you while your profile was unclaimed, those inquiries are waiting for you. We hold them for 30 days after profile claim.</div>
+      <div class="step-link">View inquiries →</div>
+    </a>
+
+  </div>
+
+  <!-- OPTIONAL: Featured mention - low-key, no pressure -->
+  <div class="featured-mention">
+    <div>
+      <div class="featured-tag">Optional · $29/month</div>
+      <h3 class="featured-headline">Want your profile to appear <em>at the top</em> of Davie searches?</h3>
+      <p class="featured-body">The Featured tier puts your profile above the standard alphabetical sort on county and city pages. Most claimed contractors don't need this — Davie has 1,247 contractors and natural traffic distributes across all of them. But if you want priority placement, it's available.</p>
+    </div>
+    <a href="/manage/aceca-construction-cgc1520921-davie?upgrade=featured" class="featured-link">Learn about Featured →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

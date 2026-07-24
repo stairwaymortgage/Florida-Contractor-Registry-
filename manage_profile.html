@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manage Profile · Aceca Construction — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--gray-100);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* ============ CONTRACTOR HEADER (different from public site) ============ */
+.contractor-header {
+  background: var(--navy-deep);
+  color: white;
+  padding: 14px 0;
+  border-bottom: 2px solid var(--gold);
+}
+.contractor-header-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.contractor-logo { display: flex; align-items: center; gap: 12px; }
+.contractor-logo-mark {
+  width: 32px; height: 32px;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700; font-size: 16px;
+  color: var(--navy-deep);
+  font-style: italic;
+}
+.contractor-logo-text { font-family: var(--serif); font-weight: 600; font-size: 17px; color: white; letter-spacing: -0.01em; }
+.contractor-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  padding: 4px 10px;
+  border: 1px solid var(--gold);
+  margin-left: 14px;
+  font-weight: 600;
+}
+.contractor-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.65); }
+.contractor-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.contractor-nav a:hover { color: white; }
+.contractor-nav a.active { color: white; border-bottom: 2px solid var(--gold); }
+.contractor-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.contractor-avatar {
+  width: 30px; height: 30px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px;
+}
+
+/* ============ PAGE LAYOUT ============ */
+.page-container {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 32px;
+}
+.page-title-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.page-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.page-title em { font-style: italic; }
+.page-sub {
+  font-size: 14px;
+  color: var(--gray-500);
+}
+.page-sub strong { color: var(--gray-700); font-weight: 500; }
+.dbpr-sync-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--gray-500);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+.dbpr-sync-note .dot { width: 6px; height: 6px; background: var(--green-text); border-radius: 50%; }
+
+/* ============ EDITOR LAYOUT ============ */
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ============ LEFT PANE — EDITOR ============ */
+.editor-pane { display: flex; flex-direction: column; gap: 20px; }
+
+.section-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+.section-card-header {
+  padding: 18px 24px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.section-card-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-card-title::before { content: ''; width: 16px; height: 1px; background: var(--gold); }
+
+.locked-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+.locked-tag::before { content: '⌬'; font-size: 12px; }
+
+.section-card-body { padding: 22px 24px 24px; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-100);
+}
+.field-row:last-child { border-bottom: none; }
+.field-row.stacked { grid-template-columns: 1fr; gap: 8px; }
+.field-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.field-value-locked {
+  font-size: 14px;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+.field-value-locked .mono-text {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.field-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  transition: border-color 0.15s;
+}
+.field-input:focus { outline: none; border-color: var(--navy); }
+.field-input.url { font-family: var(--mono); font-size: 13px; }
+
+textarea.field-input {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.6;
+  font-family: var(--sans);
+}
+
+.field-hint {
+  font-size: 12px;
+  color: var(--gray-500);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.field-hint a { color: var(--navy); border-bottom: 1px solid var(--gold); }
+
+.about-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-100);
+}
+.small-btn {
+  background: white;
+  border: 1px solid var(--gray-300);
+  padding: 8px 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-700);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.small-btn:hover { border-color: var(--navy); color: var(--navy); }
+.about-counter {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gray-500);
+  letter-spacing: 0.04em;
+  align-self: center;
+}
+
+/* ============ PHOTO UPLOAD ============ */
+.photo-zone {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.photo-current {
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--gold);
+  font-style: italic;
+  position: relative;
+}
+.photo-current::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--gold);
+}
+.photo-instructions { font-size: 13px; color: var(--gray-700); line-height: 1.65; }
+.photo-instructions strong { color: var(--ink); font-weight: 600; }
+
+/* ============ FEATURED UPSELL ============ */
+.featured-toggle {
+  background: linear-gradient(180deg, #fbf6e3 0%, #fdfbf6 100%);
+  border: 1px solid var(--gold-light);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.featured-toggle-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.featured-toggle h4 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.featured-toggle h4 em { font-style: italic; }
+.featured-toggle p {
+  font-size: 13.5px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  max-width: 380px;
+}
+.featured-toggle .price {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--navy);
+  font-weight: 600;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* iOS-style toggle */
+.toggle {
+  position: relative;
+  width: 52px;
+  height: 30px;
+  flex-shrink: 0;
+}
+.toggle input { display: none; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--gray-300);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.toggle input:checked + .toggle-slider { background: var(--gold); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(22px); }
+
+/* ============ ACTION BAR ============ */
+.action-bar {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.action-bar-status {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.action-bar-status .dot { width: 6px; height: 6px; background: var(--green-text); border-radius: 50%; }
+.action-bar-actions { display: flex; gap: 10px; }
+.btn {
+  padding: 10px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+}
+.btn-cancel { background: white; color: var(--gray-700); border: 1px solid var(--gray-300); }
+.btn-cancel:hover { border-color: var(--navy); color: var(--navy); }
+.btn-save { background: var(--navy); color: var(--gold-light); }
+.btn-save:hover { background: var(--navy-deep); }
+
+/* ============ RIGHT PANE — PREVIEW ============ */
+.preview-pane {
+  position: sticky;
+  top: 32px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px;
+}
+.preview-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.preview-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.preview-open-link {
+  font-size: 12px;
+  color: var(--gray-500);
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--gray-300);
+  padding-bottom: 1px;
+}
+.preview-open-link:hover { color: var(--navy); border-color: var(--gold); }
+
+.preview-frame {
+  background: var(--paper);
+  border: 1px solid var(--gray-300);
+  overflow: hidden;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+/* Mini version of profile page */
+.mini-profile-hero {
+  background: linear-gradient(180deg, var(--paper) 0%, #faf6ed 100%);
+  padding: 32px 28px;
+  border-bottom: 1px solid var(--gray-200);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 22px;
+  align-items: flex-start;
+}
+.mini-profile-logo {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold);
+  font-style: italic;
+  position: relative;
+}
+.mini-profile-logo::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--gold);
+}
+
+.mini-profile-info { min-width: 0; }
+.mini-profile-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.mini-profile-tag::before { content: '✓'; }
+.mini-profile-name {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+.mini-profile-sub {
+  font-size: 13px;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.mini-profile-sub .sep { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
+.mini-profile-license {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.mini-profile-body { padding: 24px 28px; }
+.mini-section-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.mini-about {
+  font-size: 13.5px;
+  color: var(--gray-700);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.mini-contact-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 12px;
+  font-size: 13px;
+}
+.mini-contact-row:last-child { border-bottom: none; }
+.mini-contact-row dt {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.mini-contact-row dd { color: var(--ink); font-weight: 500; }
+.mini-contact-row dd a { color: var(--navy); border-bottom: 1px solid var(--gold); }
+
+/* ============ WEB VENTURE STRIP ============ */
+.web-venture-strip {
+  background: var(--navy-deep);
+  color: white;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+.web-venture-strip .tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.web-venture-strip h4 {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.web-venture-strip h4 em { font-style: italic; color: var(--gold-light); }
+.web-venture-strip p {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.55;
+}
+.web-cta-btn {
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 12px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.web-cta-btn:hover { background: var(--gold-light); }
+
+@media (max-width: 1200px) {
+  .editor-grid { grid-template-columns: 1fr; }
+  .preview-pane { position: static; }
+}
+</style>
+</head>
+<body>
+
+<!-- CONTRACTOR HEADER -->
+<div class="contractor-header">
+  <div class="contractor-header-inner">
+    <div class="contractor-logo">
+      <div class="contractor-logo-mark">F</div>
+      <div class="contractor-logo-text">Florida Contractor Registry</div>
+      <div class="contractor-tag">Contractor Portal</div>
+    </div>
+    <nav class="contractor-nav">
+      <a href="#" class="active">Profile</a>
+      <a href="#">Inquiries</a>
+      <a href="#">Photos</a>
+      <a href="#">Settings</a>
+    </nav>
+    <div class="contractor-user">
+      <div class="contractor-avatar">CA</div>
+      <span>Cristian Acero</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page-container">
+
+  <div class="page-title-bar">
+    <div>
+      <h1 class="page-title">Edit your <em>profile</em></h1>
+      <div class="page-sub">Aceca Construction · <strong>CGC1520921</strong> · Davie, FL</div>
+    </div>
+    <div class="dbpr-sync-note">
+      <span class="dot"></span>
+      Last DBPR sync: May 24, 2026
+    </div>
+  </div>
+
+  <div class="editor-grid">
+
+    <!-- LEFT: EDITOR -->
+    <div class="editor-pane">
+
+      <!-- SECTION: Profile basics (locked) -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">Profile Basics</div>
+          <div class="locked-tag">Locked · sourced from DBPR</div>
+        </div>
+        <div class="section-card-body">
+          <div class="field-row">
+            <div class="field-label">Business Name</div>
+            <div class="field-value-locked">Aceca Construction</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Qualifying Agent</div>
+            <div class="field-value-locked">Cristian Acero</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">License #</div>
+            <div class="field-value-locked"><span class="mono-text">CGC1520921</span></div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">License Type</div>
+            <div class="field-value-locked">Certified General Contractor</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Status</div>
+            <div class="field-value-locked" style="color: var(--green-text); font-weight: 600;">Current · Active</div>
+          </div>
+          <div class="field-row">
+            <div class="field-label">Mailing Address</div>
+            <div class="field-value-locked">5851 SW 64th Way, Davie, FL 33324</div>
+          </div>
+          <div class="field-hint" style="margin-top: 14px;">
+            These fields are sourced directly from the Florida DBPR and cannot be edited here. To correct an error, update your information with DBPR at <a href="https://www.myfloridalicense.com">myfloridalicense.com</a> — the change will reflect here after the next weekly sync.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: About -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">About Your Business</div>
+        </div>
+        <div class="section-card-body">
+          <div class="field-row stacked">
+            <textarea class="field-input">Aceca Construction is a Davie-based general contractor serving Broward County since 2014. We specialize in residential renovations — kitchens, bathrooms, full-home remodels — and commercial tenant improvements. Cristian Acero personally oversees every project from estimate to final walkthrough.
+
+Licensed and insured for work throughout the State of Florida, with five active license classifications covering construction, electrical contracting, and roofing.
+
+We bring 12+ years of Florida construction experience and a commitment to clear communication — you'll always know what's happening on your project, what comes next, and what it costs.</textarea>
+          </div>
+          <div class="about-controls">
+            <button class="small-btn">Regenerate with AI</button>
+            <button class="small-btn">Reset to default</button>
+            <div class="about-counter">423 / 1,200 characters</div>
+          </div>
+          <div class="field-hint" style="margin-top: 14px;">
+            <strong>Tip:</strong> Specific details about your work, location, and years of experience help homeowners decide. Avoid sales language — focus on what you actually do.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: Photo -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">Business Photo or Logo</div>
+        </div>
+        <div class="section-card-body">
+          <div class="photo-zone">
+            <div class="photo-current">A</div>
+            <div class="photo-instructions">
+              <p><strong>Currently using initials placeholder.</strong> Upload your company logo or a professional photo to replace it on your public profile.</p>
+              <p style="margin-top: 10px;">PNG, JPG, or SVG · Max 2 MB · Square format recommended (at least 400×400px)</p>
+              <button class="small-btn" style="margin-top: 14px;">Upload File</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: Contact -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">Public Contact Information</div>
+        </div>
+        <div class="section-card-body">
+          <div class="field-row">
+            <div class="field-label">Website</div>
+            <input type="text" class="field-input url" value="https://www.acecaconstruction.com" />
+          </div>
+          <div class="field-row">
+            <div class="field-label">Public Email</div>
+            <input type="email" class="field-input" value="info@aceca.com" />
+          </div>
+          <div class="field-row">
+            <div class="field-label">Public Phone</div>
+            <input type="tel" class="field-input" value="(954) 555-0143" />
+          </div>
+          <div class="field-row">
+            <div class="field-label">Service Area</div>
+            <input type="text" class="field-input" value="Broward County, South Florida" />
+          </div>
+          <div class="field-hint" style="margin-top: 14px;">
+            This contact information will be displayed on your public profile. Use a business line and email if you have one — these become the entry points for homeowners reaching out.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: Featured upgrade -->
+      <div class="featured-toggle">
+        <div>
+          <div class="featured-toggle-tag">Featured Listing · Optional</div>
+          <h4>Get found <em>before</em> unverified contractors.</h4>
+          <p>Featured profiles appear at the top of county, city, and license-type pages with a gold "Featured" mark. Homeowners see you first.</p>
+          <span class="price">$29 / month · Cancel any time</span>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <!-- ACTION BAR -->
+      <div class="action-bar">
+        <div class="action-bar-status">
+          <span class="dot"></span>
+          All changes saved automatically · Last edit 2 min ago
+        </div>
+        <div class="action-bar-actions">
+          <button class="btn btn-cancel">Discard Changes</button>
+          <button class="btn btn-save">Publish Updates</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: LIVE PREVIEW -->
+    <div class="preview-pane">
+
+      <div class="preview-header">
+        <div class="preview-tag">Live Preview</div>
+        <a href="/contractor/aceca-construction-cgc1520921-davie" class="preview-open-link">Open public profile →</a>
+      </div>
+
+      <div class="preview-frame">
+
+        <!-- Mini hero -->
+        <div class="mini-profile-hero">
+          <div class="mini-profile-logo">A</div>
+          <div class="mini-profile-info">
+            <div class="mini-profile-tag">Verified Contractor</div>
+            <h2 class="mini-profile-name">Aceca Construction</h2>
+            <div class="mini-profile-sub">
+              <span>Cristian Acero, Qualifying Agent</span>
+              <span class="sep"></span>
+              <span>Davie, FL</span>
+            </div>
+            <div class="mini-profile-license">CGC1520921 · Certified General Contractor</div>
+          </div>
+        </div>
+
+        <!-- Mini body -->
+        <div class="mini-profile-body">
+
+          <div class="mini-section-title">About</div>
+          <div class="mini-about">Aceca Construction is a Davie-based general contractor serving Broward County since 2014. We specialize in residential renovations — kitchens, bathrooms, full-home remodels — and commercial tenant improvements. Cristian Acero personally oversees every project from estimate to final walkthrough.</div>
+
+          <div class="mini-section-title">Contact</div>
+          <dl style="margin: 0;">
+            <div class="mini-contact-row">
+              <dt>Website</dt>
+              <dd><a href="https://www.acecaconstruction.com">acecaconstruction.com</a></dd>
+            </div>
+            <div class="mini-contact-row">
+              <dt>Email</dt>
+              <dd>info@aceca.com</dd>
+            </div>
+            <div class="mini-contact-row">
+              <dt>Phone</dt>
+              <dd>(954) 555-0143</dd>
+            </div>
+            <div class="mini-contact-row">
+              <dt>Service Area</dt>
+              <dd>Broward County, South Florida</dd>
+            </div>
+          </dl>
+
+        </div>
+
+      </div>
+
+      <!-- Web venture quiet upsell -->
+      <div class="web-venture-strip">
+        <div>
+          <div class="tag">Web Partner</div>
+          <h4>Need a real website? <em>$199/month.</em></h4>
+          <p>Custom-built, SEO-optimized contractor website. Hosting and updates included.</p>
+        </div>
+        <a href="#" class="web-cta-btn">Learn More →</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

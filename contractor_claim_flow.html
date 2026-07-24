@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claim Profile — Aceca Construction, Inc. | Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --navy-light: #2a3a5c;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-900: #232529;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green: #2f7d3a;
+  --red: #c4302b;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* TOP STRIP */
+.top-strip {
+  background: var(--navy-deep);
+  color: var(--gold-pale);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  font-weight: 500;
+}
+.top-strip-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-strip .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin: 0 12px;
+  vertical-align: middle;
+}
+
+/* HEADER */
+header.site-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 22px 0;
+}
+.header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.logo { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  background: var(--navy);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--gold);
+}
+.logo-mark span {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--gold);
+  z-index: 1;
+  font-style: italic;
+}
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--navy);
+}
+.logo-text .sub-line {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 14px 0;
+  font-size: 12px;
+  color: var(--gray-700);
+}
+.breadcrumb-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.breadcrumb .sep { margin: 0 10px; color: var(--gray-500); }
+.breadcrumb .current { color: var(--ink); font-weight: 500; }
+
+/* CLAIM HERO */
+.claim-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: white;
+  padding: 56px 0 64px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--gold);
+}
+.claim-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(184, 146, 74, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.claim-hero-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+.claim-hero-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.claim-hero-tag::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold-light);
+}
+.claim-hero h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+.claim-hero h1 em { font-style: italic; color: var(--gold-light); }
+.claim-hero-sub {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 660px;
+  line-height: 1.6;
+}
+.claim-hero-sub strong { color: white; font-weight: 600; }
+
+/* STAGE INDICATOR */
+.stage-indicator {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 24px 0;
+}
+.stage-indicator-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.stage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.stage-num {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-500);
+  background: white;
+  flex-shrink: 0;
+}
+.stage.active .stage-num {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--gold-light);
+}
+.stage.complete .stage-num {
+  border-color: var(--green);
+  background: var(--green);
+  color: white;
+}
+.stage-info { line-height: 1.25; }
+.stage-info .stage-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+}
+.stage-info .stage-name {
+  font-size: 14px;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+.stage.active .stage-info .stage-name { color: var(--ink); font-weight: 600; }
+.stage-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gray-300);
+}
+
+/* MAIN CONTENT */
+main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 32px 72px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 56px;
+}
+
+/* PROFILE WE'RE CLAIMING — context block */
+.profile-context {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.profile-context-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--navy);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.profile-context-info .label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.profile-context-info h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.profile-context-info .meta {
+  font-size: 13px;
+  color: var(--gray-700);
+}
+.profile-context-info .meta span { margin-right: 14px; }
+.profile-context-info .meta strong { color: var(--ink); font-weight: 600; }
+.profile-context a.not-mine {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  border-bottom: 1px solid var(--gray-300);
+}
+.profile-context a.not-mine:hover { color: var(--navy); border-bottom-color: var(--navy); }
+
+/* SECTION */
+section.form-section {
+  margin-bottom: 40px;
+}
+.form-section h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--ink);
+  letter-spacing: -0.018em;
+  margin-bottom: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+  position: relative;
+}
+.form-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+}
+.form-section .section-sub {
+  font-size: 14.5px;
+  color: var(--gray-700);
+  margin-bottom: 22px;
+  line-height: 1.55;
+  margin-top: 14px;
+}
+
+/* FORM ELEMENTS */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.form-row.single { grid-template-columns: 1fr; }
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-field label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.form-field label .req { color: var(--red); margin-left: 3px; }
+.form-field label .help {
+  font-family: var(--sans);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--gray-500);
+  font-size: 11.5px;
+  margin-left: 6px;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+.form-field input.locked {
+  background: var(--gray-50);
+  color: var(--gray-700);
+  cursor: not-allowed;
+}
+.form-field .locked-note {
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 4px;
+  font-style: italic;
+  font-family: var(--serif);
+}
+.form-field textarea {
+  min-height: 110px;
+  resize: vertical;
+  font-family: var(--sans);
+  line-height: 1.55;
+}
+
+/* ID UPLOAD BLOCK */
+.id-upload {
+  border: 2px dashed var(--gray-300);
+  background: var(--gray-50);
+  padding: 32px 28px;
+  text-align: center;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.id-upload:hover {
+  border-color: var(--navy);
+  background: var(--gold-pale);
+}
+.id-upload-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  background: white;
+  border: 1px solid var(--gray-300);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+}
+.id-upload-icon svg { width: 22px; height: 22px; }
+.id-upload h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.id-upload p {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.id-upload-btn {
+  display: inline-block;
+  background: white;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  padding: 9px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+  cursor: pointer;
+}
+.id-upload-formats {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 12px;
+}
+
+/* CONSENT BLOCK */
+.consent-block {
+  margin: 28px 0 32px;
+  padding: 20px 22px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+}
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+.consent-row input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--navy);
+}
+.consent-row + .consent-row {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-200);
+}
+.consent-row strong { color: var(--ink); font-weight: 600; }
+.consent-row a { color: var(--navy); text-decoration: underline; }
+
+/* SUBMIT */
+.submit-btn {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border: none;
+  padding: 17px 36px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.submit-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(184, 146, 74, 0.3);
+}
+.submit-btn svg { width: 16px; height: 16px; }
+
+.review-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--gray-500);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* SIDEBAR */
+aside {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+.side-block {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 22px 24px;
+  margin-bottom: 18px;
+}
+.side-block h3 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-500);
+  margin-bottom: 14px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.benefits-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.benefits-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--gray-900);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+}
+.benefits-list li::before {
+  content: '';
+  flex-shrink: 0;
+  margin-top: 5px;
+  width: 14px;
+  height: 8px;
+  border-left: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+  transform: rotate(-45deg);
+}
+.benefits-list li strong { color: var(--ink); font-weight: 600; }
+
+.review-process {
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding: 20px 22px;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.review-process .label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.review-process strong { color: var(--navy); font-weight: 600; }
+.review-process ol {
+  list-style: none;
+  counter-reset: rp-item;
+  margin-top: 8px;
+}
+.review-process ol li {
+  counter-increment: rp-item;
+  padding: 5px 0 5px 24px;
+  position: relative;
+  font-size: 12.5px;
+  color: var(--gray-900);
+}
+.review-process ol li::before {
+  content: counter(rp-item);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  background: var(--navy);
+  color: var(--gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* ============================================
+   STAGE 2 — Web Venture upsell
+   This section is shown AFTER stage 1 success
+   For this mockup we show it separately below
+   ============================================ */
+.stage-2-section {
+  background: var(--navy-deep);
+  color: white;
+  padding: 72px 0;
+  position: relative;
+  overflow: hidden;
+}
+.stage-2-section::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -10%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(184, 146, 74, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.stage-2-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+}
+.stage-2-marker {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stage-2-marker::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold-light);
+}
+.stage-2-section h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+  margin-bottom: 18px;
+  max-width: 760px;
+  color: white;
+}
+.stage-2-section h2 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.stage-2-intro {
+  font-size: 16.5px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 36px;
+}
+.stage-2-intro strong { color: white; font-weight: 600; }
+
+.upsell-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.upsell-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 28px 26px;
+}
+.upsell-card-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.upsell-card h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: white;
+  margin-bottom: 10px;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+.upsell-card h3 em { font-style: italic; color: var(--gold-light); }
+.upsell-card p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.upsell-card .price {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+}
+.upsell-card .price .period {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-left: 6px;
+}
+.upsell-features {
+  list-style: none;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.upsell-features li {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.45;
+}
+.upsell-features li::before {
+  content: '✓';
+  color: var(--gold-light);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.upsell-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 13px 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.upsell-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+.upsell-btn svg { width: 14px; height: 14px; }
+
+.stage-2-skip {
+  text-align: center;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 8px;
+}
+.stage-2-skip a {
+  color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+}
+.stage-2-skip a:hover { color: white; border-bottom-color: var(--gold-light); }
+
+.stage-2-disclaimer {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.6;
+  font-family: var(--serif);
+  font-style: italic;
+  max-width: 720px;
+}
+
+/* DIVIDER between stages */
+.stage-divider-row {
+  background: var(--green);
+  color: white;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.stage-divider-row svg {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  margin-right: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  main { grid-template-columns: 1fr; gap: 32px; }
+  aside { position: static; }
+  .upsell-grid { grid-template-columns: 1fr; }
+  .claim-hero h1 { font-size: 32px; }
+  .stage-2-section h2 { font-size: 26px; }
+  .form-row { grid-template-columns: 1fr; }
+  .stage-indicator-inner { flex-direction: column; gap: 12px; }
+  .stage-divider { width: 1px; height: 20px; }
+  .profile-context { grid-template-columns: 1fr; text-align: center; gap: 12px; }
+  .profile-context-icon { margin: 0 auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records <span class="dot"></span> 266,312 Licensed Contractors <span class="dot"></span> Refreshed Weekly from DBPR</div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </div>
+    <div style="color: var(--gray-500); font-style: italic; font-family: var(--serif); font-size: 13px;">
+      [header is its own component]
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="contractor_profile_aceca.html">Aceca Construction, Inc.</a>
+    <span class="sep">›</span>
+    <span class="current">Claim This Profile</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="claim-hero">
+  <div class="claim-hero-inner">
+    <div class="claim-hero-tag">Verified Contractor Program</div>
+    <h1>Take control of your profile <em>in 5 minutes.</em></h1>
+    <p class="claim-hero-sub">
+      Verify your identity to claim this profile, add your business description, and control how homeowners see you. <strong>Free.</strong> No credit card. Manual review takes 24–48 hours.
+    </p>
+  </div>
+</div>
+
+<!-- STAGE INDICATOR -->
+<div class="stage-indicator">
+  <div class="stage-indicator-inner">
+    <div class="stage active">
+      <div class="stage-num">1</div>
+      <div class="stage-info">
+        <div class="stage-label">Stage 1</div>
+        <div class="stage-name">Verify Identity</div>
+      </div>
+    </div>
+    <div class="stage-divider"></div>
+    <div class="stage">
+      <div class="stage-num">2</div>
+      <div class="stage-info">
+        <div class="stage-label">Stage 2</div>
+        <div class="stage-name">Optional Upgrades</div>
+      </div>
+    </div>
+    <div class="stage-divider"></div>
+    <div class="stage">
+      <div class="stage-num">3</div>
+      <div class="stage-info">
+        <div class="stage-label">Stage 3</div>
+        <div class="stage-name">Profile Live</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div>
+
+    <!-- PROFILE CONTEXT -->
+    <div class="profile-context">
+      <div class="profile-context-icon">A</div>
+      <div class="profile-context-info">
+        <div class="label">You're claiming</div>
+        <h3>Aceca Construction, Inc.</h3>
+        <div class="meta">
+          <span><strong>CGC1520921</strong></span>
+          <span>Davie, FL</span>
+          <span>Licensed since Sept 2012</span>
+        </div>
+      </div>
+      <a href="#" class="not-mine">Not Mine →</a>
+    </div>
+
+    <!-- ============================================
+         STAGE 1 FORM
+         ============================================ -->
+    <section class="form-section">
+      <h2>Confirm Your Identity</h2>
+      <p class="section-sub">
+        These details should match the qualifying agent on file with the Florida Department of Business and Professional Regulation. We verify against public DBPR records before approving claims.
+      </p>
+
+      <div class="form-row single">
+        <div class="form-field">
+          <label>License Number <span class="help">— pre-filled from this profile</span></label>
+          <input type="text" value="CGC1520921" class="locked" readonly />
+          <div class="locked-note">This is the primary license on the profile you're claiming.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Your Full Legal Name <span class="req">*</span></label>
+          <input type="text" placeholder="As shown on government ID" required />
+        </div>
+        <div class="form-field">
+          <label>Role at the Business <span class="req">*</span></label>
+          <select required>
+            <option value="">Select your role...</option>
+            <option>Qualifying Agent (license holder)</option>
+            <option>Owner / Officer</option>
+            <option>Authorized Representative</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" placeholder="you@business.com" required />
+        </div>
+        <div class="form-field">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" placeholder="(954) 555-0123" required />
+        </div>
+      </div>
+    </section>
+
+    <!-- ID UPLOAD -->
+    <section class="form-section">
+      <h2>Upload Government ID</h2>
+      <p class="section-sub">
+        Upload a clear photo of your driver's license or state-issued ID. The name must match the qualifying agent on file with DBPR. Your ID is reviewed manually by our team and is <strong>never published</strong> on the site.
+      </p>
+
+      <div class="id-upload">
+        <div class="id-upload-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <h4>Drop your ID here or click to upload</h4>
+        <p>Front side of driver's license or state-issued ID</p>
+        <button type="button" class="id-upload-btn">Choose File</button>
+        <div class="id-upload-formats">JPG · PNG · PDF · Max 10MB</div>
+      </div>
+    </section>
+
+    <!-- BUSINESS INFO -->
+    <section class="form-section">
+      <h2>About Your Business <span style="font-size: 14px; color: var(--gray-500); font-weight: 400; letter-spacing: 0; font-family: var(--sans); text-transform: none;">(optional)</span></h2>
+      <p class="section-sub">
+        Add a description that helps homeowners understand what your business does. You can edit this anytime after your claim is approved.
+      </p>
+
+      <div class="form-row single">
+        <div class="form-field">
+          <label>Business Description <span class="help">— 1–3 sentences</span></label>
+          <textarea placeholder="E.g. Aceca Construction is a full-service general contractor serving Broward County since 2012, specializing in residential remodels, additions, and roofing."></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Business Website <span class="help">— optional</span></label>
+          <input type="url" placeholder="https://acecaconstruction.com" />
+        </div>
+        <div class="form-field">
+          <label>Year Business Started <span class="help">— pre-filled from DBPR</span></label>
+          <input type="text" value="2012" class="locked" readonly />
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSENT -->
+    <div class="consent-block">
+      <label class="consent-row">
+        <input type="checkbox" required />
+        <span>I confirm that I am the qualifying agent or an authorized representative of <strong>Aceca Construction, Inc.</strong>, and the information I provided is accurate. I understand that submitting false information may result in permanent removal from the registry.</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" required />
+        <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. My government ID will be reviewed by Florida Contractor Registry staff and will not be published, sold, or shared.</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" />
+        <span>I'd like to receive occasional emails about contractor resources, marketing tips, and registry updates. <em>(Optional)</em></span>
+      </label>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      Submit for Verification
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+
+    <div class="review-note">
+      Manual review takes 24–48 hours. You'll receive an email when your claim is approved.
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="side-block">
+      <h3>What You Get — Free</h3>
+      <ul class="benefits-list">
+        <li><span><strong>Verified badge</strong> visible to homeowners visiting your profile</span></li>
+        <li><span><strong>Edit your business description</strong> and add your website</span></li>
+        <li><span><strong>Control your contact information</strong> — how homeowners reach you</span></li>
+        <li><span><strong>Email notifications</strong> when your profile is viewed</span></li>
+        <li><span><strong>Verified profile badge</strong> on county and city index pages</span></li>
+      </ul>
+    </div>
+
+    <div class="review-process">
+      <div class="label">How Review Works</div>
+      <strong>Manual review, 24–48 hours.</strong>
+      <ol>
+        <li>You submit this form with your ID</li>
+        <li>Our team verifies your name against DBPR records</li>
+        <li>You receive an email approving or requesting more info</li>
+        <li>Once approved, your verified badge goes live immediately</li>
+      </ol>
+    </div>
+  </aside>
+</main>
+
+<!-- STAGE TRANSITION INDICATOR -->
+<div class="stage-divider-row">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+  After Approval — Optional Upgrades
+</div>
+
+<!-- ============================================
+     STAGE 2 — Web Venture Upsell
+     ============================================ -->
+<section class="stage-2-section">
+  <div class="stage-2-inner">
+    <div class="stage-2-marker">Stage 2 · Optional · Shown After Approval</div>
+    <h2>Your profile is live. <em>Want to take it further?</em></h2>
+    <p class="stage-2-intro">
+      You now have a verified profile that ranks for searches about your business. For many contractors that's all they need. For those who want <strong>their own website that ranks across all Florida construction searches</strong> — not just for their name — there's an optional upgrade.
+    </p>
+
+    <div class="upsell-grid">
+
+      <div class="upsell-card">
+        <div class="upsell-card-tag">Free · Always</div>
+        <h3>Your Verified Profile <em>— what you just got</em></h3>
+        <p>Your free verified listing on Florida Contractor Registry. Visible on every search for your business name and on county/city/license index pages.</p>
+        <div class="price">$0<span class="period">/ forever</span></div>
+        <ul class="upsell-features">
+          <li>Verified contractor badge</li>
+          <li>Edit your business description</li>
+          <li>Profile view notifications</li>
+          <li>Featured in county / city index pages</li>
+        </ul>
+        <a href="contractor_profile_aceca.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border: 1px solid rgba(255, 255, 255, 0.3); color: white; font-size: 13.5px; font-weight: 600; letter-spacing: 0.01em; font-family: var(--mono); text-transform: uppercase;">
+          View Your Profile →
+        </a>
+      </div>
+
+      <div class="upsell-card">
+        <div class="upsell-card-tag">Optional Upgrade</div>
+        <h3>Your Own <em>Ranking Website</em></h3>
+        <p>A professional website built for your business that ranks for searches across Florida — not just searches for your name. Our web partner builds, hosts, and maintains it for you.</p>
+        <div class="price">$199<span class="period">/ month</span></div>
+        <ul class="upsell-features">
+          <li>Custom website designed for your business</li>
+          <li>Hosting, security, and updates included</li>
+          <li>Built to rank for service + location searches</li>
+          <li>Lead capture forms route to your phone/email</li>
+          <li>Monthly SEO performance report</li>
+          <li>Cancel anytime · 30-day money back</li>
+        </ul>
+        <a href="#" class="upsell-btn">
+          Learn More
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="stage-2-skip">
+      Not interested? <a href="#">Skip this — your free profile is already live.</a>
+    </div>
+
+    <div class="stage-2-disclaimer">
+      The ranking website service is provided by an independent web development partner, not by Florida Contractor Registry LLC. Florida Contractor Registry may receive a referral fee for accounts that activate this service. Your free verified profile is and remains independent of this upgrade.
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

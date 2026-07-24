@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Florida Contractors by County — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* HEADER (consistent with rest of site) */
+.top-strip { background: var(--navy-deep); color: var(--gold-pale); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 0; font-weight: 500; }
+.top-strip-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+.top-strip .dot { display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin: 0 12px; vertical-align: middle; }
+header.site-header { background: var(--paper); border-bottom: 1px solid var(--gray-200); padding: 22px 0; position: sticky; top: 0; z-index: 50; }
+.header-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.logo { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.logo-mark { width: 42px; height: 42px; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--gold); }
+.logo-mark span { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--gold); z-index: 1; font-style: italic; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line { font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--navy); letter-spacing: -0.01em; }
+.logo-text .sub-line { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); font-weight: 500; margin-top: 2px; }
+.search-bar { flex: 1; max-width: 480px; position: relative; }
+.search-bar input { width: 100%; padding: 11px 16px 11px 44px; border: 1px solid var(--gray-300); background: white; font-family: var(--sans); font-size: 14px; color: var(--ink); }
+.search-bar input:focus { outline: none; border-color: var(--navy); }
+.search-bar::before { content: ''; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center; }
+.header-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: var(--gray-700); }
+.header-nav a { padding-bottom: 2px; transition: color 0.15s; }
+.header-nav a:hover { color: var(--navy); }
+.header-nav a.active { color: var(--navy); border-bottom: 2px solid var(--gold); }
+
+/* PAGE HERO */
+.page-hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 32px 32px;
+}
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--gray-500); }
+.breadcrumb a:hover { color: var(--navy); }
+.breadcrumb .sep { color: var(--gold); margin: 0 8px; }
+.breadcrumb .current { color: var(--gray-700); font-weight: 600; }
+
+.page-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.page-h1 em { font-style: italic; }
+
+.page-lede {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--gray-700);
+  letter-spacing: -0.01em;
+  max-width: 760px;
+  margin-bottom: 0;
+}
+
+/* STAT STRIP */
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--gray-200);
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.hero-stat-num.gold { color: var(--gold); }
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+/* SORT NOTICE - the geo-personalization indicator */
+.sort-notice {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  margin-top: 48px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.sort-notice-text {
+  font-size: 14px;
+  color: var(--gray-700);
+}
+.sort-notice-text .pin {
+  color: var(--gold);
+  font-weight: 600;
+  margin-right: 4px;
+}
+.sort-notice-text strong {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom: 1px dotted var(--gold);
+  padding-bottom: 1px;
+}
+.sort-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--gray-300);
+}
+.sort-toggle button {
+  background: white;
+  border: none;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: var(--gray-500);
+  transition: all 0.15s;
+  border-right: 1px solid var(--gray-300);
+}
+.sort-toggle button:last-child { border-right: none; }
+.sort-toggle button.active {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+.sort-toggle button:hover:not(.active) {
+  background: var(--gray-100);
+  color: var(--navy);
+}
+
+/* COUNTIES GRID */
+.counties-grid-wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+}
+.counties-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.county-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 22px 24px;
+  transition: all 0.15s;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.county-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(26, 40, 69, 0.08);
+}
+.county-card.is-nearest {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, var(--gold-pale) 0%, white 50%);
+}
+.county-card.is-nearest::before {
+  content: '📍 Nearest';
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+}
+.county-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.county-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.county-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 3px 8px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid rgba(184, 146, 74, 0.3);
+}
+.county-meta {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
+.county-meta strong { color: var(--gray-700); font-weight: 500; }
+.county-meta .meta-line { display: block; }
+.county-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  align-self: flex-start;
+}
+
+/* ALL COUNTIES (alphabetical fallback view, also section header) */
+.section-divider {
+  max-width: 1240px;
+  margin: 64px auto 24px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-divider h3 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.section-divider .line { flex: 1; height: 1px; background: var(--gray-200); }
+
+/* FOOTER */
+footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.65); padding: 56px 0 28px; }
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.footer-disclaimer { font-size: 12.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.55); max-width: 820px; margin-bottom: 32px; }
+.footer-disclaimer strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.footer-disclaimer a { color: var(--gold-light); text-decoration: underline; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding: 32px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-col h5 { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; font-weight: 500; }
+.footer-col ul { list-style: none; }
+.footer-col li { padding: 4px 0; font-size: 13px; }
+.footer-col a { color: rgba(255, 255, 255, 0.65); transition: color 0.15s; }
+.footer-col a:hover { color: var(--gold-light); }
+.footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: rgba(255, 255, 255, 0.4); }
+
+@media (max-width: 1200px) {
+  .counties-grid { grid-template-columns: repeat(3, 1fr); }
+  .header-nav { display: none; }
+}
+@media (max-width: 900px) {
+  .counties-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { gap: 32px; }
+  .page-h1 { font-size: 42px; }
+  .sort-notice { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records<span class="dot"></span>266,312 Licensed Contractors<span class="dot"></span>Refreshed Weekly from DBPR</div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, license, city, or county..." />
+    </div>
+    <nav class="header-nav">
+      <a href="/counties" class="active">Counties</a>
+      <a href="/types">License Types</a>
+      <a href="/contractors">For Contractors</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span class="current">Counties</span>
+  </div>
+
+  <h1 class="page-h1">Florida contractors by <em>county.</em></h1>
+  <p class="page-lede">Every active contractor license in the State of Florida, organized by the 67 counties of issuance. Drawn from the weekly DBPR public records extract.</p>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">266,312</div>
+      <div class="hero-stat-label">Licensed Contractors</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">67</div>
+      <div class="hero-stat-label">Florida Counties</div>
+    </div>
+    <div>
+      <div class="hero-stat-num gold">412</div>
+      <div class="hero-stat-label">Cities Represented</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">29</div>
+      <div class="hero-stat-label">License Categories</div>
+    </div>
+  </div>
+</div>
+
+<!-- SORT NOTICE (geo-personalization indicator) -->
+<div class="sort-notice">
+  <div class="sort-notice-text">
+    <span class="pin">📍</span>
+    Showing counties nearest <strong>Broward County</strong> first.
+  </div>
+  <div class="sort-toggle">
+    <button class="active">Nearest</button>
+    <button>Alphabetical</button>
+    <button>Most Contractors</button>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="counties-grid-wrapper">
+  <div class="counties-grid">
+
+    <!-- Detected county - highlighted -->
+    <a href="/county/broward" class="county-card is-nearest">
+      <div class="county-card-top">
+        <div class="county-name">Broward County</div>
+        <div class="county-count">10,597</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Fort Lauderdale</span>
+        <span class="meta-line"><strong>Population:</strong> 1,950,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/miami-dade" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Miami-Dade County</div>
+        <div class="county-count">14,080</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Miami</span>
+        <span class="meta-line"><strong>Population:</strong> 2,700,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/palm-beach" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Palm Beach County</div>
+        <div class="county-count">8,994</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> West Palm Beach</span>
+        <span class="meta-line"><strong>Population:</strong> 1,470,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/monroe" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Monroe County</div>
+        <div class="county-count">1,247</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Key West</span>
+        <span class="meta-line"><strong>Population:</strong> 82,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/collier" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Collier County</div>
+        <div class="county-count">3,592</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Naples</span>
+        <span class="meta-line"><strong>Population:</strong> 385,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/martin" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Martin County</div>
+        <div class="county-count">1,511</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Stuart</span>
+        <span class="meta-line"><strong>Population:</strong> 160,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/st-lucie" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">St. Lucie County</div>
+        <div class="county-count">2,184</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Fort Pierce</span>
+        <span class="meta-line"><strong>Population:</strong> 343,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/lee" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Lee County</div>
+        <div class="county-count">5,847</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Fort Myers</span>
+        <span class="meta-line"><strong>Population:</strong> 822,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/indian-river" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Indian River County</div>
+        <div class="county-count">982</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Vero Beach</span>
+        <span class="meta-line"><strong>Population:</strong> 165,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/hendry" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Hendry County</div>
+        <div class="county-count">218</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> LaBelle</span>
+        <span class="meta-line"><strong>Population:</strong> 42,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/glades" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Glades County</div>
+        <div class="county-count">44</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Moore Haven</span>
+        <span class="meta-line"><strong>Population:</strong> 13,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/okeechobee" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Okeechobee County</div>
+        <div class="county-count">249</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Okeechobee</span>
+        <span class="meta-line"><strong>Population:</strong> 40,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+  </div>
+
+  <!-- DIVIDER FOR SECTION 2 -->
+  <div class="section-divider" style="margin-left: 0; margin-right: 0; padding: 0;">
+    <h3>All other Florida counties</h3>
+    <div class="line"></div>
+  </div>
+
+  <div class="counties-grid" style="margin-top: 24px;">
+
+    <a href="/county/orange" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Orange County</div>
+        <div class="county-count">11,247</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Orlando</span>
+        <span class="meta-line"><strong>Population:</strong> 1,470,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/hillsborough" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Hillsborough County</div>
+        <div class="county-count">12,894</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Tampa</span>
+        <span class="meta-line"><strong>Population:</strong> 1,490,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/duval" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Duval County</div>
+        <div class="county-count">8,217</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Jacksonville</span>
+        <span class="meta-line"><strong>Population:</strong> 1,000,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/pinellas" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Pinellas County</div>
+        <div class="county-count">6,948</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Clearwater</span>
+        <span class="meta-line"><strong>Population:</strong> 960,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/sarasota" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Sarasota County</div>
+        <div class="county-count">3,847</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Sarasota</span>
+        <span class="meta-line"><strong>Population:</strong> 450,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/seminole" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Seminole County</div>
+        <div class="county-count">2,847</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Sanford</span>
+        <span class="meta-line"><strong>Population:</strong> 480,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/volusia" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Volusia County</div>
+        <div class="county-count">2,594</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> DeLand</span>
+        <span class="meta-line"><strong>Population:</strong> 568,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/leon" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Leon County</div>
+        <div class="county-count">1,247</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Tallahassee</span>
+        <span class="meta-line"><strong>Population:</strong> 295,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/alachua" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Alachua County</div>
+        <div class="county-count">847</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Gainesville</span>
+        <span class="meta-line"><strong>Population:</strong> 285,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/escambia" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Escambia County</div>
+        <div class="county-count">1,847</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Pensacola</span>
+        <span class="meta-line"><strong>Population:</strong> 322,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/manatee" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Manatee County</div>
+        <div class="county-count">3,247</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Bradenton</span>
+        <span class="meta-line"><strong>Population:</strong> 408,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+    <a href="/county/pasco" class="county-card">
+      <div class="county-card-top">
+        <div class="county-name">Pasco County</div>
+        <div class="county-count">3,498</div>
+      </div>
+      <div class="county-meta">
+        <span class="meta-line"><strong>Seat:</strong> Dade City</span>
+        <span class="meta-line"><strong>Population:</strong> 561,000</span>
+      </div>
+      <span class="county-link">View contractors →</span>
+    </a>
+
+  </div>
+
+  <!-- Pagination placeholder -->
+  <div style="text-align: center; margin-top: 56px;">
+    <p style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 16px;">Showing 24 of 67 counties</p>
+    <button style="background: var(--navy); color: var(--gold-light); padding: 14px 32px; font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; border: none; cursor: pointer;">Show all 67 counties →</button>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong>FloridaContractorRegistry.com</strong> is a private commercial directory operated by Florida Contractor Registry LLC. We are <strong>not affiliated with, endorsed by, or operated by</strong> the State of Florida, the Florida Department of Business and Professional Regulation (DBPR), the Construction Industry Licensing Board, or any government agency. License information shown is republished from public DBPR records under Chapter 119, Florida Statutes, and may not reflect the most current status. For official license verification, visit <a href="https://www.myfloridalicense.com">myfloridalicense.com</a>.
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Browse</h5>
+        <ul>
+          <li><a href="/counties">All Counties</a></li>
+          <li><a href="/types">License Types</a></li>
+          <li><a href="/cities">Top Cities</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Homeowners</h5>
+        <ul>
+          <li><a href="/hiring-checklist">Hiring Checklist</a></li>
+          <li><a href="/verify">How to Verify a License</a></li>
+          <li><a href="/permits">Permit Look-Up Guide</a></li>
+          <li><a href="/complaint">File a Complaint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Contractors</h5>
+        <ul>
+          <li><a href="/contractors">Claim Your Profile</a></li>
+          <li><a href="/contractors/edit">Update Information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="/about">Methodology</a></li>
+          <li><a href="/sources">Data Sources</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Florida Contractor Registry LLC. All rights reserved.</div>
+      <div>Data sourced from DBPR · Last refresh: May 24, 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

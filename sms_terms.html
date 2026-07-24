@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SMS Terms — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* HEADER */
+.top-strip { background: var(--navy-deep); color: var(--gold-pale); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 0; font-weight: 500; }
+.top-strip-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; }
+.top-strip .dot { display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin: 0 12px; vertical-align: middle; }
+header.site-header { background: var(--paper); border-bottom: 1px solid var(--gray-200); padding: 22px 0; position: sticky; top: 0; z-index: 50; }
+.header-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.logo { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.logo-mark { width: 42px; height: 42px; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; }
+.logo-mark::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--gold); }
+.logo-mark span { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--gold); z-index: 1; font-style: italic; }
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line { font-family: var(--serif); font-weight: 600; font-size: 19px; color: var(--navy); letter-spacing: -0.01em; }
+.logo-text .sub-line { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); font-weight: 500; margin-top: 2px; }
+.search-bar { flex: 1; max-width: 480px; position: relative; }
+.search-bar input { width: 100%; padding: 11px 16px 11px 44px; border: 1px solid var(--gray-300); background: white; font-family: var(--sans); font-size: 14px; color: var(--ink); }
+.search-bar input:focus { outline: none; border-color: var(--navy); }
+.search-bar::before { content: ''; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center; }
+.header-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: var(--gray-700); }
+.header-nav a { padding-bottom: 2px; transition: color 0.15s; }
+.header-nav a:hover { color: var(--navy); }
+
+/* LAYOUT */
+.content-layout {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 48px 32px 96px;
+  display: grid;
+  grid-template-columns: 220px 1fr 220px;
+  gap: 60px;
+}
+
+/* LEFT SIDEBAR */
+.page-nav { position: sticky; top: 110px; align-self: start; font-size: 13px; }
+.page-nav-tag {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); font-weight: 600;
+  margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--gold);
+  display: inline-block;
+}
+.page-nav ul { list-style: none; }
+.page-nav li {
+  padding: 7px 0; border-left: 1px solid var(--gray-200);
+  padding-left: 14px; margin-left: 0;
+}
+.page-nav li.active { border-left-color: var(--gold); }
+.page-nav li.active a { color: var(--navy); font-weight: 600; }
+.page-nav a {
+  color: var(--gray-500); font-size: 13px; transition: color 0.15s;
+  line-height: 1.5; display: block;
+}
+.page-nav a:hover { color: var(--navy); }
+.page-nav .section-divider {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gray-400); font-weight: 600;
+  margin: 24px 0 8px 14px;
+}
+
+/* MAIN ARTICLE */
+article.content-main { min-width: 0; max-width: 680px; margin: 0 auto; }
+
+.content-kicker {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); font-weight: 600;
+  margin-bottom: 16px; display: inline-flex; align-items: center; gap: 10px;
+}
+.content-kicker::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.content-h1 {
+  font-family: var(--serif); font-weight: 600; font-size: 56px;
+  line-height: 1.05; letter-spacing: -0.025em; color: var(--navy);
+  margin-bottom: 24px;
+}
+.content-h1 em { font-style: italic; }
+
+.content-lede {
+  font-family: var(--serif); font-size: 22px; line-height: 1.45;
+  color: var(--gray-700); letter-spacing: -0.01em;
+  margin-bottom: 40px; padding-bottom: 32px;
+  border-bottom: 1px solid var(--gray-200); font-weight: 400;
+}
+
+.content-body p {
+  font-size: 17px; line-height: 1.7; color: var(--ink);
+  margin-bottom: 22px; letter-spacing: -0.005em;
+}
+.content-body p:last-child { margin-bottom: 0; }
+.content-body p strong { font-weight: 600; }
+.content-body p em { font-style: italic; }
+.content-body p a { color: var(--navy); border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
+.content-body p a:hover { background: var(--gold-pale); }
+
+.content-body h2 {
+  font-family: var(--serif); font-weight: 600; font-size: 32px;
+  line-height: 1.2; letter-spacing: -0.02em; color: var(--navy);
+  margin-top: 56px; margin-bottom: 20px;
+}
+.content-body h2 em { font-style: italic; }
+.content-body h2:first-child { margin-top: 0; }
+.content-body h2 .section-num {
+  font-family: var(--mono); font-size: 14px; color: var(--gold);
+  font-weight: 600; margin-right: 14px; letter-spacing: 0.04em;
+  vertical-align: 4px;
+}
+
+.content-body h3 {
+  font-family: var(--serif); font-weight: 600; font-size: 22px;
+  line-height: 1.3; letter-spacing: -0.015em; color: var(--navy);
+  margin-top: 36px; margin-bottom: 14px;
+}
+.content-body h3 em { font-style: italic; }
+
+.content-body h4 {
+  font-family: var(--sans); font-weight: 700; font-size: 16px;
+  color: var(--navy); margin-top: 24px; margin-bottom: 10px;
+  letter-spacing: -0.005em;
+}
+
+/* LISTS */
+.content-body ul, .content-body ol {
+  margin: 0 0 22px 0; padding-left: 0; list-style: none;
+}
+.content-body ul li {
+  position: relative; padding: 4px 0 4px 28px;
+  font-size: 17px; line-height: 1.65; color: var(--ink);
+}
+.content-body ul li::before {
+  content: ''; position: absolute; left: 0; top: 14px;
+  width: 14px; height: 1px; background: var(--gold);
+}
+.content-body ul li strong { font-weight: 600; }
+.content-body ol { counter-reset: numlist; }
+.content-body ol li {
+  position: relative; padding: 8px 0 8px 44px;
+  font-size: 17px; line-height: 1.65; color: var(--ink);
+  counter-increment: numlist;
+}
+.content-body ol li::before {
+  content: counter(numlist) "."; position: absolute; left: 0; top: 8px;
+  font-family: var(--serif); font-size: 17px; font-weight: 600;
+  color: var(--gold); font-style: italic; width: 32px;
+}
+
+/* CALLOUTS */
+.content-callout {
+  background: var(--gold-pale); border-left: 4px solid var(--gold);
+  padding: 24px 28px; margin: 32px 0;
+}
+.content-callout p {
+  font-size: 16.5px; line-height: 1.65; color: var(--ink); margin-bottom: 12px;
+}
+.content-callout p:last-child { margin-bottom: 0; }
+.content-callout p strong { font-weight: 600; }
+.content-callout .label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); font-weight: 600;
+  display: block; margin-bottom: 10px;
+}
+
+/* DATA CARD */
+.content-data-card {
+  background: white; border: 1px solid var(--gray-200);
+  padding: 26px 30px; margin: 28px 0;
+}
+.content-data-card dl {
+  display: grid; grid-template-columns: 160px 1fr; gap: 14px 24px;
+}
+.content-data-card dt {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--gray-500); font-weight: 500;
+  align-self: baseline;
+}
+.content-data-card dd {
+  font-size: 14.5px; color: var(--ink); font-weight: 500;
+}
+.content-data-card dd.mono {
+  font-family: var(--mono); font-size: 13px; word-break: break-all;
+}
+
+/* META FOOTER */
+.content-meta {
+  margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--gray-200);
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--gray-500);
+}
+
+/* RIGHT RAIL */
+.right-rail { position: sticky; top: 110px; align-self: start; }
+.right-rail .module {
+  background: white; border: 1px solid var(--gray-200);
+  padding: 24px 22px; margin-bottom: 20px;
+}
+.right-rail .module-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold); font-weight: 600;
+  margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px;
+}
+.right-rail .module-tag::before { content: ''; width: 14px; height: 1px; background: var(--gold); }
+.right-rail .module h4 {
+  font-family: var(--serif); font-size: 18px; font-weight: 600;
+  color: var(--navy); letter-spacing: -0.01em;
+  margin-bottom: 12px; line-height: 1.25;
+}
+.right-rail .module h4 em { font-style: italic; }
+.right-rail .module p {
+  font-size: 13.5px; color: var(--gray-700); line-height: 1.55; margin-bottom: 16px;
+}
+.right-rail .module .btn {
+  display: inline-block; font-family: var(--sans); font-weight: 600;
+  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--navy); border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+}
+.right-rail .module .btn:hover { color: var(--gold); }
+.right-rail .module ul { list-style: none; margin: 0; }
+.right-rail .module li {
+  padding: 6px 0; border-bottom: 1px solid var(--gray-100);
+  font-size: 13px; color: var(--gray-700);
+}
+.right-rail .module li:last-child { border-bottom: none; }
+.right-rail .module li a:hover { color: var(--navy); }
+
+/* LEGAL-SPECIFIC: header banner for important notices */
+.legal-notice-banner {
+  background: var(--navy);
+  color: white;
+  padding: 18px 24px;
+  margin-bottom: 32px;
+  font-size: 14px;
+  line-height: 1.6;
+  border-left: 4px solid var(--gold);
+}
+.legal-notice-banner strong {
+  color: var(--gold-light);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.legal-notice-banner a { color: var(--gold-light); border-bottom: 1px solid var(--gold); }
+
+/* FOOTER */
+footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.65); padding: 56px 0 28px; }
+.footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.footer-disclaimer { font-size: 12.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.55); max-width: 820px; margin-bottom: 32px; }
+.footer-disclaimer strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.footer-disclaimer a { color: var(--gold-light); text-decoration: underline; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding: 32px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-col h5 { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; font-weight: 500; }
+.footer-col ul { list-style: none; }
+.footer-col li { padding: 4px 0; font-size: 13px; }
+.footer-col a { color: rgba(255, 255, 255, 0.65); transition: color 0.15s; }
+.footer-col a:hover { color: var(--gold-light); }
+.footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: rgba(255, 255, 255, 0.4); }
+
+@media (max-width: 1200px) {
+  .content-layout { grid-template-columns: 1fr; gap: 32px; }
+  .page-nav, .right-rail { position: static; }
+  .content-h1 { font-size: 42px; }
+  .content-lede { font-size: 18px; }
+  .header-nav { display: none; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records<span class="dot"></span>266,312 Licensed Contractors<span class="dot"></span>Refreshed Weekly from DBPR</div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, license, city, or county..." />
+    </div>
+    <nav class="header-nav">
+      <a href="/counties">Counties</a>
+      <a href="/types">License Types</a>
+      <a href="/contractors">For Contractors</a>
+    </nav>
+  </div>
+</header>
+
+<div class="content-layout">
+
+  <aside class="page-nav">
+    <div class="page-nav-tag">Site Pages</div>
+    <ul>
+      <li class=""><a href="/about">About</a></li>
+      <li class=""><a href="/sources">Data Sources</a></li>
+      <li class=""><a href="/hiring-checklist">Hiring Checklist</a></li>
+      <li class=""><a href="/verify">How to Verify a License</a></li>
+      <li class=""><a href="/permits">Permit Look-Up Guide</a></li>
+      <li class=""><a href="/complaint">File a Complaint</a></li>
+    </ul>
+    <div class="section-divider">Legal</div>
+    <ul>
+      <li class=""><a href="/privacy">Privacy Policy</a></li>
+      <li class=""><a href="/terms">Terms of Service</a></li>
+      <li class="active"><a href="/sms-terms">SMS Terms</a></li>
+      <li class=""><a href="/cookies">Cookie Notice</a></li>
+      <li class=""><a href="/dmca">DMCA</a></li>
+    </ul>
+  </aside>
+
+  <article class="content-main">
+
+    <div class="content-kicker">SMS Terms</div>
+    <h1 class="content-h1">SMS <em>terms.</em></h1>
+    <p class="content-lede">Terms governing text messages you receive from our advisory team after submitting an inquiry.</p>
+
+    <div class="content-body">
+
+<div class="legal-notice-banner">
+  <strong>Quick Summary</strong>
+  We use text messages to follow up on inquiries you submit through this site. You opt in by checking the consent box on the inquiry form. You can opt out at any time by replying STOP. Message and data rates may apply.
+</div>
+
+<h2><span class="section-num">1</span>Program description</h2>
+
+<p>Olga's Friends LLC ("we," "us," or "our") operates a text-message communication program (the "Program") used to contact individuals who have submitted an inquiry through the homeowner inquiry form on FloridaContractorRegistry.com (the "Site"). The Program is used by our advisory team to follow up on inquiries, share information about your situation, schedule conversations, and (where appropriate) introduce you to a licensed Florida professional.</p>
+
+<h2><span class="section-num">2</span>Consent to receive messages</h2>
+
+<p>You opt in to receive text messages from us by affirmatively checking the consent checkbox on our homeowner inquiry form and submitting the form. Your consent is voluntary and is not a condition of receiving advisory services, which can also be conducted entirely by phone or email at your preference.</p>
+
+<h2><span class="section-num">3</span>Verbatim consent language</h2>
+
+<p>The consent language that appears on the inquiry form is:</p>
+
+<div class="content-callout">
+  <p>"I understand that a member of Florida Contractor Registry's advisory team will reach out by phone, email, or text to discuss my situation. By checking this box and providing my phone number, I expressly consent to receive recurring text messages from Olga's Friends LLC at the number provided, including messages sent using an automatic telephone dialing system or pre-recorded voice. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. See our SMS Terms and Privacy Policy."</p>
+</div>
+
+<h2><span class="section-num">4</span>Message frequency</h2>
+
+<p>Message frequency varies based on the nature of your inquiry and the stage of follow-up. Most inquirers receive between 2 and 10 messages over a 30-day period, with occasional follow-ups beyond that. You can opt out at any time.</p>
+
+<h2><span class="section-num">5</span>Carrier disclosures</h2>
+
+<p>Message and data rates may apply. Carriers are not liable for delayed or undelivered messages. We support all major U.S. carriers, including AT&amp;T, Verizon, T-Mobile, and their affiliates. Carrier availability and message delivery are subject to your carrier's coverage and service.</p>
+
+<h2><span class="section-num">6</span>How to opt out</h2>
+
+<p>You may opt out of receiving text messages at any time by replying <strong>STOP</strong> to any message we send. After we receive your opt-out, we will send one final confirmation message, and you will not receive further text messages from this Program.</p>
+
+<p>Opting out of text messages does not opt you out of email or phone follow-up. To stop email communications, use the unsubscribe link in any of our emails. To stop phone calls, ask the person calling to stop and they will note your request.</p>
+
+<h2><span class="section-num">7</span>How to get help</h2>
+
+<p>Reply <strong>HELP</strong> to any message we send for assistance. You will receive a reply with our contact information and a link back to these SMS Terms.</p>
+
+<h2><span class="section-num">8</span>Privacy</h2>
+
+<p>Information collected through the Program is handled in accordance with our <a href="/privacy">Privacy Policy</a>. Your phone number is not shared with third parties for marketing purposes.</p>
+
+<h2><span class="section-num">9</span>Changes</h2>
+
+<p>We may update these SMS Terms from time to time. The version in effect at the time you receive a message governs that message. Material changes will be posted on the Site with the new "Last Updated" date.</p>
+
+<h2><span class="section-num">10</span>Contact</h2>
+
+<p>Questions about the Program can be sent to:</p>
+
+<div class="content-data-card">
+  <dl>
+    <dt>By Email</dt>
+    <dd>sms@floridacontractorregistry.com</dd>
+    <dt>By Mail</dt>
+    <dd>Olga's Friends LLC<br/>Attn: SMS Compliance<br/>1520 E Sunrise Blvd<br/>Fort Lauderdale, FL 33304</dd>
+  </dl>
+</div>
+
+    </div>
+
+    <div class="content-meta">
+      <span>Effective · May 24, 2026</span>
+      <span>~ 4 min read</span>
+    </div>
+
+  </article>
+
+  <aside class="right-rail">
+    <div class="module">
+      <div class="module-tag">Search</div>
+      <h4>Find a <em>contractor</em></h4>
+      <p>Search 266,312 active Florida contractor licenses by name, license number, city, or county.</p>
+      <a href="/" class="btn">Start a search →</a>
+    </div>
+
+    <div class="module">
+      <div class="module-tag">Helpful Pages</div>
+      <h4>Other resources</h4>
+      <ul style="margin-top: 12px;">
+        <li><a href="/hiring-checklist">Hiring Checklist</a></li>
+        <li><a href="/verify">How to Verify a License</a></li>
+        <li><a href="/sources">Where the Data Comes From</a></li>
+      </ul>
+    </div>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong>FloridaContractorRegistry.com</strong> is a private commercial directory operated by Olga's Friends LLC. We are <strong>not affiliated with, endorsed by, or operated by</strong> the State of Florida, the Florida Department of Business and Professional Regulation (DBPR), the Construction Industry Licensing Board, or any government agency. License information shown is republished from public DBPR records under Chapter 119, Florida Statutes, and may not reflect the most current status. For official license verification, visit <a href="https://www.myfloridalicense.com">myfloridalicense.com</a>.
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Browse</h5>
+        <ul>
+          <li><a href="/counties">All Counties</a></li>
+          <li><a href="/types">License Types</a></li>
+          <li><a href="/cities">Top Cities</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Homeowners</h5>
+        <ul>
+          <li><a href="/hiring-checklist">Hiring Checklist</a></li>
+          <li><a href="/verify">How to Verify a License</a></li>
+          <li><a href="/permits">Permit Look-Up Guide</a></li>
+          <li><a href="/complaint">File a Complaint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Contractors</h5>
+        <ul>
+          <li><a href="/contractors">Claim Your Profile</a></li>
+          <li><a href="/contractors/edit">Update Information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/sms-terms">SMS Terms</a></li>
+          <li><a href="/cookies">Cookie Notice</a></li>
+          <li><a href="/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Olga's Friends LLC. All rights reserved.</div>
+      <div>Data sourced from DBPR · Last refresh: May 24, 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

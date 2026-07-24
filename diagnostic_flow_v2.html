@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diagnostic Flow v2 — 7 Questions + Multi-Entity Routing | Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --navy-light: #2a3a5c;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-900: #232529;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green: #2f7d3a;
+  --red: #c4302b;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ============================================
+   REVIEW MODE NOTICE
+   ============================================ */
+.review-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 184, 77, 0.3);
+}
+.review-notice .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ffb84d;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ============================================
+   THE BACKGROUND PAGE
+   ============================================ */
+.top-strip {
+  background: var(--navy-deep);
+  color: var(--gold-pale);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  font-weight: 500;
+}
+.top-strip-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-strip .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin: 0 12px;
+  vertical-align: middle;
+}
+
+header.site-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 22px 0;
+}
+.header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 14px; }
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  background: var(--navy);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-mark::after { content: ''; position: absolute; inset: 4px; border: 1px solid var(--gold); }
+.logo-mark span {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--gold);
+  z-index: 1;
+  font-style: italic;
+}
+.logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-text .top-line {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--navy);
+}
+.logo-text .sub-line {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* THE BANNER (Candidate A) */
+.persona-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--gold);
+}
+.persona-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(184, 146, 74, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.banner-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 36px 32px 38px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.banner-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.banner-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold-light); }
+.banner-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: white;
+  margin-bottom: 10px;
+}
+.banner-title em { font-style: italic; color: var(--gold-light); }
+.banner-sub {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 640px;
+}
+.banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 16px 28px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14.5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.banner-cta:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(184, 146, 74, 0.3);
+}
+.banner-cta svg { width: 16px; height: 16px; }
+.banner-meta {
+  margin-top: 14px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+.placeholder-content {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 32px 80px;
+  color: var(--gray-500);
+  text-align: center;
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* ============================================
+   MODAL OVERLAY
+   ============================================ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 26, 48, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 24px 24px;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.flow-container {
+  background: var(--paper);
+  width: 100%;
+  max-width: 760px;
+  margin-bottom: 60px;
+  box-shadow: 0 30px 80px rgba(15, 26, 48, 0.4);
+  position: relative;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.overlay.active .flow-container {
+  transform: translateY(0);
+  opacity: 1;
+}
+.flow-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--gray-300);
+  cursor: pointer;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  z-index: 5;
+}
+.flow-close:hover { background: var(--gray-100); color: var(--ink); }
+.flow-close svg { width: 16px; height: 16px; }
+
+/* PROGRESS BAR */
+.progress-bar {
+  height: 3px;
+  background: var(--gray-200);
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  width: 0%;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* SECTION INDICATOR — tells visitor which "part" they're in */
+.section-indicator {
+  display: flex;
+  justify-content: center;
+  padding: 14px 56px 0;
+  gap: 6px;
+}
+.section-pill {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-500);
+  padding: 4px 10px;
+  border: 1px solid var(--gray-200);
+  background: white;
+  transition: all 0.2s;
+}
+.section-pill.active {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--gold-pale);
+}
+.section-pill.done {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+/* STEP */
+.step {
+  display: none;
+  padding: 32px 56px 44px;
+  min-height: 420px;
+  animation: fadeIn 0.5s ease both;
+}
+.step.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.step-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.step-tag::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+.step-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.step-headline em { font-style: italic; color: var(--navy); }
+.step-question {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 24px;
+  letter-spacing: -0.015em;
+}
+
+/* OPTIONS */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 20px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 15px;
+  color: var(--gray-900);
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  letter-spacing: -0.005em;
+}
+.option:hover {
+  border-color: var(--navy);
+  background: var(--gray-50);
+  transform: translateX(2px);
+}
+.option-radio {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.15s;
+}
+.option:hover .option-radio { border-color: var(--navy); }
+.option.selected {
+  border-color: var(--navy);
+  background: var(--gray-50);
+}
+.option.selected .option-radio { border-color: var(--gold); }
+.option.selected .option-radio::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* STEP FOOTER */
+.step-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+.step-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.btn-back {
+  background: transparent;
+  border: none;
+  color: var(--gray-700);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 14px;
+}
+.btn-back:hover { color: var(--ink); }
+.btn-next {
+  background: var(--navy);
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-next:hover { background: var(--navy-deep); transform: translateY(-1px); }
+.btn-next:disabled {
+  background: var(--gray-300);
+  color: var(--gray-500);
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-next svg { width: 14px; height: 14px; }
+
+/* SECTION TRANSITION CARD */
+.transition-step {
+  display: none;
+  padding: 56px 56px 40px;
+  text-align: center;
+  animation: fadeIn 0.5s ease both;
+}
+.transition-step.active { display: block; }
+.transition-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  background: var(--gold-pale);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transition-icon svg { width: 26px; height: 26px; color: var(--navy); }
+.transition-step h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: -0.018em;
+  margin-bottom: 12px;
+}
+.transition-step h3 em { font-style: italic; color: var(--navy); }
+.transition-step p {
+  font-size: 15px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+.transition-step .btn-next {
+  margin: 0 auto;
+}
+
+/* REFRAME STEPS */
+.reframe-step { padding: 0; }
+.reframe-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: white;
+  padding: 48px 56px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.reframe-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(184, 146, 74, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.reframe-hero .step-tag { color: var(--gold-light); margin-top: 0; }
+.reframe-hero .step-tag::before { background: var(--gold-light); }
+.reframe-hero h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  color: white;
+}
+.reframe-hero h2 em { font-style: italic; color: var(--gold-light); }
+.reframe-hero .reflection {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 560px;
+  font-family: var(--serif);
+  font-style: italic;
+}
+.reframe-body { padding: 40px 56px; }
+.reframe-body p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--gray-900);
+  margin-bottom: 14px;
+}
+.reframe-body p:last-of-type { margin-bottom: 0; }
+.reframe-body p strong { color: var(--ink); font-weight: 600; }
+.benefit-list {
+  list-style: none;
+  margin: 20px 0;
+  padding: 20px 24px;
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+}
+.benefit-list li {
+  font-size: 15px;
+  color: var(--ink);
+  padding: 6px 0 6px 26px;
+  position: relative;
+  line-height: 1.5;
+}
+.benefit-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 13px;
+  height: 7px;
+  border-left: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+  transform: rotate(-45deg);
+}
+
+/* CAPTURE FORM */
+.capture-section {
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  padding: 40px 56px 44px;
+}
+.capture-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.capture-tag::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+.capture-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  margin-bottom: 8px;
+}
+.capture-sub {
+  font-size: 14.5px;
+  color: var(--gray-700);
+  margin-bottom: 22px;
+  line-height: 1.55;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.form-field { display: flex; flex-direction: column; gap: 5px; }
+.form-field.full { grid-column: 1 / -1; }
+.form-field label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.form-field input {
+  padding: 11px 13px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  color: var(--ink);
+  transition: border-color 0.15s;
+}
+.form-field input:focus { outline: none; border-color: var(--navy); }
+.consent-block {
+  margin: 18px 0;
+  padding: 14px 16px;
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+.consent-row input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--navy);
+}
+.consent-row strong { color: var(--ink); font-weight: 600; }
+.consent-row a { color: var(--navy); text-decoration: underline; }
+.submit-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--navy-deep);
+  border: none;
+  padding: 16px 24px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14.5px;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.submit-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(184, 146, 74, 0.3);
+}
+.submit-btn svg { width: 16px; height: 16px; }
+.compliance-footer {
+  margin-top: 16px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--gray-500);
+}
+.compliance-footer a { color: var(--gray-700); text-decoration: underline; }
+
+/* SUCCESS — operator-visible debug panel */
+.success-step {
+  padding: 0;
+}
+.success-hero {
+  background: linear-gradient(135deg, var(--green) 0%, #1d5a25 100%);
+  color: white;
+  padding: 44px 56px;
+  text-align: center;
+}
+.success-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.success-icon svg { width: 26px; height: 26px; color: white; }
+.success-headline {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  color: white;
+}
+.success-sub {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.55;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+/* OPERATOR DEBUG PANEL — for review only */
+.debug-panel {
+  background: #1f1d24;
+  color: #e8e4d6;
+  padding: 32px 56px;
+  font-family: var(--mono);
+}
+.debug-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.debug-tag {
+  background: #ffb84d;
+  color: #1f1d24;
+  padding: 3px 10px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.debug-title {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: rgba(232, 228, 214, 0.7);
+}
+.debug-section { margin-bottom: 18px; }
+.debug-section h5 {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 214, 0.5);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.debug-value {
+  font-size: 13px;
+  color: #ffb84d;
+  font-weight: 500;
+}
+.debug-value strong { color: #fff; font-weight: 700; }
+.debug-routing {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.debug-route-item {
+  display: grid;
+  grid-template-columns: 90px 1fr 1fr;
+  gap: 14px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 2px solid #2f7d3a;
+  font-size: 12px;
+  align-items: center;
+}
+.debug-route-item.primary { border-left-color: #ffb84d; background: rgba(255, 184, 77, 0.08); }
+.debug-route-priority {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2f7d3a;
+  font-weight: 700;
+}
+.debug-route-item.primary .debug-route-priority { color: #ffb84d; }
+.debug-route-entity { color: #fff; font-weight: 600; }
+.debug-route-reason { color: rgba(232, 228, 214, 0.6); font-size: 11.5px; }
+
+@media (max-width: 720px) {
+  .step, .transition-step { padding: 24px 24px 30px; }
+  .reframe-hero { padding: 32px 24px 28px; }
+  .reframe-body { padding: 28px 24px; }
+  .capture-section { padding: 28px 24px 32px; }
+  .success-hero { padding: 32px 24px; }
+  .debug-panel { padding: 24px 24px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .banner-inner { grid-template-columns: 1fr; }
+  .banner-title { font-size: 22px; }
+  .step-headline { font-size: 20px; }
+  .step-question { font-size: 17px; }
+  .reframe-hero h2 { font-size: 23px; }
+  .debug-route-item { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- REVIEW MODE BANNER -->
+<div class="review-notice">
+  <span class="dot"></span>
+  Diagnostic Flow v2 · 7 Questions · Concierge Model · Internal Routing · Review Mode
+</div>
+
+<!-- BACKGROUND PAGE -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records <span class="dot"></span> 266,312 Licensed Contractors <span class="dot"></span> Refreshed Weekly from DBPR</div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </div>
+    <div style="color: var(--gray-500); font-style: italic; font-family: var(--serif);">[header is its own component]</div>
+  </div>
+</header>
+
+<!-- BANNER - Candidate A -->
+<div class="persona-banner">
+  <div class="banner-inner">
+    <div>
+      <div class="banner-tag">A Note Before You Move Forward</div>
+      <h1 class="banner-title">
+        Before you sign with this contractor, are you sure <em>you have the full picture?</em>
+      </h1>
+      <p class="banner-sub">
+        Most Florida homeowners make a $5,000–$50,000 mistake because they don't know all their options. Take 90 seconds — a licensed advisor can show you what you might be missing, free of charge.
+      </p>
+      <div class="banner-meta">No commitment · 90 seconds · Free advice from a licensed Florida professional</div>
+    </div>
+    <button class="banner-cta" onclick="openFlow()">
+      Show Me My Options
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="placeholder-content">[Contractor profile content continues — Aceca Construction, Inc.]</div>
+
+<!-- ============================================
+     THE MODAL FLOW
+     ============================================ -->
+<div class="overlay" id="overlay">
+  <div class="flow-container">
+    <button class="flow-close" onclick="closeFlow()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="section-indicator">
+      <div class="section-pill active" id="pill1">Part 1 · Your Situation</div>
+      <div class="section-pill" id="pill2">Part 2 · Your Plans</div>
+    </div>
+
+    <!-- ====== PART 1: PERSONA IDENTIFICATION ====== -->
+
+    <!-- Q1: Relationship to property (master sort) -->
+    <div class="step active" data-step="1">
+      <div class="step-tag">Question 1 of 7 · Quick Start</div>
+      <h2 class="step-headline">Let's make sure you have <em>the full picture.</em></h2>
+      <p class="step-question">What's your relationship to this property?</p>
+      <div class="options">
+        <button class="option" data-q="1" data-value="own_renovating">
+          <div class="option-radio"></div>
+          <span>I own it and I'm planning a renovation</span>
+        </button>
+        <button class="option" data-q="1" data-value="buying_to_flip">
+          <div class="option-radio"></div>
+          <span>I'm buying it to fix up and sell</span>
+        </button>
+        <button class="option" data-q="1" data-value="just_bought_home">
+          <div class="option-radio"></div>
+          <span>I just bought it (or about to) as my home</span>
+        </button>
+        <button class="option" data-q="1" data-value="considering_selling">
+          <div class="option-radio"></div>
+          <span>I own it and I'm considering selling</span>
+        </button>
+        <button class="option" data-q="1" data-value="researching">
+          <div class="option-radio"></div>
+          <span>I'm just researching contractors</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <span class="step-meta">Question 1 of 7</span>
+        <button class="btn-next" onclick="nextStep()" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Q2: Time horizon and life stage -->
+    <div class="step" data-step="2">
+      <div class="step-tag">Question 2 of 7 · Time Horizon</div>
+      <h2 class="step-headline">A little about <em>your plans.</em></h2>
+      <p class="step-question">How long do you plan to live in this home?</p>
+      <div class="options">
+        <button class="option" data-q="2" data-value="forever">
+          <div class="option-radio"></div>
+          <span>For the rest of my life — this is forever</span>
+        </button>
+        <button class="option" data-q="2" data-value="long_term">
+          <div class="option-radio"></div>
+          <span>Long-term, but I'm open to selling someday</span>
+        </button>
+        <button class="option" data-q="2" data-value="5_to_10">
+          <div class="option-radio"></div>
+          <span>5–10 years and then we'll see</span>
+        </button>
+        <button class="option" data-q="2" data-value="selling_soon">
+          <div class="option-radio"></div>
+          <span>I'm thinking about selling soon</span>
+        </button>
+        <button class="option" data-q="2" data-value="investment">
+          <div class="option-radio"></div>
+          <span>I won't live here — it's an investment</span>
+        </button>
+        <button class="option" data-q="2" data-value="just_moved">
+          <div class="option-radio"></div>
+          <span>Just moved in — too early to say</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back" onclick="prevStep()">← Back</button>
+        <button class="btn-next" onclick="nextStep()" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Q3: Payment method (financial litmus test) -->
+    <div class="step" data-step="3">
+      <div class="step-tag">Question 3 of 7 · Financial Approach</div>
+      <h2 class="step-headline">And about <em>your approach.</em></h2>
+      <p class="step-question">How were you thinking about paying for this work?</p>
+      <div class="options">
+        <button class="option" data-q="3" data-value="cash">
+          <div class="option-radio"></div>
+          <span>Cash — I have savings set aside</span>
+        </button>
+        <button class="option" data-q="3" data-value="preserve_savings">
+          <div class="option-radio"></div>
+          <span>I'd rather not deplete my savings</span>
+        </button>
+        <button class="option" data-q="3" data-value="financing">
+          <div class="option-radio"></div>
+          <span>I was hoping to finance it somehow</span>
+        </button>
+        <button class="option" data-q="3" data-value="cant_afford">
+          <div class="option-radio"></div>
+          <span>I'm not sure I can afford it</span>
+        </button>
+        <button class="option" data-q="3" data-value="fast_capital">
+          <div class="option-radio"></div>
+          <span>I need fast capital — closing soon</span>
+        </button>
+        <button class="option" data-q="3" data-value="not_thought">
+          <div class="option-radio"></div>
+          <span>I haven't thought about it yet</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back" onclick="prevStep()">← Back</button>
+        <button class="btn-next" onclick="goToTransition()" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- TRANSITION between Part 1 and Part 2 -->
+    <div class="transition-step" data-step="3.5">
+      <div class="transition-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3>Good. Now a few <em>forward-looking</em> questions.</h3>
+      <p>The next 4 questions help us point you toward the right Florida-licensed advisor — whether that's about your home, a loan, real estate, or accessing capital you may already have.</p>
+      <button class="btn-next" onclick="goToPart2()">
+        Continue
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- ====== PART 2: FORWARD INTENT ====== -->
+
+    <!-- Q4: Selling intent (12 months) -->
+    <div class="step" data-step="4">
+      <div class="step-tag">Question 4 of 7 · Next 12 Months</div>
+      <h2 class="step-headline">In the next <em>12 months...</em></h2>
+      <p class="step-question">Are you planning to sell any real estate?</p>
+      <div class="options">
+        <button class="option" data-q="4" data-value="sell_this_house">
+          <div class="option-radio"></div>
+          <span>Yes — this house</span>
+        </button>
+        <button class="option" data-q="4" data-value="sell_different">
+          <div class="option-radio"></div>
+          <span>Yes — a different property I own</span>
+        </button>
+        <button class="option" data-q="4" data-value="sell_maybe">
+          <div class="option-radio"></div>
+          <span>Possibly — I've been thinking about it</span>
+        </button>
+        <button class="option" data-q="4" data-value="sell_no">
+          <div class="option-radio"></div>
+          <span>No — not planning to sell</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back" onclick="prevStep()">← Back</button>
+        <button class="btn-next" onclick="nextStep()" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Q5: Loan intent (12 months) -->
+    <div class="step" data-step="5">
+      <div class="step-tag">Question 5 of 7 · Next 12 Months</div>
+      <h2 class="step-headline">In the same <em>12 months...</em></h2>
+      <p class="step-question">Are you planning to take any kind of loan?</p>
+      <div class="options">
+        <button class="option" data-q="5" data-value="loan_renovation">
+          <div class="option-radio"></div>
+          <span>Yes — for this renovation</span>
+        </button>
+        <button class="option" data-q="5" data-value="loan_home_purchase">
+          <div class="option-radio"></div>
+          <span>Yes — for a home purchase</span>
+        </button>
+        <button class="option" data-q="5" data-value="loan_business">
+          <div class="option-radio"></div>
+          <span>Yes — for a business</span>
+        </button>
+        <button class="option" data-q="5" data-value="loan_maybe">
+          <div class="option-radio"></div>
+          <span>Possibly — depending on the situation</span>
+        </button>
+        <button class="option" data-q="5" data-value="loan_no">
+          <div class="option-radio"></div>
+          <span>No — not planning to borrow</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back" onclick="prevStep()">← Back</button>
+        <button class="btn-next" onclick="nextStep()" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Q6: Equity access -->
+    <div class="step" data-step="6">
+      <div class="step-tag">Question 6 of 7 · Your Equity</div>
+      <h2 class="step-headline">A question many <em>haven't thought about.</em></h2>
+      <p class="step-question">Have you considered accessing some of the equity in your real estate?</p>
+      <div class="options">
+        <button class="option" data-q="6" data-value="equity_yes_here">
+          <div class="option-radio"></div>
+          <span>Yes — that's actually why I'm here</span>
+        </button>
+        <button class="option" data-q="6" data-value="equity_thought">
+          <div class="option-radio"></div>
+          <span>I've thought about it but haven't acted</span>
+        </button>
+        <button class="option" data-q="6" data-value="equity_learn">
+          <div class="option-radio"></div>
+          <span>Not really — but I'd want to learn more</span>
+        </button>
+        <button class="option" data-q="6" data-value="equity_no">
+          <div class="option-radio"></div>
+          <span>No — and not interested right now</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back" onclick="prevStep()">← Back</button>
+        <button class="btn-next" onclick="nextStep()" disabled>
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Q7: Real estate investing intent -->
+    <div class="step" data-step="7">
+      <div class="step-tag">Question 7 of 7 · Final Question</div>
+      <h2 class="step-headline"><em>Last</em> one.</h2>
+      <p class="step-question">In the next 12 months, are you planning to invest in real estate?</p>
+      <div class="options">
+        <button class="option" data-q="7" data-value="invest_buy">
+          <div class="option-radio"></div>
+          <span>Yes — looking to buy investment property</span>
+        </button>
+        <button class="option" data-q="7" data-value="invest_flip">
+          <div class="option-radio"></div>
+          <span>Yes — fix-and-flip is my plan</span>
+        </button>
+        <button class="option" data-q="7" data-value="invest_maybe">
+          <div class="option-radio"></div>
+          <span>Maybe — if the right deal came along</span>
+        </button>
+        <button class="option" data-q="7" data-value="invest_no">
+          <div class="option-radio"></div>
+          <span>No — not investing right now</span>
+        </button>
+      </div>
+      <div class="step-footer">
+        <button class="btn-back" onclick="prevStep()">← Back</button>
+        <button class="btn-next" onclick="showReframe()" disabled>
+          Show Me My Options
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ====== REFRAME (dynamic - populated by JS) ====== -->
+    <div class="step reframe-step" data-step="8">
+      <div class="reframe-hero">
+        <div class="step-tag">Based on what you shared</div>
+        <h2 id="reframe-headline">Here's what most homeowners in your situation <em>don't know.</em></h2>
+        <p class="reflection" id="reframe-reflection">[Personalized reflection based on persona]</p>
+      </div>
+      <div class="reframe-body" id="reframe-body">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- CAPTURE FORM -->
+      <div class="capture-section">
+        <div class="capture-tag">Talk to a licensed advisor</div>
+        <h3 class="capture-headline" id="capture-headline">Free, no pressure, no commitment.</h3>
+        <p class="capture-sub" id="capture-sub">A licensed Florida advisor will reach out within one business day.</p>
+
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-grid">
+            <div class="form-field">
+              <label>First Name</label>
+              <input type="text" required />
+            </div>
+            <div class="form-field">
+              <label>Last Name</label>
+              <input type="text" required />
+            </div>
+            <div class="form-field">
+              <label>Phone</label>
+              <input type="tel" placeholder="(305) 555-0123" required />
+            </div>
+            <div class="form-field">
+              <label>Email</label>
+              <input type="email" required />
+            </div>
+            <div class="form-field full">
+              <label>ZIP Code</label>
+              <input type="text" maxlength="5" placeholder="33064" required />
+            </div>
+          </div>
+
+          <div class="consent-block">
+            <label class="consent-row">
+              <input type="checkbox" required />
+              <span>I understand that a <strong>member of Florida Contractor Registry's advisory team</strong> will reach out by phone, email, or text to discuss my situation. I can opt out at any time by replying STOP.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Have an Advisor Reach Out to Me
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+
+          <p class="compliance-footer">
+            By submitting, you consent to be contacted by a member of our advisory team regarding the situation you described above. Standard message and data rates may apply. Reply STOP to opt out. See our <a href="#">Privacy Policy</a> and <a href="#">SMS Terms</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- ====== SUCCESS + DEBUG PANEL ====== -->
+    <div class="step success-step" data-step="9">
+      <div class="success-hero">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2 class="success-headline">We'll be in touch shortly.</h2>
+        <p class="success-sub">A member of our advisory team will reach out within one business day to understand your situation. Look for a call from a Florida area code.</p>
+      </div>
+
+      <!-- CONCIERGE CRM VIEW - what the client concierge sees in GoHighLevel
+           when the lead comes in. The visitor never sees any of this. -->
+      <div class="debug-panel" id="debugPanel">
+        <div class="debug-header">
+          <div class="debug-tag">Concierge CRM View</div>
+          <div class="debug-title">What your client concierge sees in GoHighLevel when this lead arrives — the visitor does NOT see any of this</div>
+        </div>
+
+        <div class="debug-section">
+          <h5>Persona Match (suggested intro angle)</h5>
+          <div class="debug-value">Persona <strong id="debug-persona-num">?</strong> · <strong id="debug-persona-name">?</strong></div>
+        </div>
+
+        <div class="debug-section">
+          <h5>Reframe They Saw on the Site</h5>
+          <div class="debug-value" id="debug-reframe">?</div>
+        </div>
+
+        <div class="debug-section">
+          <h5>Internal Routing — Who to Hand Off To (after the call)</h5>
+          <div class="debug-routing" id="debug-routing"></div>
+        </div>
+
+        <div class="debug-section">
+          <h5>Their Answers (for concierge call prep)</h5>
+          <div class="debug-value" id="debug-answers" style="font-size: 11.5px; line-height: 1.7;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // =========================================
+  // STATE
+  // =========================================
+  let currentStep = 1;
+  let answers = {};
+  const totalSteps = 7;
+
+  // =========================================
+  // ROUTING + PERSONA LOGIC
+  // =========================================
+
+  // Determines persona based on Q1, Q2, Q3 answers
+  function determinePersona() {
+    const q1 = answers[1]?.value;
+    const q2 = answers[2]?.value;
+    const q3 = answers[3]?.value;
+
+    // Persona 4: Fix-and-Flip Investor
+    if (q1 === 'buying_to_flip' || q2 === 'investment' || q3 === 'fast_capital') {
+      return { num: 4, name: 'Fix-and-Flip Investor', slug: 'flipper' };
+    }
+
+    // Persona 5: New-to-Town
+    if (q1 === 'just_bought_home' || q2 === 'just_moved') {
+      return { num: 5, name: 'New-to-Town', slug: 'newtotown' };
+    }
+
+    // Persona 3: Tax-Distressed / Considering Selling
+    if (q1 === 'considering_selling' || q2 === 'selling_soon' || q3 === 'cant_afford') {
+      return { num: 3, name: 'Tax-Distressed / Considering Selling', slug: 'distressed' };
+    }
+
+    // Persona 7: Senior with Equity
+    if (q2 === 'forever' && q3 === 'preserve_savings') {
+      return { num: 7, name: 'Senior with Equity', slug: 'senior' };
+    }
+
+    // Persona 6: Long-Term Owner
+    if (q3 === 'preserve_savings' && (q2 === 'long_term' || q2 === 'forever')) {
+      return { num: 6, name: 'Long-Term Owner', slug: 'longterm' };
+    }
+
+    // Persona 2: Quality-Seeker
+    if (q3 === 'cash' || q1 === 'researching') {
+      return { num: 2, name: 'Quality-Seeker', slug: 'quality' };
+    }
+
+    // Persona 1: Urgent Owner (default fallback)
+    return { num: 1, name: 'Urgent Owner', slug: 'urgent' };
+  }
+
+  // Determines which Blackburn entities to route the lead to
+  function determineRouting(persona) {
+    // Use a Map keyed by entity so we can merge reasons cleanly
+    // rather than producing duplicate route entries
+    const routeMap = new Map();
+
+    function addRoute(entity, reason, isPrimary) {
+      if (routeMap.has(entity)) {
+        const existing = routeMap.get(entity);
+        // Don't add duplicate reasons
+        if (!existing.reasons.includes(reason)) {
+          existing.reasons.push(reason);
+        }
+        // Promote to primary if any reason is primary
+        if (isPrimary) existing.priority = 'PRIMARY';
+      } else {
+        routeMap.set(entity, {
+          priority: isPrimary ? 'PRIMARY' : 'SECONDARY',
+          entity: entity,
+          reasons: [reason]
+        });
+      }
+    }
+
+    // ============================================
+    // PRIMARY LEAD — based on persona
+    // ============================================
+    const primaryByPersona = {
+      1: { entity: 'Stairway Mortgage', service: 'HELOC pre-approval (renovation backup)' },
+      2: { entity: 'Stairway Mortgage', service: 'Renovation financing consultation' },
+      3: { entity: 'Blackburn Capital', service: 'Off-market purchase / equity preservation' },
+      4: { entity: 'Blackburn Business Capital', service: 'Hard money / fix-and-flip financing' },
+      5: { entity: 'Stairway Mortgage', service: '203k / HomeStyle renovation loan' },
+      6: { entity: 'Stairway Mortgage', service: 'HELOC (preserves low mortgage rate)' },
+      7: { entity: 'Stairway Mortgage', service: 'Reverse mortgage (HECM)' }
+    };
+    const p = primaryByPersona[persona.num];
+    addRoute(p.entity, `${p.service} — matches persona`, true);
+
+    // ============================================
+    // SECONDARY LEADS — based on intent answers Q4-Q7
+    // ============================================
+    const q4 = answers[4]?.value;
+    const q5 = answers[5]?.value;
+    const q6 = answers[6]?.value;
+    const q7 = answers[7]?.value;
+
+    // -------- Q4 — Selling intent (next 12 months) --------
+    // Aldo at Blackburn Realty gets EVERY sell lead — he decides
+    // whether traditional listing or off-market (Capital) makes sense
+    if (q4 === 'sell_this_house') {
+      addRoute('Blackburn Realty Group', 'Plans to sell THIS house — Aldo handles listing conversation', false);
+      addRoute('Blackburn Capital', 'Off-market purchase alternative for this seller', false);
+    } else if (q4 === 'sell_different') {
+      addRoute('Blackburn Realty Group', 'Plans to sell a different property — Aldo handles listing', false);
+      addRoute('Blackburn Capital', 'Off-market purchase alternative for that property', false);
+    } else if (q4 === 'sell_maybe') {
+      addRoute('Blackburn Realty Group', 'Considering selling — nurture for future listing', false);
+    }
+
+    // -------- Q5 — Loan intent (next 12 months) --------
+    if (q5 === 'loan_renovation') {
+      // Stairway likely already routed (persona match) — add reason if not
+      addRoute('Stairway Mortgage', 'Planning a renovation loan in next 12 months', false);
+    }
+    if (q5 === 'loan_home_purchase') {
+      // Home purchase needs BOTH a lender AND a buyer's agent
+      addRoute('Stairway Mortgage', 'Planning home purchase — needs pre-approval', false);
+      addRoute('Blackburn Realty Group', 'Planning home purchase — needs buyer\'s agent', false);
+    }
+    if (q5 === 'loan_business') {
+      addRoute('Blackburn Business Capital', 'Planning business loan in next 12 months', false);
+    }
+    if (q5 === 'loan_maybe') {
+      addRoute('Stairway Mortgage', 'Possible loan in next 12 months — nurture', false);
+    }
+
+    // -------- Q6 — Equity access --------
+    // Pure mortgage product conversation — Stairway only
+    if (q6 === 'equity_yes_here') {
+      addRoute('Stairway Mortgage', 'Actively seeking to access real estate equity', false);
+    } else if (q6 === 'equity_thought') {
+      addRoute('Stairway Mortgage', 'Considering accessing equity — consultation', false);
+    } else if (q6 === 'equity_learn') {
+      addRoute('Stairway Mortgage', 'Wants to learn about equity options — nurture', false);
+    }
+
+    // -------- Q7 — Real estate investing intent --------
+    // Anyone buying real estate needs an agent (Realty) AND financing
+    if (q7 === 'invest_buy') {
+      addRoute('Blackburn Realty Group', 'Looking to buy investment property — needs buyer\'s agent', false);
+      addRoute('Stairway Mortgage', 'Investment property purchase — needs investment loan', false);
+      addRoute('Blackburn Capital', 'Potential JV / partnership opportunity', false);
+    } else if (q7 === 'invest_flip') {
+      addRoute('Blackburn Business Capital', 'Fix-and-flip plans — needs hard money', false);
+      addRoute('Blackburn Realty Group', 'Looking for flip deals — needs investor agent', false);
+      addRoute('Blackburn Capital', 'Potential JV / partnership opportunity', false);
+    } else if (q7 === 'invest_maybe') {
+      addRoute('Blackburn Realty Group', 'Open to real estate investing — nurture', false);
+    }
+
+    // Convert map to array, primary first
+    const routes = Array.from(routeMap.values());
+    routes.sort((a, b) => {
+      if (a.priority === 'PRIMARY' && b.priority !== 'PRIMARY') return -1;
+      if (a.priority !== 'PRIMARY' && b.priority === 'PRIMARY') return 1;
+      return 0;
+    });
+
+    // Flatten reasons into a single string per route (multiple reasons joined by " · ")
+    return routes.map(r => ({
+      priority: r.priority,
+      entity: r.entity,
+      reason: r.reasons.join(' · ')
+    }));
+  }
+
+  // =========================================
+  // REFRAME CONTENT (per persona)
+  // =========================================
+  const reframes = {
+    1: {
+      headline: 'You\'re moving fast. <em>Have you locked in backup financing?</em>',
+      reflection: 'You own your home. You\'re planning a renovation. You\'re ready to move.',
+      body: `
+        <p>Most homeowners under time pressure start a renovation without a financing backup. When scope creeps — and on a renovation this size, it usually will — they're stuck scrambling at the worst possible moment.</p>
+        <ul class="benefit-list">
+          <li>A pre-approved HELOC is free and takes about a week to set up</li>
+          <li>You only draw on it if you actually need it</li>
+          <li>It costs nothing if you never use it</li>
+          <li>It saves you from a financing emergency if scope creeps</li>
+        </ul>
+        <p>A member of our advisory team can walk you through how this would work in your specific situation. Free. No pressure.</p>
+      `,
+      capture_headline: 'Talk to our advisory team.',
+      capture_sub: 'A licensed Florida professional will reach out within one business day to discuss your situation and the right next step.'
+    },
+    2: {
+      headline: 'You\'re doing it right. <em>Here\'s one thing most people miss.</em>',
+      reflection: 'You\'re comparing contractors. You\'re paying cash. You\'re methodical.',
+      body: `
+        <p>Most quality-driven homeowners spend weeks researching the contractor and minutes thinking about how they'll pay for it. The financing choice often matters more than the contractor choice — and most people don\'t even realize they had financing options worth comparing.</p>
+        <ul class="benefit-list">
+          <li>Compare cash vs. HELOC vs. renovation loan for the actual project</li>
+          <li>Run the after-tax math (renovation interest may be deductible)</li>
+          <li>Decide if a HELOC standby makes sense even if you use cash</li>
+        </ul>
+        <p>A 15-minute call with our advisory team. Free.</p>
+      `,
+      capture_headline: 'Get a second opinion on financing.',
+      capture_sub: 'A licensed Florida professional will compare your options in plain English — free, no pressure.'
+    },
+    3: {
+      headline: 'Before you spend money, <em>do you know all your options?</em>',
+      reflection: 'You\'re thinking about selling. Or you\'re not sure you can afford the work.',
+      body: `
+        <p>Most homeowners in difficult financial moments don\'t realize there are options beyond listing the house. Investors will sometimes buy directly, fund renovations in exchange for the listing, or structure creative buyouts that protect your equity. Sometimes accessing existing equity is the better path. Sometimes selling fast is. The right answer depends on your specific situation.</p>
+        <ul class="benefit-list">
+          <li>Off-market sales can close in 14–21 days with no contractor needed</li>
+          <li>Investor-funded renovations may get a higher sale price with no out-of-pocket cost</li>
+          <li>Some homeowners preserve more equity by accessing it instead of selling</li>
+          <li>Some homeowners preserve more equity by NOT renovating at all</li>
+        </ul>
+        <p>A confidential conversation with our advisory team. Private. No pressure to act.</p>
+      `,
+      capture_headline: 'Private, confidential conversation.',
+      capture_sub: 'A licensed Florida professional will reach out discreetly to review your situation and walk through your options.'
+    },
+    4: {
+      headline: 'Conventional financing won\'t close fast enough. <em>There are faster options.</em>',
+      reflection: 'You\'re buying to flip. You need capital fast.',
+      body: `
+        <p>Most new flippers lose deals because conventional financing can\'t move fast enough. Hard money closes in 5–7 days. Conventional takes 30+. The deal is gone by then.</p>
+        <ul class="benefit-list">
+          <li>Get pre-approved before you make the next offer</li>
+          <li>Know exactly what you can close on</li>
+          <li>Compete with cash offers without using your own cash</li>
+          <li>Free quote, no commitment</li>
+        </ul>
+        <p>Our advisory team has access to Florida-licensed lenders who specialize in fix-and-flip financing.</p>
+      `,
+      capture_headline: 'Get pre-approved for fast capital.',
+      capture_sub: 'A licensed Florida professional will reach out to discuss your specific deal and connect you with the right lender.'
+    },
+    5: {
+      headline: 'New to Florida and renovating? <em>You may be paying twice.</em>',
+      reflection: 'You just bought the house. You\'re planning real renovation work.',
+      body: `
+        <p>Most out-of-state buyers don\'t know about renovation loans that roll the work into your mortgage. One payment, one rate, no draining your savings to do the work.</p>
+        <ul class="benefit-list">
+          <li>FHA 203k rolls renovation costs into your mortgage</li>
+          <li>Conventional renovation loans (HomeStyle) work the same way</li>
+          <li>Lower rate than financing the work separately</li>
+          <li>Your savings stay intact for emergencies</li>
+        </ul>
+        <p>A member of our advisory team can show you the math on your specific situation.</p>
+      `,
+      capture_headline: 'See if a renovation loan fits your situation.',
+      capture_sub: 'A licensed Florida professional will reach out to review 203k and HomeStyle options for your specific purchase. Free.'
+    },
+    6: {
+      headline: 'Don\'t refinance to pay for this. <em>Keep your rate.</em>',
+      reflection: 'You\'ve been in your home a while. You\'d rather not deplete savings.',
+      body: `
+        <p>Long-term Florida homeowners often have a mortgage rate that would be crazy to give up. Most refinance anyway when they need money for a renovation — and pay an extra six figures over the life of the loan.</p>
+        <ul class="benefit-list">
+          <li>A HELOC keeps your existing mortgage rate intact</li>
+          <li>Borrow only what you need, when you need it</li>
+          <li>Lower lifetime cost than refinancing the whole loan</li>
+          <li>Your savings stay where they are</li>
+        </ul>
+        <p>Our advisory team will run the numbers on both options — free.</p>
+      `,
+      capture_headline: 'Run the numbers — refi vs HELOC.',
+      capture_sub: 'A licensed Florida professional will compare both options for your specific mortgage and renovation budget.'
+    },
+    7: {
+      headline: 'Here\'s what most homeowners over 62 <em>don\'t know.</em>',
+      reflection: 'You want to stay in your home for the rest of your life. You\'d rather not deplete your savings.',
+      body: `
+        <p>There is a federally-backed product called a <strong>reverse mortgage</strong> — the HUD-insured HECM program — that may allow you to fund this entire renovation AND eliminate your monthly mortgage payment for the rest of your life.</p>
+        <ul class="benefit-list">
+          <li>Fund the renovation with no out-of-pocket cost</li>
+          <li>Eliminate your monthly mortgage payment for life</li>
+          <li>Stay in your home as long as you live there</li>
+          <li>Never make a payment back on the loan</li>
+        </ul>
+        <p>Reverse mortgages have a reputation problem from decades ago. Today\'s product is heavily regulated and protects the homeowner in ways that didn\'t exist before. A free, no-pressure conversation with our advisory team will tell you if it applies to your situation.</p>
+      `,
+      capture_headline: 'Free consultation on your options.',
+      capture_sub: 'A licensed Florida professional will reach out to walk through your specific numbers. No pressure, no commitment.'
+    }
+  };
+
+  // =========================================
+  // FLOW CONTROL
+  // =========================================
+  function openFlow() {
+    document.getElementById('overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFlow() {
+    document.getElementById('overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    currentStep = 1;
+    answers = {};
+    document.querySelectorAll('.step, .transition-step').forEach(s => s.classList.remove('active'));
+    document.querySelector('[data-step="1"]').classList.add('active');
+    document.querySelectorAll('.option.selected').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
+    document.getElementById('pill1').classList.add('active');
+    document.getElementById('pill1').classList.remove('done');
+    document.getElementById('pill2').classList.remove('active', 'done');
+    updateProgress();
+  }
+  function updateProgress() {
+    let pct = 0;
+    if (currentStep <= 7) {
+      pct = ((currentStep - 1) / 7) * 100;
+    } else {
+      pct = 100;
+    }
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+
+  // Option selection
+  document.querySelectorAll('.overlay .option').forEach(opt => {
+    opt.addEventListener('click', function() {
+      const step = this.closest('.step');
+      step.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+      const q = this.getAttribute('data-q');
+      answers[q] = { value: this.getAttribute('data-value') };
+      step.querySelector('.btn-next').disabled = false;
+    });
+  });
+
+  function nextStep() {
+    document.querySelector('[data-step="' + currentStep + '"]').classList.remove('active');
+    currentStep++;
+    const nextEl = document.querySelector('[data-step="' + currentStep + '"]');
+    if (nextEl) nextEl.classList.add('active');
+    updateProgress();
+    scrollToTop();
+  }
+
+  function prevStep() {
+    document.querySelector('[data-step="' + currentStep + '"]').classList.remove('active');
+    currentStep--;
+    document.querySelector('[data-step="' + currentStep + '"]').classList.add('active');
+    if (currentStep === 3) {
+      document.getElementById('pill1').classList.add('active');
+      document.getElementById('pill1').classList.remove('done');
+      document.getElementById('pill2').classList.remove('active');
+    }
+    updateProgress();
+  }
+
+  function goToTransition() {
+    document.querySelector('[data-step="3"]').classList.remove('active');
+    document.querySelector('[data-step="3.5"]').classList.add('active');
+    document.getElementById('pill1').classList.add('done');
+    document.getElementById('pill1').classList.remove('active');
+    document.getElementById('pill2').classList.add('active');
+    scrollToTop();
+  }
+
+  function goToPart2() {
+    document.querySelector('[data-step="3.5"]').classList.remove('active');
+    currentStep = 4;
+    document.querySelector('[data-step="4"]').classList.add('active');
+    updateProgress();
+    scrollToTop();
+  }
+
+  function showReframe() {
+    document.querySelector('[data-step="7"]').classList.remove('active');
+    currentStep = 8;
+    document.querySelector('[data-step="8"]').classList.add('active');
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('pill2').classList.add('done');
+    document.getElementById('pill2').classList.remove('active');
+
+    // Render the appropriate reframe based on persona
+    const persona = determinePersona();
+    const content = reframes[persona.num];
+    document.getElementById('reframe-headline').innerHTML = content.headline;
+    document.getElementById('reframe-reflection').innerHTML = content.reflection;
+    document.getElementById('reframe-body').innerHTML = content.body;
+    document.getElementById('capture-headline').textContent = content.capture_headline;
+    document.getElementById('capture-sub').textContent = content.capture_sub;
+
+    scrollToTop();
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.querySelector('[data-step="8"]').classList.remove('active');
+    currentStep = 9;
+    document.querySelector('[data-step="9"]').classList.add('active');
+
+    // Populate debug panel
+    const persona = determinePersona();
+    const routes = determineRouting(persona);
+
+    document.getElementById('debug-persona-num').textContent = persona.num;
+    document.getElementById('debug-persona-name').textContent = persona.name;
+    document.getElementById('debug-reframe').textContent = `Reframe ${persona.num} (${persona.slug})`;
+
+    const routingHtml = routes.map(r => `
+      <div class="debug-route-item ${r.priority === 'PRIMARY' ? 'primary' : ''}">
+        <div class="debug-route-priority">${r.priority}</div>
+        <div class="debug-route-entity">${r.entity}</div>
+        <div class="debug-route-reason">${r.reason}</div>
+      </div>
+    `).join('');
+    document.getElementById('debug-routing').innerHTML = routingHtml;
+
+    const answersHtml = Object.keys(answers).map(q => {
+      return `Q${q}: ${answers[q].value}`;
+    }).join('  ·  ');
+    document.getElementById('debug-answers').textContent = answersHtml;
+
+    scrollToTop();
+  }
+
+  function scrollToTop() {
+    setTimeout(() => {
+      document.querySelector('.flow-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 10);
+  }
+
+  // Close on backdrop / Escape
+  document.getElementById('overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeFlow();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('overlay').classList.contains('active')) {
+      closeFlow();
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aceca Construction, Inc. — Cristian F Acero — License #CGC1520921 | Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --navy-light: #2a3a5c;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --ink-soft: #3a3d44;
+  --gray-900: #232529;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --red: #c4302b;
+  --green: #2f7d3a;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================
+   TOP STRIP — Authority signal
+   ============================================ */
+.top-strip {
+  background: var(--navy-deep);
+  color: var(--gold-pale);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  font-weight: 500;
+}
+.top-strip-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-strip .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin: 0 12px;
+  vertical-align: middle;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 22px 0;
+}
+.header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  background: var(--navy);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--gold);
+}
+.logo-mark span {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--gold);
+  z-index: 1;
+  font-style: italic;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.logo-text .top-line {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.logo-text .sub-line {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 480px;
+  position: relative;
+}
+.search-bar input {
+  width: 100%;
+  padding: 11px 16px 11px 44px;
+  border: 1px solid var(--gray-300);
+  background: white;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  transition: border-color 0.15s;
+}
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+.search-bar::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center;
+}
+
+.header-nav {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+.header-nav a {
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.15s;
+}
+.header-nav a:hover {
+  color: var(--navy);
+}
+
+/* ============================================
+   BREADCRUMB
+   ============================================ */
+.breadcrumb {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 14px 0;
+  font-size: 12px;
+  color: var(--gray-700);
+  letter-spacing: -0.005em;
+}
+.breadcrumb-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.breadcrumb a:hover {
+  color: var(--navy);
+  text-decoration: underline;
+}
+.breadcrumb .sep {
+  margin: 0 10px;
+  color: var(--gray-500);
+}
+.breadcrumb .current {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ============================================
+   THE BANNER — the only loud element
+   ============================================ */
+.banner {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--gold);
+}
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(184, 146, 74, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.banner-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 36px 32px 38px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.banner-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.banner-tag::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold-light);
+}
+.banner-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: white;
+  margin-bottom: 10px;
+}
+.banner-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.banner-sub {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 640px;
+  font-weight: 400;
+}
+.banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 16px 28px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: 0.01em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+  position: relative;
+  white-space: nowrap;
+}
+.banner-cta:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(184, 146, 74, 0.3);
+}
+.banner-cta svg {
+  width: 16px;
+  height: 16px;
+}
+.banner-meta {
+  margin-top: 14px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   MAIN — Two column layout
+   ============================================ */
+main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 32px 72px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 64px;
+}
+
+/* ============================================
+   THE HERO — Contractor identity
+   ============================================ */
+.hero {
+  border-bottom: 1px solid var(--gray-200);
+  padding-bottom: 36px;
+  margin-bottom: 36px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray-100);
+  padding: 5px 11px;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 18px;
+}
+.hero-tag .verified-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.07;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--navy);
+  font-weight: 500;
+}
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--gray-700);
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+  line-height: 1.45;
+}
+.hero-subtitle strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  margin-top: 26px;
+}
+.stat {
+  padding: 18px 22px;
+  border-right: 1px solid var(--gray-200);
+}
+.stat:last-child { border-right: none; }
+.stat-label {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-family: var(--mono);
+}
+.stat-value {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.stat-value.green { color: var(--green); }
+.stat-sub {
+  font-size: 11.5px;
+  color: var(--gray-500);
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* ============================================
+   SECTION
+   ============================================ */
+section {
+  margin-bottom: 44px;
+}
+section h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gray-200);
+  position: relative;
+}
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--gold);
+}
+
+/* ============================================
+   ABOUT — AI generated body content
+   ============================================ */
+.about-prose {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--gray-900);
+  letter-spacing: -0.005em;
+}
+.about-prose p {
+  margin-bottom: 14px;
+}
+.about-prose p:last-child { margin-bottom: 0; }
+.about-prose .first-line::first-letter {
+  font-family: var(--serif);
+  font-size: 56px;
+  line-height: 0.9;
+  font-weight: 600;
+  float: left;
+  margin: 6px 8px -4px 0;
+  color: var(--navy);
+}
+
+/* ============================================
+   LICENSES TABLE
+   ============================================ */
+.licenses-table {
+  border: 1px solid var(--gray-200);
+  background: white;
+}
+.license-row {
+  display: grid;
+  grid-template-columns: 130px 1fr 110px 120px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gray-200);
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  transition: background 0.12s;
+}
+.license-row:last-child { border-bottom: none; }
+.license-row:hover { background: var(--gray-50); }
+.license-row.header {
+  background: var(--gray-50);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-family: var(--mono);
+}
+.license-num {
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--navy);
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+}
+.license-type {
+  color: var(--gray-900);
+  font-weight: 500;
+}
+.license-type .desc {
+  display: block;
+  font-size: 12px;
+  color: var(--gray-500);
+  font-weight: 400;
+  margin-top: 2px;
+  letter-spacing: 0;
+}
+.license-issued {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--gray-700);
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-family: var(--mono);
+}
+.status-active {
+  background: rgba(47, 125, 58, 0.1);
+  color: var(--green);
+}
+.status-active::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+/* ============================================
+   FAQ SECTION
+   ============================================ */
+.faq-item {
+  border-bottom: 1px solid var(--gray-200);
+  padding: 18px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.faq-a {
+  font-size: 14.5px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+aside {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+.side-block {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.side-block h3 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gray-500);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.dl-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 9px 0;
+  font-size: 13.5px;
+}
+.dl-row dt {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-bottom: 3px;
+  font-family: var(--mono);
+}
+.dl-row dd {
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.address-block {
+  font-family: var(--serif);
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  font-style: italic;
+  color: var(--gray-900);
+}
+
+/* DBPR official link */
+.dbpr-link {
+  display: block;
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: var(--navy);
+  color: white;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+}
+.dbpr-link:hover {
+  background: var(--navy-light);
+}
+.dbpr-link .verify-on {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+  font-family: var(--mono);
+}
+
+/* Refresh notice */
+.refresh-notice {
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.refresh-notice .label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 5px;
+  display: block;
+}
+.refresh-notice strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Claim profile box */
+.claim-box {
+  border: 1px dashed var(--gray-300);
+  padding: 22px;
+  text-align: left;
+  background: var(--gray-50);
+}
+.claim-box .icon {
+  width: 32px;
+  height: 32px;
+  background: var(--navy);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.claim-box h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.claim-box p {
+  font-size: 13.5px;
+  color: var(--gray-700);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.claim-btn {
+  display: inline-block;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  padding: 9px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  font-family: var(--mono);
+}
+.claim-btn:hover {
+  background: var(--navy);
+  color: white;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: var(--navy-deep);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 56px 0 28px;
+  margin-top: 0;
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.footer-disclaimer {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 820px;
+  margin-bottom: 32px;
+  letter-spacing: -0.005em;
+}
+.footer-disclaimer strong { color: rgba(255, 255, 255, 0.85); font-weight: 600; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-col h5 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.footer-col ul { list-style: none; }
+.footer-col li {
+  padding: 4px 0;
+  font-size: 13px;
+}
+.footer-col a {
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.15s;
+}
+.footer-col a:hover { color: var(--gold-light); }
+.footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1000px) {
+  main { grid-template-columns: 1fr; gap: 40px; }
+  aside { position: static; }
+  .banner-inner { grid-template-columns: 1fr; }
+  .header-nav { display: none; }
+  .quick-stats { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--gray-200); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 36px; }
+  .banner-title { font-size: 24px; }
+  .license-row { grid-template-columns: 1fr; gap: 6px; }
+  .license-row.header { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     TOP STRIP
+     ============================================ -->
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>
+      Florida Public Records
+      <span class="dot"></span>
+      266,312 Licensed Contractors
+      <span class="dot"></span>
+      Refreshed Weekly from DBPR
+    </div>
+    <div>Data as of May 24, 2026</div>
+  </div>
+</div>
+
+<!-- ============================================
+     HEADER
+     ============================================ -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, license, city, or county..." />
+    </div>
+    <nav class="header-nav">
+      <a href="#">Counties</a>
+      <a href="#">License Types</a>
+      <a href="#">For Contractors</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================
+     BREADCRUMB
+     ============================================ -->
+<nav class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="#">Home</a>
+    <span class="sep">›</span>
+    <a href="#">Broward County</a>
+    <span class="sep">›</span>
+    <a href="#">Davie</a>
+    <span class="sep">›</span>
+    <a href="#">Certified General Contractors</a>
+    <span class="sep">›</span>
+    <span class="current">Aceca Construction, Inc.</span>
+  </div>
+</nav>
+
+<!-- ============================================
+     THE BANNER — Persona 1 / Urgent Owner default
+     This is the ONE loud element on the page
+     ============================================ -->
+<div class="banner">
+  <div class="banner-inner">
+    <div>
+      <div class="banner-tag">A Note Before You Move Forward</div>
+      <h1 class="banner-title">
+        Before you sign with any contractor, are you sure <em>you have the full picture?</em>
+      </h1>
+      <p class="banner-sub">
+        Most Florida homeowners make a $5,000–$50,000 mistake because they don't know all their options. Take 60 seconds — a licensed advisor can show you what you might be missing, free of charge.
+      </p>
+      <div class="banner-meta">No commitment · 60 seconds · Free advice from a licensed Florida professional</div>
+    </div>
+    <button class="banner-cta">
+      Show Me My Options
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ============================================
+     MAIN CONTENT
+     ============================================ -->
+<main>
+
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag">
+        <span class="verified-dot"></span>
+        Licensed · Active · Verified from DBPR
+      </div>
+      <h1>Aceca Construction, <em>Inc.</em></h1>
+      <p class="hero-subtitle">
+        A <strong>Certified General Contractor</strong> licensed continuously in Florida since 2012, qualified by Cristian F. Acero. Based in Davie, Broward County, with five active state licenses covering general contracting, roofing, and plumbing.
+      </p>
+
+      <div class="quick-stats">
+        <div class="stat">
+          <div class="stat-label">Status</div>
+          <div class="stat-value green">Active</div>
+          <div class="stat-sub">Current · Active secondary status</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Active Licenses</div>
+          <div class="stat-value">5</div>
+          <div class="stat-sub">GC, Roofing, Plumbing</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Years Licensed</div>
+          <div class="stat-value">14</div>
+          <div class="stat-sub">Since 2012</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Service Area</div>
+          <div class="stat-value">FL</div>
+          <div class="stat-sub">Statewide authority</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section>
+      <h2>About Aceca Construction</h2>
+      <div class="about-prose">
+        <p class="first-line">Aceca Construction, Inc. is a Florida-licensed general contracting business headquartered in Davie, in Broward County. The business was incorporated in September 2012 and has operated continuously under the same qualifying agent since then — a level of stability uncommon in an industry where most businesses dissolve within seven years.</p>
+        <p>The qualifying agent, Cristian F. Acero, holds an unusually broad license stack for a single contractor: a Certified General Contractor designation (CGC1520921) granting statewide authority for both residential and commercial construction; a Certified Roofing Contractor designation (CCC1330257) added in 2013; and a Certified Plumbing Contractor designation (CFC1432705) added in 2024. This combination allows the business to self-perform across structural, roofing, and plumbing scopes without subcontracting — a capability typically found only in larger commercial construction firms.</p>
+        <p>The Florida Construction Industry Licensing Board (CILB) classifies general contractors under Fla. Stat. § 489.105(3)(a), authorizing them to perform "construction, remodeling, repair, or improvement... in the construction or remodeling of any building" without limitation on size, height, or scope. Roofing and plumbing certifications are issued under § 489.105(3)(e) and § 489.105(3)(g) respectively.</p>
+        <p>According to public DBPR records as of May 2026, all five active licenses associated with Aceca Construction are current with active secondary status and no public disciplinary history on file.</p>
+      </div>
+    </section>
+
+    <!-- LICENSES -->
+    <section>
+      <h2>Active State Licenses</h2>
+      <div class="licenses-table">
+        <div class="license-row header">
+          <div>License #</div>
+          <div>Type</div>
+          <div>Issued</div>
+          <div>Status</div>
+        </div>
+        <div class="license-row">
+          <div class="license-num">CGC1520921</div>
+          <div class="license-type">
+            Certified General Contractor
+            <span class="desc">Statewide authority · Fla. Stat. § 489.105(3)(a)</span>
+          </div>
+          <div class="license-issued">Sept 2012</div>
+          <div><span class="status-badge status-active">Active</span></div>
+        </div>
+        <div class="license-row">
+          <div class="license-num">CCC1330257</div>
+          <div class="license-type">
+            Certified Roofing Contractor
+            <span class="desc">Statewide authority · Fla. Stat. § 489.105(3)(e)</span>
+          </div>
+          <div class="license-issued">Jul 2013</div>
+          <div><span class="status-badge status-active">Active</span></div>
+        </div>
+        <div class="license-row">
+          <div class="license-num">CFC1432705</div>
+          <div class="license-type">
+            Certified Plumbing Contractor
+            <span class="desc">Statewide authority · Fla. Stat. § 489.105(3)(g)</span>
+          </div>
+          <div class="license-issued">Mar 2024</div>
+          <div><span class="status-badge status-active">Active</span></div>
+        </div>
+        <div class="license-row">
+          <div class="license-num">CGC1517328</div>
+          <div class="license-type">
+            Certified General Contractor
+            <span class="desc">DBA: Green Bolt General Construction LLC</span>
+          </div>
+          <div class="license-issued">May 2009</div>
+          <div><span class="status-badge status-active">Active</span></div>
+        </div>
+        <div class="license-row">
+          <div class="license-num">CGC1535415</div>
+          <div class="license-type">
+            Certified General Contractor
+            <span class="desc">DBA: Complete Highway Improvement, Inc.</span>
+          </div>
+          <div class="license-issued">Jan 2024</div>
+          <div><span class="status-badge status-active">Active</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON QUESTIONS -->
+    <section>
+      <h2>Common Questions About This Contractor</h2>
+      <div class="faq-item">
+        <div class="faq-q">Is Aceca Construction, Inc. licensed in Florida?</div>
+        <div class="faq-a">Yes. Aceca Construction holds five active certified contractor licenses with the Florida Department of Business and Professional Regulation, qualified by Cristian F. Acero. Primary license (CGC1520921) has been current and active since September 2012.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Where does Aceca Construction operate?</div>
+        <div class="faq-a">Aceca Construction is headquartered in Davie, Broward County. Because the business holds Certified state licenses (not Registered), it has statewide authority and can perform work in any Florida county without additional licensing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What types of work can Aceca Construction perform?</div>
+        <div class="faq-a">As a Certified General Contractor with additional Roofing and Plumbing certifications, the business is authorized to perform unrestricted general construction (residential and commercial), roofing work, and plumbing work. This is a broader scope than most contractors hold.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Has Aceca Construction had any disciplinary actions?</div>
+        <div class="faq-a">No public disciplinary actions appear on file with DBPR as of the most recent refresh (May 2026). Verify current status directly with DBPR for the most up-to-date information.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this profile claimed by the business?</div>
+        <div class="faq-a">Not yet. This profile is built from public DBPR records. If you are Cristian F. Acero or an authorized representative of Aceca Construction, you can claim this profile and add additional business information.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================
+       SIDEBAR
+       ============================================ -->
+  <aside>
+
+    <div class="side-block">
+      <h3>Primary License</h3>
+      <dl>
+        <div class="dl-row">
+          <dt>License Number</dt>
+          <dd style="font-family: var(--mono); font-size: 17px; color: var(--navy);">CGC1520921</dd>
+        </div>
+        <div class="dl-row">
+          <dt>License Type</dt>
+          <dd>Certified General Contractor</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Issued</dt>
+          <dd>September 24, 2012</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Expires</dt>
+          <dd>August 31, 2026</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Status</dt>
+          <dd><span class="status-badge status-active">Active</span></dd>
+        </div>
+      </dl>
+      <a href="https://www.myfloridalicense.com/wl11.asp?mode=1&namechange=Y&licnbr=CGC1520921" class="dbpr-link">
+        <span class="verify-on">Verify on</span>
+        myfloridalicense.com →
+      </a>
+    </div>
+
+    <div class="side-block">
+      <h3>Business Information</h3>
+      <dl>
+        <div class="dl-row">
+          <dt>Qualifying Agent</dt>
+          <dd>Cristian F. Acero</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Mailing Address</dt>
+          <dd class="address-block">
+            9233 Greenbrier Court<br>
+            Davie, FL 33328<br>
+            Broward County
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="refresh-notice">
+      <span class="label">Data Refresh Notice</span>
+      License information shown is republished from public records of the Florida Department of Business and Professional Regulation (DBPR), <strong>last refreshed May 24, 2026.</strong> License status may have changed since this refresh.
+    </div>
+
+    <div class="side-block claim-box" style="margin-top: 20px;">
+      <div class="icon">A</div>
+      <h4>Is this your business?</h4>
+      <p>Claim this profile to verify your identity, add a description, and update your contact information. Free, takes 5 minutes.</p>
+      <a href="#" class="claim-btn">Claim Profile →</a>
+    </div>
+
+  </aside>
+</main>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong>FloridaContractorRegistry.com</strong> is a private commercial directory operated by Florida Contractor Registry LLC. We are <strong>not affiliated with, endorsed by, or operated by</strong> the State of Florida, the Florida Department of Business and Professional Regulation (DBPR), the Construction Industry Licensing Board, or any government agency. License information shown is republished from public DBPR records under Chapter 119, Florida Statutes, and may not reflect the most current status. For official license verification, visit <a href="https://www.myfloridalicense.com" style="color: var(--gold-light); text-decoration: underline;">myfloridalicense.com</a>.
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Browse</h5>
+        <ul>
+          <li><a href="#">All Counties</a></li>
+          <li><a href="#">License Types</a></li>
+          <li><a href="#">Top Cities</a></li>
+          <li><a href="#">Recently Updated</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Homeowners</h5>
+        <ul>
+          <li><a href="#">Hiring Checklist</a></li>
+          <li><a href="#">How to Verify a License</a></li>
+          <li><a href="#">Permit Look-Up Guide</a></li>
+          <li><a href="#">File a Complaint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Contractors</h5>
+        <ul>
+          <li><a href="#">Claim Your Profile</a></li>
+          <li><a href="#">Update Information</a></li>
+          <li><a href="#">Get a Website</a></li>
+          <li><a href="#">Contractor Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#">Methodology</a></li>
+          <li><a href="#">Data Sources</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Florida Contractor Registry LLC. All rights reserved.</div>
+      <div>Data sourced from DBPR · Last refresh: May 24, 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

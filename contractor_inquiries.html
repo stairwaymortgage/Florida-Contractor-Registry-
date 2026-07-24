@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inquiries · Aceca Construction — Florida Contractor Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2845;
+  --navy-deep: #0f1a30;
+  --gold: #b8924a;
+  --gold-light: #d4b176;
+  --gold-pale: #f5ecd9;
+  --ink: #181a1f;
+  --gray-700: #4a4d54;
+  --gray-500: #8a8d94;
+  --gray-400: #b5b8be;
+  --gray-300: #d4d6da;
+  --gray-200: #e8eaee;
+  --gray-100: #f3f4f7;
+  --gray-50: #fafbfc;
+  --paper: #fdfbf6;
+  --green-bg: #e8f5e9;
+  --green-text: #2e7d32;
+  --red-bg: #fef2f4;
+  --red-text: #c2415b;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--gray-100);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.demo-notice {
+  background: #2a2424;
+  color: #ffb84d;
+  padding: 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+.demo-notice .dot { display: inline-block; width: 6px; height: 6px; background: #ffb84d; border-radius: 50%; margin-right: 10px; vertical-align: middle; }
+
+/* ============ CONTRACTOR HEADER ============ */
+.contractor-header { background: var(--navy-deep); color: white; padding: 14px 0; border-bottom: 2px solid var(--gold); }
+.contractor-header-inner { max-width: 1480px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.contractor-logo { display: flex; align-items: center; gap: 12px; }
+.contractor-logo-mark { width: 32px; height: 32px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--navy-deep); font-style: italic; }
+.contractor-logo-text { font-family: var(--serif); font-weight: 600; font-size: 17px; color: white; letter-spacing: -0.01em; }
+.contractor-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); padding: 4px 10px; border: 1px solid var(--gold); margin-left: 14px; font-weight: 600; }
+.contractor-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.65); }
+.contractor-nav a { transition: color 0.15s; padding-bottom: 2px; }
+.contractor-nav a:hover { color: white; }
+.contractor-nav a.active { color: white; border-bottom: 2px solid var(--gold); }
+.contractor-nav a .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  padding: 0 5px;
+  margin-left: 6px;
+}
+.contractor-user { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+.contractor-avatar { width: 30px; height: 30px; background: var(--gold); color: var(--navy-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+
+/* ============ PAGE LAYOUT ============ */
+.page-container { max-width: 1480px; margin: 0 auto; padding: 32px; }
+.page-title-bar { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; }
+.page-title { font-family: var(--serif); font-weight: 600; font-size: 32px; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 6px; }
+.page-title em { font-style: italic; }
+.page-sub { font-size: 14px; color: var(--gray-500); }
+.page-sub strong { color: var(--gray-700); font-weight: 500; }
+
+/* ============ STATS STRIP ============ */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.stat-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 20px 24px;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.stat-num.gold { color: var(--gold); }
+.stat-num.warn { color: var(--red-text); }
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+.stat-trend {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green-text);
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ============ INBOX GRID ============ */
+.inbox-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+}
+
+/* ============ LIST PANEL ============ */
+.list-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+}
+.list-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+.list-header-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.list-tabs {
+  display: flex;
+  gap: 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.list-tabs button {
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  padding: 0 0 6px;
+  cursor: pointer;
+  letter-spacing: -0.005em;
+  position: relative;
+}
+.list-tabs button.active {
+  color: var(--navy);
+  font-weight: 600;
+  border-bottom: 2px solid var(--gold);
+}
+.list-tabs button .count {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  background: var(--gray-200);
+  color: var(--gray-700);
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  letter-spacing: 0.02em;
+}
+.list-tabs button.active .count {
+  background: var(--navy);
+  color: var(--gold-light);
+}
+
+.list-search {
+  position: relative;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.list-search input {
+  width: 100%;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--gray-300);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+}
+.list-search input:focus { outline: none; border-color: var(--navy); }
+.list-search::before {
+  content: '';
+  position: absolute;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8d94' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat center;
+}
+
+.list-items {
+  max-height: 720px;
+  overflow-y: auto;
+}
+.list-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gray-100);
+  cursor: pointer;
+  transition: background 0.12s;
+  position: relative;
+}
+.list-item:hover { background: var(--gray-50); }
+.list-item.unread { background: linear-gradient(90deg, var(--gold-pale) 0%, transparent 30%); }
+.list-item.unread::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gold);
+}
+.list-item.selected {
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding-left: 17px;
+}
+.list-item.selected::before { display: none; }
+
+.list-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.list-item-name {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.list-item-name .new-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.list-item-time {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--gray-500);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+.list-item-snippet {
+  font-size: 12.5px;
+  color: var(--gray-700);
+  line-height: 1.45;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.list-item-meta {
+  font-size: 11.5px;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+.list-item-meta .sep { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
+.list-item-meta .city { color: var(--gold); font-weight: 600; }
+
+/* ============ DETAIL PANEL ============ */
+.detail-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+  min-height: 720px;
+}
+
+.detail-header {
+  padding: 28px 36px 24px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+.detail-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.detail-meta-row .inquiry-id { color: var(--gray-700); font-weight: 600; }
+.detail-meta-row .sep { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
+.detail-meta-row .new-tag {
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 3px 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.detail-name {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.detail-sub {
+  font-size: 14px;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.detail-sub .sep { width: 3px; height: 3px; background: var(--gray-400); border-radius: 50%; }
+
+/* ============ DETAIL BODY ============ */
+.detail-body { padding: 32px 36px; }
+
+.detail-section { margin-bottom: 36px; }
+.detail-section:last-child { margin-bottom: 0; }
+
+.section-h3 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-h3::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* Contact info card */
+.contact-card {
+  background: var(--paper);
+  border: 1px solid var(--gray-200);
+  padding: 22px 26px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 36px;
+}
+.contact-field-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.contact-field-value {
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.contact-field-value.link {
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+  display: inline-block;
+}
+.contact-field-value .copy-btn {
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gray-500);
+  cursor: pointer;
+  margin-left: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.15s;
+}
+.contact-field-value .copy-btn:hover { color: var(--navy); }
+
+/* What they want / their situation */
+.situation-card {
+  background: white;
+  border: 1px solid var(--gray-200);
+  padding: 24px 28px;
+}
+.situation-context {
+  background: var(--gold-pale);
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.situation-context p {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+.situation-context p strong { color: var(--ink); font-weight: 600; }
+
+.situation-headline {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.situation-headline em { font-style: italic; }
+
+.situation-detail {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+.situation-detail:last-child { border-bottom: none; }
+.situation-detail dt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+.situation-detail dd {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ============ ACTION BAR ============ */
+.action-bar {
+  padding: 20px 36px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.action-bar-status {
+  font-size: 12.5px;
+  color: var(--gray-500);
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+.action-bar-status strong { color: var(--gray-700); font-weight: 600; }
+.action-bar-actions { display: flex; gap: 10px; }
+.btn {
+  padding: 10px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-secondary {
+  background: white;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+.btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+.btn-archive {
+  background: white;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-300);
+}
+.btn-archive:hover { border-color: var(--navy); color: var(--navy); }
+.btn-primary {
+  background: var(--navy);
+  color: var(--gold-light);
+  border: 1px solid var(--navy);
+}
+.btn-primary:hover { background: var(--navy-deep); color: white; }
+
+/* ============ FEATURED UPSELL (for inquiries page footer when on free tier) ============ */
+.upsell-strip {
+  margin-top: 24px;
+  background: linear-gradient(180deg, #fbf6e3 0%, #fdfbf6 100%);
+  border: 1px solid var(--gold-light);
+  padding: 22px 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.upsell-strip .tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.upsell-strip h4 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.upsell-strip h4 em { font-style: italic; }
+.upsell-strip p {
+  font-size: 13.5px;
+  color: var(--gray-700);
+  line-height: 1.5;
+}
+.upsell-cta {
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 12px 22px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.upsell-cta:hover { background: var(--gold-light); }
+
+@media (max-width: 1200px) {
+  .inbox-grid { grid-template-columns: 1fr; }
+  .contractor-nav { display: none; }
+  .contact-grid { grid-template-columns: 1fr; gap: 16px; }
+  .situation-detail { grid-template-columns: 1fr; gap: 4px; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .upsell-strip { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CONTRACTOR HEADER -->
+<div class="contractor-header">
+  <div class="contractor-header-inner">
+    <div class="contractor-logo">
+      <div class="contractor-logo-mark">F</div>
+      <div class="contractor-logo-text">Florida Contractor Registry</div>
+      <div class="contractor-tag">Contractor Portal</div>
+    </div>
+    <nav class="contractor-nav">
+      <a href="/manage/aceca-construction-cgc1520921-davie">Profile</a>
+      <a href="/inquiries" class="active">Inquiries<span class="badge">3</span></a>
+      <a href="#">Photos</a>
+      <a href="#">Settings</a>
+    </nav>
+    <div class="contractor-user">
+      <div class="contractor-avatar">CA</div>
+      <span>Cristian Acero</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page-container">
+
+  <div class="page-title-bar">
+    <div>
+      <h1 class="page-title">Homeowner <em>inquiries</em></h1>
+      <div class="page-sub">Inquiries that came through your <strong>Aceca Construction</strong> profile</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-num gold">3</div>
+      <div class="stat-label">New Inquiries</div>
+      <div class="stat-trend">↑ 2 from last week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">14</div>
+      <div class="stat-label">This Month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">128</div>
+      <div class="stat-label">All Time</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">847</div>
+      <div class="stat-label">Profile Views (30 days)</div>
+      <div class="stat-trend">↑ 38% vs prior 30 days</div>
+    </div>
+  </div>
+
+  <!-- INBOX GRID -->
+  <div class="inbox-grid">
+
+    <!-- LIST PANEL -->
+    <div class="list-panel">
+      <div class="list-header">
+        <div class="list-header-title">Inbox</div>
+        <div class="list-tabs">
+          <button class="active">New <span class="count">3</span></button>
+          <button>All <span class="count">14</span></button>
+          <button>Archived</button>
+        </div>
+      </div>
+
+      <div class="list-search">
+        <input type="text" placeholder="Search inquiries..." />
+      </div>
+
+      <div class="list-items">
+
+        <div class="list-item selected unread">
+          <div class="list-item-top">
+            <div class="list-item-name">
+              <span class="new-dot"></span>
+              Margaret Williamson
+            </div>
+            <div class="list-item-time">9 min ago</div>
+          </div>
+          <div class="list-item-snippet">Looking for a kitchen renovation contractor. Just sold our place, moved into a 1985 home in Davie. Budget around $45,000.</div>
+          <div class="list-item-meta">
+            <span class="city">Davie</span>
+            <span class="sep"></span>
+            <span>Owner</span>
+            <span class="sep"></span>
+            <span>HELOC</span>
+          </div>
+        </div>
+
+        <div class="list-item unread">
+          <div class="list-item-top">
+            <div class="list-item-name">
+              <span class="new-dot"></span>
+              Robert Chen
+            </div>
+            <div class="list-item-time">2 hr ago</div>
+          </div>
+          <div class="list-item-snippet">Need to add a primary suite to our home in Plantation. Looking for someone licensed for structural work.</div>
+          <div class="list-item-meta">
+            <span class="city">Plantation</span>
+            <span class="sep"></span>
+            <span>Owner</span>
+            <span class="sep"></span>
+            <span>Cash + Loan</span>
+          </div>
+        </div>
+
+        <div class="list-item unread">
+          <div class="list-item-top">
+            <div class="list-item-name">
+              <span class="new-dot"></span>
+              Patricia Hernandez
+            </div>
+            <div class="list-item-time">Yesterday</div>
+          </div>
+          <div class="list-item-snippet">Got water damage from the last storm. Need someone who can handle full kitchen + master bath renovation.</div>
+          <div class="list-item-meta">
+            <span class="city">Cooper City</span>
+            <span class="sep"></span>
+            <span>Insurance + Cash</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Daniel Rodriguez</div>
+            <div class="list-item-time">3 days ago</div>
+          </div>
+          <div class="list-item-snippet">Just bought a house in Weston, planning a full gut renovation. Looking at 6-month timeline.</div>
+          <div class="list-item-meta">
+            <span class="city">Weston</span>
+            <span class="sep"></span>
+            <span>New buyer</span>
+            <span class="sep"></span>
+            <span>203k</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Susan &amp; Mark Thompson</div>
+            <div class="list-item-time">May 18</div>
+          </div>
+          <div class="list-item-snippet">Want to add a pool deck and pergola in our backyard. About 600 sqft total project.</div>
+          <div class="list-item-meta">
+            <span class="city">Davie</span>
+            <span class="sep"></span>
+            <span>Owner</span>
+            <span class="sep"></span>
+            <span>Cash</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">James O'Brien</div>
+            <div class="list-item-time">May 15</div>
+          </div>
+          <div class="list-item-snippet">Need master bath renovation. We're seniors and want to age in place — looking for someone experienced with accessibility upgrades.</div>
+          <div class="list-item-meta">
+            <span class="city">Pembroke Pines</span>
+            <span class="sep"></span>
+            <span>Senior</span>
+            <span class="sep"></span>
+            <span>Reverse</span>
+          </div>
+        </div>
+
+        <div class="list-item">
+          <div class="list-item-top">
+            <div class="list-item-name">Linda Patel</div>
+            <div class="list-item-time">May 14</div>
+          </div>
+          <div class="list-item-snippet">Looking to flip a property in Hollywood. Need someone who can move fast — 90-day timeline.</div>
+          <div class="list-item-meta">
+            <span class="city">Hollywood</span>
+            <span class="sep"></span>
+            <span>Investor</span>
+            <span class="sep"></span>
+            <span>Hard money</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DETAIL PANEL -->
+    <div class="detail-panel">
+
+      <div class="detail-header">
+        <div class="detail-meta-row">
+          <span class="inquiry-id">INQUIRY #INQ-2026-1847</span>
+          <span class="sep"></span>
+          <span>Received May 24, 2026 · 11:38 AM</span>
+          <span class="sep"></span>
+          <span class="new-tag">New</span>
+        </div>
+        <div class="detail-name">Margaret Williamson</div>
+        <div class="detail-sub">
+          <span>Davie, FL 33324</span>
+          <span class="sep"></span>
+          <span>Homeowner — Quality Seeker</span>
+        </div>
+      </div>
+
+      <div class="detail-body">
+
+        <!-- CONTACT INFO -->
+        <div class="detail-section">
+          <h3 class="section-h3">Contact Information</h3>
+          <div class="contact-card">
+            <div class="contact-grid">
+              <div>
+                <div class="contact-field-label">Phone</div>
+                <div class="contact-field-value">
+                  (954) 555-0287
+                  <button class="copy-btn">Copy</button>
+                </div>
+              </div>
+              <div>
+                <div class="contact-field-label">Email</div>
+                <div class="contact-field-value">
+                  <a href="mailto:margaret.w@email.com" class="link">margaret.w@email.com</a>
+                </div>
+              </div>
+              <div>
+                <div class="contact-field-label">Preferred Contact</div>
+                <div class="contact-field-value">Phone — anytime between 9 AM and 6 PM</div>
+              </div>
+              <div>
+                <div class="contact-field-label">ZIP / Service Area</div>
+                <div class="contact-field-value">33324 — Davie, FL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SITUATION SUMMARY (this is what gives the contractor real value) -->
+        <div class="detail-section">
+          <h3 class="section-h3">Project Details</h3>
+          <div class="situation-card">
+
+            <div class="situation-context">
+              <p><strong>Context:</strong> Margaret completed our diagnostic flow before sending this inquiry. The information below comes from her answers, in her own words where possible.</p>
+            </div>
+
+            <h4 class="situation-headline">Kitchen renovation, recently moved into a <em>1985 home in Davie.</em></h4>
+
+            <dl style="margin: 0;">
+              <div class="situation-detail">
+                <dt>Project Type</dt>
+                <dd>Kitchen renovation — full remodel</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Property Type</dt>
+                <dd>Single-family home, owner-occupied</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Property Age</dt>
+                <dd>Built 1985 (40+ years)</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Budget Range</dt>
+                <dd>~$45,000 (approximate)</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Timeline</dt>
+                <dd>Wants to start within 60 days</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Financing</dt>
+                <dd>Plans to use a HELOC (currently in pre-approval)</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Decision Style</dt>
+                <dd>Methodical — comparing 3–5 contractors before choosing</dd>
+              </div>
+              <div class="situation-detail">
+                <dt>Time Horizon in Home</dt>
+                <dd>Long-term — plans to stay 10+ years</dd>
+              </div>
+            </dl>
+
+          </div>
+        </div>
+
+        <!-- IN HER WORDS -->
+        <div class="detail-section">
+          <h3 class="section-h3">What She Wrote</h3>
+          <div class="situation-card">
+            <p style="font-size: 15px; color: var(--gray-700); line-height: 1.7; font-family: var(--serif); font-style: italic;">"We just moved into a 1985 home in Davie and the kitchen really hasn't been touched since then. I want to do a real renovation — open up the wall between the kitchen and dining room, new cabinets, quartz counters, the whole thing. I've been on this site looking at contractors and your reviews and licensing look solid. We're talking to a few people before we decide. Would love to get a sense of timing and a ballpark on what something like this costs. Best to reach me by phone — afternoons are easiest."</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ACTION BAR -->
+      <div class="action-bar">
+        <div class="action-bar-status">
+          Received <strong>11:38 AM</strong> · You typically respond within <strong>4 hours</strong>
+        </div>
+        <div class="action-bar-actions">
+          <button class="btn btn-archive">Archive</button>
+          <button class="btn btn-secondary">Mark as Replied</button>
+          <button class="btn btn-primary">Call Margaret →</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FEATURED UPSELL — shown when contractor is on free tier -->
+  <div class="upsell-strip">
+    <div>
+      <div class="tag">Featured Listing · Optional</div>
+      <h4>Want to see <em>more inquiries like this?</em></h4>
+      <p>Featured contractors appear at the top of county and city pages. Aceca currently averages 4 inquiries per week — featured contractors in Davie average 11.</p>
+    </div>
+    <a href="/manage/aceca-construction-cgc1520921-davie?upgrade=featured" class="upsell-cta">Try Featured for $29/mo</a>
+  </div>
+
+</div>
+
+</body>
+</html>
