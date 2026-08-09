@@ -493,6 +493,33 @@ footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.
 .footer-col a:hover { color: var(--gold-light); }
 .footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: rgba(255, 255, 255, 0.4); }
 
+/* ============ AD PLACEMENT ============ */
+.ad-slot {
+  text-align: center;
+  position: relative;
+}
+.ad-slot iframe {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+}
+.ad-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.ad-leaderboard {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 14px 0;
+}
+.ad-leaderboard .ad-desktop { display: block; }
+.ad-leaderboard .ad-mobile { display: none; }
+
 @media (max-width: 1000px) {
   .hero h1 { font-size: 38px; }
   .steps-grid { grid-template-columns: 1fr; }
@@ -503,6 +530,8 @@ footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.
   .find-profile { flex-direction: column; align-items: stretch; }
   .header-nav { display: none; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .ad-leaderboard .ad-desktop { display: none; }
+  .ad-leaderboard .ad-mobile { display: block; }
 }
 </style>
 </head>
@@ -535,6 +564,17 @@ footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.
     </nav>
   </div>
 </header>
+
+<!-- AD: LEADERBOARD -->
+<div class="ad-leaderboard ad-slot">
+  <div class="ad-label">Advertisement</div>
+  <div class="ad-desktop">
+    <iframe src="/ads/stairway/stairway-728x90.html" width="728" height="90" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+  </div>
+  <div class="ad-mobile">
+    <iframe src="/ads/stairway/stairway-320x100.html" width="320" height="100" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">

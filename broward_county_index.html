@@ -906,6 +906,29 @@ footer {
   font-family: var(--serif);
 }
 
+/* ============ AD PLACEMENT ============ */
+.ad-slot {
+  text-align: center;
+  position: relative;
+}
+.ad-slot iframe {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+}
+.ad-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.ad-sidebar-slot {
+  margin-top: 24px;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -1586,6 +1609,7 @@ footer {
   </div>
 </header>
 
+
 <!-- BREADCRUMB -->
 <nav class="breadcrumb">
   <div class="breadcrumb-inner">
@@ -1760,6 +1784,12 @@ footer {
 
     <button class="filter-clear">Clear All Filters</button>
 
+      <!-- AD: SIDEBAR -->
+      <div class="ad-sidebar-slot ad-slot">
+        <div class="ad-label">Advertisement</div>
+        <iframe src="/ads/stairway/stairway-300x250.html" width="260" height="250" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+      </div>
+
   </aside>
 
   <!-- RESULTS -->
@@ -1879,6 +1909,7 @@ footer {
           </span>
         </div>
       </a>
+
 
       <a href="#" class="contractor-card">
         <div class="cc-main">

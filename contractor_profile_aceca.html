@@ -789,6 +789,31 @@ footer {
   letter-spacing: 0.02em;
 }
 
+/* ============ AD PLACEMENT ============ */
+.ad-slot {
+  text-align: center;
+  position: relative;
+}
+.ad-slot iframe {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+}
+.ad-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.ad-sidebar-slot {
+  margin-bottom: 20px;
+}
+.ad-sidebar-slot .ad-desktop { display: block; }
+.ad-sidebar-slot .ad-mobile { display: none; }
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -805,6 +830,8 @@ footer {
   .banner-title { font-size: 24px; }
   .license-row { grid-template-columns: 1fr; gap: 6px; }
   .license-row.header { display: none; }
+  .ad-sidebar-slot .ad-desktop { display: none; }
+  .ad-sidebar-slot .ad-mobile { display: block; }
 }
 </style>
 </head>
@@ -1090,6 +1117,17 @@ footer {
       <h4>Is this your business?</h4>
       <p>Claim this profile to verify your identity, add a description, and update your contact information. Free, takes 5 minutes.</p>
       <a href="#" class="claim-btn">Claim Profile →</a>
+    </div>
+
+    <!-- AD: SIDEBAR -->
+    <div class="ad-sidebar-slot ad-slot" style="margin-top:4px;">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-desktop">
+        <iframe src="/ads/stairway/stairway-300x600.html" width="300" height="600" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+      </div>
+      <div class="ad-mobile">
+        <iframe src="/ads/stairway/stairway-300x250.html" width="300" height="250" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+      </div>
     </div>
 
   </aside>

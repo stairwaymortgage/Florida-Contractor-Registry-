@@ -416,6 +416,27 @@ footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.
   .header-nav { display: none; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
+
+/* ============ AD: NATIVE CARD ============ */
+.ad-native-card {
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  padding: 0;
+  border-bottom: none;
+  position: relative;
+}
+.ad-native-card .ad-label {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8d94;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  margin: 0;
+  z-index: 2;
+}
 </style>
 </head>
 <body>
@@ -498,6 +519,12 @@ footer.site-footer { background: var(--navy-deep); color: rgba(255, 255, 255, 0.
           <span class="status-pill active"><span class="dot"></span>Current Active</span>
         </div>
       </a>
+
+      <!-- AD: NATIVE CARD -->
+      <div class="ad-native-card">
+        <div class="ad-label">Sponsored</div>
+        <iframe src="/ads/stairway/stairway-340x420.html" width="100%" height="420" frameborder="0" scrolling="no" style="border:0;display:block;" title="Stairway Mortgage — Sponsored Listing" loading="lazy"></iframe>
+      </div>
 
       <a href="/contractor/acero-roofing-ccc1331458-davie" class="contractor-row">
         <div class="contractor-name-block">

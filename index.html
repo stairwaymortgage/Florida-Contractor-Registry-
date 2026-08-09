@@ -604,6 +604,47 @@ footer.site-footer {
   .header-nav { display: none; }
   .header-inner { gap: 16px; }
 }
+
+/* ============ AD PLACEMENT ============ */
+.ad-slot {
+  text-align: center;
+  position: relative;
+}
+.ad-slot iframe {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+}
+.ad-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.ad-billboard {
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 48px 0;
+}
+.ad-billboard-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.ad-billboard iframe {
+  max-width: 100%;
+}
+.ad-billboard .ad-desktop { display: block; }
+.ad-billboard .ad-mobile { display: none; }
+@media (max-width: 767px) {
+  .ad-billboard { padding: 28px 0; }
+  .ad-billboard .ad-desktop { display: none; }
+  .ad-billboard .ad-mobile { display: block; }
+}
 </style>
 </head>
 <body>
@@ -767,6 +808,19 @@ footer.site-footer {
     </a>
   </div>
 </section>
+
+<!-- ============ AD: CAROUSEL ============ -->
+<div class="ad-billboard ad-slot">
+  <div class="ad-billboard-inner">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-desktop">
+      <iframe src="/ads/stairway/stairway-970x250.html" width="970" height="250" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+    </div>
+    <div class="ad-mobile">
+      <iframe src="/ads/stairway/stairway-320x100.html" width="320" height="100" frameborder="0" scrolling="no" style="border:0;display:block;margin:0 auto;" title="Stairway Mortgage" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
 
 <!-- ============ LICENSE TYPES ============ -->
 <section class="types-section">
