@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guides &amp; Resources — Florida Contractor Registry</title>
+<meta name="description" content="Plain-language guides for Florida homeowners: how to verify a contractor's license, pull permits, spot red flags, and use public DBPR records before you hire." />
+<link rel="canonical" href="https://floridacontractorregistry.com/blog" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+
+<div class="top-strip">
+  <div class="top-strip-inner">
+    <div>Florida Public Records<span class="dot"></span>266,312 Licensed Contractors<span class="dot"></span>Refreshed Weekly from DBPR</div>
+    <div>Guides &amp; Resources</div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark"><span>F</span></div>
+      <div class="logo-text">
+        <span class="top-line">Florida Contractor Registry</span>
+        <span class="sub-line">Public Records · Verified Licenses</span>
+      </div>
+    </a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, license, city, or county..." />
+    </div>
+    <nav class="header-nav">
+      <a href="/counties">Counties</a>
+      <a href="/types">License Types</a>
+      <a href="/blog" class="active">Guides</a>
+      <a href="/contractors">For Contractors</a>
+    </nav>
+  </div>
+</header>
+
+<section class="blog-hero">
+  <div class="content-kicker">Guides &amp; Resources</div>
+  <h1>Hiring smart, <em>verified first.</em></h1>
+  <p>Plain-language guides for Florida homeowners — how to verify a license, pull a permit, read a DBPR record, and avoid the common traps before you sign a contract.</p>
+</section>
+
+<main class="blog-wrap">
+  <div id="post-grid" class="post-grid" aria-live="polite"></div>
+  <div id="blog-empty" class="blog-empty" hidden>New guides are being published. Check back soon.</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      <strong>FloridaContractorRegistry.com</strong> is a private commercial directory operated by Olga's Friends LLC. We are <strong>not affiliated with, endorsed by, or operated by</strong> the State of Florida, the Florida Department of Business and Professional Regulation (DBPR), the Construction Industry Licensing Board, or any government agency. License information shown is republished from public DBPR records under Chapter 119, Florida Statutes, and may not reflect the most current status. For official license verification, visit <a href="https://www.myfloridalicense.com">myfloridalicense.com</a>.
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Browse</h5>
+        <ul>
+          <li><a href="/counties">All Counties</a></li>
+          <li><a href="/types">License Types</a></li>
+          <li><a href="/cities">Top Cities</a></li>
+          <li><a href="/blog">Guides &amp; Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Homeowners</h5>
+        <ul>
+          <li><a href="/hiring-checklist">Hiring Checklist</a></li>
+          <li><a href="/verify">How to Verify a License</a></li>
+          <li><a href="/permits">Permit Look-Up Guide</a></li>
+          <li><a href="/complaint">File a Complaint</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>For Contractors</h5>
+        <ul>
+          <li><a href="/contractors">Claim Your Profile</a></li>
+          <li><a href="/contractors/edit">Update Information</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/sms-terms">SMS Terms</a></li>
+          <li><a href="/cookies">Cookie Notice</a></li>
+          <li><a href="/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Olga's Friends LLC. All rights reserved.</div>
+      <div>Data sourced from DBPR · Public records under Ch. 119, F.S.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var grid = document.getElementById('post-grid');
+  var empty = document.getElementById('blog-empty');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function fmtDate(d){ try { return new Date(d+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}); } catch(e){ return d||''; } }
+  fetch('/data/blog-index.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
+    .then(function (data) {
+      var posts = (data && data.posts) || [];
+      posts.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+      if (!posts.length) { empty.hidden = false; return; }
+      grid.innerHTML = posts.map(function (p) {
+        var href = '/blog/' + encodeURIComponent(p.slug);
+        var thumb = p.heroImage ? '<img class="thumb" src="' + esc(p.heroImage) + '" alt="' + esc(p.heroAlt || p.title) + '" loading="lazy">' : '<div class="thumb"></div>';
+        return '<a class="post-card" href="' + href + '">' + thumb +
+          '<div class="pc-body">' +
+          (p.tag ? '<span class="pc-tag">' + esc(p.tag) + '</span>' : '') +
+          '<h3>' + esc(p.title) + '</h3>' +
+          '<p>' + esc(p.description || '') + '</p>' +
+          '<span class="pc-date">' + esc(fmtDate(p.date)) + '</span>' +
+          '</div></a>';
+      }).join('');
+    })
+    .catch(function () { empty.hidden = false; });
+})();
+</script>
+</body>
+</html>
